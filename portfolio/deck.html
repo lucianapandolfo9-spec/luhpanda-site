@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Luh Panda — Portfólio</title>
+<style>
+:root{
+  --fundo:#12081A; --card:#1E1028; --card-borda:#3A2249;
+  --roxo:#6F2E8F; --roxo-escuro:#4A1B5C; --roxo-claro:#8B4BA3;
+  --laranja:#FF6B35; --verde-zap:#25D366;
+  --texto:#F2EAF7; --texto-suave:#C4B2D1;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:1280px 720px;margin:0}
+html,body{background:var(--fundo)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--texto)}
+.slide{
+  width:1280px;height:720px;position:relative;overflow:hidden;
+  background:var(--fundo);page-break-after:always;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:64px 80px;
+}
+.slide::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:linear-gradient(90deg,var(--roxo) 0%,var(--roxo-claro) 55%,var(--laranja) 100%);
+}
+.marca{position:absolute;top:36px;right:80px;font-weight:800;font-size:18px;letter-spacing:.5px}
+.marca span{color:var(--laranja)}
+.tag{
+  display:inline-block;align-self:flex-start;font-size:14px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--laranja);border:1px solid var(--card-borda);
+  background:var(--card);border-radius:999px;padding:7px 18px;margin-bottom:22px;
+}
+h1{font-size:58px;line-height:1.12;font-weight:800;letter-spacing:-1px}
+h2{font-size:40px;line-height:1.15;font-weight:800;letter-spacing:-.5px;margin-bottom:14px}
+.sub{font-size:21px;color:var(--texto-suave);line-height:1.5;max-width:900px}
+.destaque{color:var(--laranja)}
+
+/* Capa */
+.capa{align-items:flex-start;background:
+  radial-gradient(ellipse 900px 600px at 85% -10%,rgba(111,46,143,.45),transparent 65%),
+  radial-gradient(ellipse 700px 500px at -5% 110%,rgba(255,107,53,.14),transparent 60%),
+  var(--fundo);}
+.capa h1{font-size:62px;max-width:960px;margin-bottom:24px}
+.capa .quem{margin-top:44px;font-size:19px;color:var(--texto-suave)}
+.capa .quem strong{color:var(--texto);font-size:22px;display:block;margin-bottom:4px}
+.techs{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap}
+.techs span{font-size:14px;color:var(--texto-suave);background:var(--card);border:1px solid var(--card-borda);border-radius:8px;padding:7px 14px}
+
+/* Quem sou */
+.duas-col{display:flex;gap:56px;align-items:center}
+.foto{flex:0 0 320px;height:530px;border-radius:18px;overflow:hidden;border:1px solid var(--card-borda);box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}
+.foto img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.creds{list-style:none;margin-top:26px}
+.creds li{font-size:19px;color:var(--texto-suave);padding:11px 0 11px 34px;position:relative;border-bottom:1px solid var(--card-borda)}
+.creds li:last-child{border-bottom:none}
+.creds li::before{content:"✓";position:absolute;left:2px;color:var(--laranja);font-weight:800}
+
+/* Dores / frentes em grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+.gcard{background:var(--card);border:1px solid var(--card-borda);border-radius:16px;padding:26px 28px}
+.gcard p{font-size:18px;line-height:1.5;color:var(--texto-suave)}
+.gcard p strong{color:var(--texto);display:block;margin-bottom:6px;font-size:19px}
+.punch{margin-top:30px;font-size:22px;text-align:center;color:var(--texto)}
+.punch strong{color:var(--laranja)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:38px}
+.passo{background:var(--card);border:1px solid var(--card-borda);border-radius:16px;padding:26px 22px}
+.passo .num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--roxo),var(--roxo-claro));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin-bottom:16px}
+.passo h3{font-size:21px;margin-bottom:10px}
+.passo p{font-size:16px;line-height:1.5;color:var(--texto-suave)}
+
+/* Cases */
+.case-col{display:flex;gap:52px;align-items:center}
+.case-txt{flex:1 1 46%}
+.case-txt h2{font-size:34px}
+.case-media{flex:1 1 54%;border-radius:16px;overflow:hidden;border:1px solid var(--card-borda);box-shadow:0 20px 60px rgba(0,0,0,.5);background:var(--card)}
+.case-media img{width:100%;display:block}
+dl{margin-top:22px}
+dt{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--laranja);margin-top:18px}
+dd{font-size:18px;line-height:1.5;color:var(--texto-suave);margin-top:5px}
+dd strong{color:var(--texto)}
+
+/* Diagnóstico */
+.diag-box{background:var(--card);border:1px solid var(--card-borda);border-radius:20px;padding:44px 48px;display:flex;align-items:center;gap:48px;margin-top:36px}
+.diag-box .dtexto{flex:1}
+.diag-box h3{font-size:27px;margin-bottom:12px}
+.diag-box p{font-size:19px;line-height:1.55;color:var(--texto-suave)}
+.valor{text-align:center;flex:0 0 auto}
+.valor .num{font-size:56px;font-weight:800;color:var(--laranja);white-space:nowrap}
+.valor small{display:block;font-size:16px;color:var(--texto-suave);margin-top:4px}
+.passos-mini{display:flex;gap:16px;margin-top:34px}
+.passos-mini div{flex:1;background:var(--card);border:1px solid var(--card-borda);border-radius:14px;padding:20px;font-size:17px;color:var(--texto-suave);line-height:1.45}
+.passos-mini strong{color:var(--texto);display:block;margin-bottom:6px}
+
+/* Contato */
+.contato{align-items:center;text-align:center;background:
+  radial-gradient(ellipse 900px 600px at 50% 120%,rgba(111,46,143,.5),transparent 65%),var(--fundo)}
+.contato .tag{align-self:center}
+.contato h1{font-size:54px;max-width:880px}
+.zap{
+  display:inline-flex;align-items:center;gap:14px;margin-top:44px;
+  background:var(--verde-zap);color:#062b16;font-weight:800;font-size:24px;
+  border-radius:999px;padding:20px 42px;
+}
+.contato .links{margin-top:38px;font-size:19px;color:var(--texto-suave);line-height:1.8}
+.contato .links strong{color:var(--texto)}
+</style>
+</head>
+<body>
+
+<!-- 1. CAPA -->
+<section class="slide capa">
+  <span class="tag">Portfólio · Automação &amp; IA</span>
+  <h1>IA trabalhando de verdade <span class="destaque">dentro do seu negócio.</span></h1>
+  <p class="sub">Agentes de IA conectados aos dados reais da empresa, plataformas sob medida, processos automatizados de ponta a ponta — e sua equipe treinada pra usar tudo isso no dia a dia.</p>
+  <div class="quem"><strong>Luh <span class="destaque">Panda</span></strong>Luciana Pandolfo — Automação &amp; IA para negócios</div>
+  <div class="techs"><span>IA generativa</span><span>Treinamento de equipes</span><span>n8n</span><span>Supabase</span><span>Plataformas sob medida</span><span>WhatsApp</span><span>Meta Ads</span></div>
+</section>
+
+<!-- 2. QUEM SOU -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="duas-col">
+    <div class="foto"><img src="luh-foto.jpg" alt="Luh Panda"></div>
+    <div>
+      <span class="tag">Quem constrói</span>
+      <h2>Luciana Pandolfo — Luh Panda</h2>
+      <p class="sub">Eu não vendo tecnologia, vendo <strong style="color:var(--texto)">problema resolvido</strong>. Trabalho ponta a ponta: entendo o negócio, desenho a solução, construo, coloco no ar e mantenho funcionando — e treino sua equipe pra operar com IA sem depender de ninguém.</p>
+      <ul class="creds">
+        <li>Certificação em IA — TERA</li>
+        <li>MBA em Inteligência Artificial — Exame / Saint Paul</li>
+        <li>Automação e performance na Lead Performance</li>
+        <li>Criadora do ARROBA CERTA (SaaS próprio no ar)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROBLEMA -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <span class="tag">O problema</span>
+  <h2>Todo dia isso acontece no seu negócio.</h2>
+  <div class="grid2">
+    <div class="gcard"><p><strong>Equipe presa em tarefa repetitiva.</strong>Copiar dado de um sistema pro outro, montar relatório, responder a mesma pergunta 30 vezes.</p></div>
+    <div class="gcard"><p><strong>Você não sabe os números do próprio negócio</strong>sem abrir 5 painéis diferentes e montar planilha na mão.</p></div>
+    <div class="gcard"><p><strong>Todo mundo quer usar IA, mas sem método</strong>cada um faz de um jeito, o resultado não padroniza e ninguém confia no que sai.</p></div>
+    <div class="gcard"><p><strong>Cliente chama e espera horas.</strong>Enquanto isso, ele fecha com o concorrente que respondeu primeiro.</p></div>
+  </div>
+  <p class="punch">O problema não é falta de equipe. É <strong>trabalho de robô sendo feito por gente.</strong></p>
+</section>
+
+<!-- 4. O QUE EU FAÇO -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <span class="tag">O que eu faço</span>
+  <h2>Quatro frentes, um objetivo: sua operação rodando sozinha.</h2>
+  <div class="grid2">
+    <div class="gcard"><p><strong>Treinamento de IA para equipes</strong>Sua equipe usando IA no dia a dia com método — aulas práticas e biblioteca de prompts e skills do seu negócio.</p></div>
+    <div class="gcard"><p><strong>Agentes de IA com seus dados</strong>IA que lê documento, revisa folha de pagamento, analisa processo — conectada ao banco de dados, planilha ou CRM da empresa.</p></div>
+    <div class="gcard"><p><strong>Plataformas e sistemas sob medida</strong>Hubs internos e aplicativos que centralizam a operação — do briefing ao contrato, tudo num lugar só.</p></div>
+    <div class="gcard"><p><strong>Automação de processos e atendimento</strong>Relatórios automáticos, integrações entre sistemas e robôs de atendimento que respondem com dado real.</p></div>
+  </div>
+</section>
+
+<!-- 5. MÉTODO -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <span class="tag">Como funciona</span>
+  <h2>Método em 4 passos — você sabe o que acontece em cada etapa.</h2>
+  <p class="sub">Não é freelancer de tarefa. É dona do problema, do diagnóstico à manutenção.</p>
+  <div class="grid4">
+    <div class="passo"><div class="num">1</div><h3>Diagnóstico</h3><p>Mapeio sua operação e encontro onde está vazando tempo e dinheiro. Você recebe um plano priorizado.</p></div>
+    <div class="passo"><div class="num">2</div><h3>Estratégia</h3><p>Definimos o que automatizar primeiro, com escopo e valor fechados antes de começar.</p></div>
+    <div class="passo"><div class="num">3</div><h3>Execução</h3><p>Eu construo, testo com dados reais e coloco no ar. Você acompanha sem precisar entender de tecnologia.</p></div>
+    <div class="passo"><div class="num">4</div><h3>Acompanhamento</h3><p>Manutenção mensal: o robô evolui com o negócio e você tem a quem chamar.</p></div>
+  </div>
+</section>
+
+<!-- 6. CASE TREINAMENTO -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <span class="tag">Case · Capitalize Contabilidade</span>
+  <h2>Treinamento corporativo de IA para a equipe</h2>
+  <p class="sub">Equipe inteira operando com IA, com método e material próprio da empresa.</p>
+  <div class="grid2" style="margin-top:30px">
+    <div class="gcard"><p><strong>Problema</strong>Equipe queria usar IA no dia a dia, mas sem método virava tentativa e erro.</p></div>
+    <div class="gcard"><p><strong>Solução</strong>Curso prático em 4 aulas + biblioteca de skills e prompts próprios pro contexto da empresa.</p></div>
+  </div>
+  <div class="gcard" style="margin-top:22px"><p><strong>Resultado</strong>Equipe operando com IA de forma padronizada, com material de consulta permanente.</p></div>
+</section>
+
+<!-- 7. CASE CAPITALIZE DP -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="case-col">
+    <div class="case-txt">
+      <span class="tag">Case · Capitalize Contabilidade</span>
+      <h2>Analista de DP com IA que revisa folha de pagamento</h2>
+      <dl>
+        <dt>Problema</dt><dd>Folha de pagamento ia pro cliente com risco de erro humano na conferência.</dd>
+        <dt>Solução</dt><dd>Agente de IA que audita a folha antes do envio: confere valores, verbas e inconsistências.</dd>
+        <dt>Resultado</dt><dd><strong>Camada extra de revisão automática</strong> em toda folha que sai.</dd>
+      </dl>
+    </div>
+    <div class="case-media"><img src="../assets/cases/capitalize-clean.png" alt="Dashboard do CAPITALIZE Audit Intelligence"></div>
+  </div>
+</section>
+
+<!-- 8. CASE LEAD PERFORMANCE -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="case-col">
+    <div class="case-txt">
+      <span class="tag">Case · Lead Performance</span>
+      <h2>Hub interno que centraliza a operação inteira da empresa</h2>
+      <dl>
+        <dt>Problema</dt><dd>Equipe espalhada em vários sistemas — D4Sign, Asana, CapCut, planilhas — sem um lugar único da operação.</dd>
+        <dt>Solução</dt><dd>Sistema interno que conecta todas as ferramentas num só painel: briefing por setor, campanhas, contratos e tarefas integrados.</dd>
+        <dt>Resultado</dt><dd><strong>A equipe inteira opera num lugar só,</strong> com dado de todos os sistemas conversando entre si.</dd>
+      </dl>
+    </div>
+    <div class="case-media"><img src="lead-performance-deck.png" alt="Central Financeira do hub interno da Lead Performance, com contratos D4Sign integrados"></div>
+  </div>
+</section>
+
+<!-- 9. CASE ARROBA CERTA -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="case-col">
+    <div class="case-txt">
+      <span class="tag">Produto próprio</span>
+      <h2>ARROBA CERTA — SaaS de gestão de lucro para pecuária</h2>
+      <dl>
+        <dt>Problema</dt><dd>Pequeno e médio pecuarista não sabe o custo da arroba produzida nem a margem real do lote.</dd>
+        <dt>Solução</dt><dd>Aplicativo completo — cadastro de lotes, custo por @, margem, simulações — construído e publicado do zero por mim.</dd>
+        <dt>Resultado</dt><dd><strong>Produto no ar,</strong> com autenticação, banco de dados e cálculos validados. Prova de capacidade full-stack.</dd>
+      </dl>
+    </div>
+    <div class="case-media"><img src="../assets/cases/arroba-demo-poster.jpg" alt="Dashboard do ARROBA CERTA"></div>
+  </div>
+</section>
+
+<!-- 10. CASE AGÊNCIA / AUTOMAÇÃO DE RELATÓRIO -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="case-col">
+    <div class="case-txt">
+      <span class="tag">Case · Agência de marketing</span>
+      <h2>Relatório diário de tráfego pago, direto no WhatsApp</h2>
+      <dl>
+        <dt>Problema</dt><dd>Gestor e cliente só viam resultado de campanha quando alguém abria o painel e montava relatório.</dd>
+        <dt>Solução</dt><dd>Automação que coleta os dados das campanhas e envia relatório pronto todos os dias, sem ninguém precisar pedir.</dd>
+        <dt>Resultado</dt><dd>Zero painel aberto: o número chega antes de alguém perguntar. No print, campanha real fechando o período com <strong>ROAS de 6,03x</strong>.</dd>
+      </dl>
+    </div>
+    <div class="case-media"><img src="../assets/cases/metaads-report.png" alt="Relatório de Meta Ads enviado pelo robô no WhatsApp"></div>
+  </div>
+</section>
+
+<!-- 11. CASE ADV -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="case-col">
+    <div class="case-txt">
+      <span class="tag">Case · Escritório de advocacia</span>
+      <h2>Atendente de IA que responde com o dado real do processo</h2>
+      <dl>
+        <dt>Problema</dt><dd>Cliente ligava toda semana pra perguntar do processo; a equipe parava tudo pra responder sempre a mesma coisa.</dd>
+        <dt>Solução</dt><dd>Atendente de IA no WhatsApp conectado ao banco de processos: responde com dado real, agenda reunião e escala pra humano quando precisa.</dd>
+        <dt>Resultado</dt><dd><strong>Atendimento imediato 24h</strong> e equipe liberada do repetitivo. Projeto com manutenção mensal ativa.</dd>
+      </dl>
+    </div>
+    <div class="case-media"><img src="../assets/cases/adv-robo-poster.jpg" alt="Robô de atendimento do escritório de advocacia"></div>
+  </div>
+</section>
+
+<!-- 12. CASE CONTABILIDADE -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <div class="case-col">
+    <div class="case-txt">
+      <span class="tag">Case · Empresa de contabilidade</span>
+      <h2>Robô de atendimento com dados em tempo real</h2>
+      <dl>
+        <dt>Problema</dt><dd>Volume de perguntas repetidas de clientes sobrecarregava a equipe contábil.</dd>
+        <dt>Solução</dt><dd>Robô de WhatsApp que responde com dados atualizados em tempo real, sem intervenção humana no primeiro nível.</dd>
+        <dt>Resultado</dt><dd><strong>Equipe focada no trabalho técnico;</strong> cliente atendido na hora.</dd>
+      </dl>
+    </div>
+    <div class="case-media"><img src="../assets/cases/toninho-robo-poster.jpg" alt="Robô de atendimento da contabilidade"></div>
+  </div>
+</section>
+
+<!-- 13. COMO COMEÇAR -->
+<section class="slide">
+  <div class="marca">Luh <span>Panda</span></div>
+  <span class="tag">Como começar</span>
+  <h2>Primeiro passo: Diagnóstico Estratégico.</h2>
+  <p class="sub">Antes de automatizar qualquer coisa, a gente descobre <strong style="color:var(--texto)">o que</strong> automatizar — e em que ordem.</p>
+  <div class="diag-box">
+    <div class="dtexto">
+      <h3>Diagnóstico Estratégico</h3>
+      <p>Eu mapeio sua operação, encontro os gargalos e te entrego um plano priorizado do que automatizar primeiro — método próprio de 6 blocos.</p>
+    </div>
+    <div class="valor"><div class="num">R$ 500</div><small>pagamento único</small></div>
+  </div>
+  <div class="passos-mini">
+    <div><strong>1. Conversa</strong>Você me conta como o negócio roda hoje.</div>
+    <div><strong>2. Diagnóstico</strong>Análise completa da operação, gargalo por gargalo.</div>
+    <div><strong>3. Plano em mãos</strong>Roadmap priorizado — executa comigo ou com quem quiser.</div>
+  </div>
+</section>
+
+<!-- 14. CONTATO -->
+<section class="slide contato">
+  <span class="tag">Vamos conversar?</span>
+  <h1>Me chama no WhatsApp e me conta como seu negócio roda hoje.</h1>
+  <div class="zap">WhatsApp · (84) 99412-7476</div>
+  <div class="links">
+    <strong>Luciana Pandolfo — Luh Panda</strong><br>
+    wa.me/5584994127476 · www.luhpanda.com.br
+  </div>
+</section>
+
+</body>
+</html>
