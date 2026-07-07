@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luh Panda — Automação & IA para Negócios que Querem Escalar</title>
-<meta name="description" content="Robôs de atendimento no WhatsApp, automação de processos e agentes de IA conectados aos dados reais do seu negócio. Diagnóstico Estratégico por R$ 297.">
+<meta name="description" content="Robôs de atendimento no WhatsApp, automação de processos e agentes de IA conectados aos dados reais do seu negócio. Diagnóstico Estratégico por R$ 500.">
 <meta property="og:title" content="Luh Panda — Automação & IA para Negócios que Querem Escalar">
 <meta property="og:description" content="Seu negócio respondendo em segundos, vendendo enquanto você dorme. Atendentes de IA, automação e agentes com dados reais.">
 <meta property="og:type" content="website">
@@ -93,6 +93,7 @@ header{
   border-radius:16px;padding:26px;
 }
 .dor-card .emoji{font-size:1.8rem;margin-bottom:12px}
+.emoji-img{width:56px;height:56px;margin-bottom:12px;border-radius:14px;object-fit:cover;display:block}
 .dor-card p{color:var(--texto-suave);font-size:.98rem}
 .dor-card strong{color:var(--texto)}
 .dor-punch{margin-top:36px;text-align:center;font-size:1.15rem}
@@ -125,6 +126,8 @@ header{
 /* ===== Cases ===== */
 .cases{background:var(--card);border-top:1px solid var(--card-borda);border-bottom:1px solid var(--card-borda)}
 .cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.case-media{border-radius:12px;overflow:hidden;border:1px solid var(--card-borda);margin-bottom:4px}
+.case-media img,.case-media video{width:100%;display:block}
 .case{
   background:var(--fundo);border:1px solid var(--card-borda);
   border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;
@@ -234,19 +237,19 @@ footer a:hover{color:var(--texto)}
     <p class="section-sub">Se você marcou pelo menos um, tem dinheiro vazando pela operação.</p>
     <div class="dor-grid">
       <div class="dor-card">
-        <div class="emoji">📵</div>
+        <img class="emoji-img" src="assets/icons/dor-espera.svg" alt="Cliente esperando resposta no WhatsApp">
         <p><strong>Cliente chama no WhatsApp e espera horas.</strong> Enquanto isso, ele fecha com o concorrente que respondeu primeiro.</p>
       </div>
       <div class="dor-card">
-        <div class="emoji">🔁</div>
+        <img class="emoji-img" src="assets/icons/dor-repetitivo.svg" alt="Trabalho repetitivo copiando dados entre sistemas">
         <p><strong>Sua equipe passa o dia em tarefa repetitiva</strong> — copiar dado de um sistema pro outro, montar relatório, responder a mesma pergunta 30 vezes.</p>
       </div>
       <div class="dor-card">
-        <div class="emoji">📊</div>
+        <img class="emoji-img" src="assets/icons/dor-numeros.svg" alt="Painéis fragmentados sem visão única dos números">
         <p><strong>Você não sabe os números do próprio negócio</strong> sem abrir 5 painéis diferentes e montar planilha na mão.</p>
       </div>
       <div class="dor-card">
-        <div class="emoji">🤖</div>
+        <img class="emoji-img" src="assets/icons/dor-chatbot.svg" alt="Chatbot de menu que frustra o cliente">
         <p><strong>Já contratou "chatbot" e virou menuzinho</strong> que irrita o cliente e não resolve nada — porque não conversa com os dados do negócio.</p>
       </div>
     </div>
@@ -262,28 +265,28 @@ footer a:hover{color:var(--texto)}
     <p class="section-sub">Projetos sob medida — o escopo e o valor saem depois do diagnóstico, quando a dor já está mapeada.</p>
     <div class="servicos-grid">
       <div class="servico">
-        <div class="emoji">💬</div>
+        <img class="emoji-img" src="assets/icons/serv-atendente.svg" alt="Atendente de IA respondendo na hora no WhatsApp">
         <h3>Atendente de IA no WhatsApp</h3>
         <p>Responde em segundos, 24h, com dados reais do seu negócio. Qualifica o lead, agenda reunião e escala pra humano quando precisa.</p>
         <span class="preco">Projeto sob medida</span>
       </div>
       <div class="servico">
-        <div class="emoji">⚙️</div>
+        <img class="emoji-img" src="assets/icons/serv-automacao.svg" alt="Engrenagens conectadas com fluxo de dados">
         <h3>Automação de processos</h3>
         <p>Relatórios que chegam prontos, sistemas que conversam entre si, tarefas repetitivas que acontecem sem ninguém tocar.</p>
         <span class="preco">Projeto sob medida</span>
       </div>
       <div class="servico">
-        <div class="emoji">🧠</div>
+        <img class="emoji-img" src="assets/icons/serv-agentes.svg" alt="Chip de IA conectado a banco de dados e documentos">
         <h3>Agentes de IA com seus dados</h3>
         <p>IA que lê documento, revisa folha de pagamento, analisa processo — conectada ao banco de dados, planilha ou CRM do seu negócio.</p>
         <span class="preco">Projeto sob medida</span>
       </div>
       <div class="servico">
-        <div class="emoji">🎓</div>
+        <img class="emoji-img" src="assets/icons/serv-treinamento.svg" alt="Equipe sendo treinada em IA">
         <h3>Treinamento de IA para equipes</h3>
         <p>Sua equipe usando IA no dia a dia com método — aulas práticas e biblioteca de prompts e skills do seu negócio.</p>
-        <span class="preco">R$ 150/hora</span>
+        <span class="preco">Projeto sob medida</span>
       </div>
     </div>
     <div class="diagnostico">
@@ -291,10 +294,10 @@ footer a:hover{color:var(--texto)}
         <h3>🔍 Diagnóstico Estratégico</h3>
         <p>Por onde começar? Eu mapeio sua operação, encontro os gargalos e te entrego um plano priorizado do que automatizar primeiro — método próprio de 6 blocos.</p>
       </div>
-      <div class="valor">R$ 297<small>pagamento único</small></div>
+      <div class="valor">R$ 500<small>pagamento único</small></div>
     </div>
     <div class="diag-cta">
-      <a class="btn-zap" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20o%20Diagn%C3%B3stico%20Estrat%C3%A9gico%20de%20R%24297." target="_blank" rel="noopener">Quero meu diagnóstico</a>
+      <a class="btn-zap" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20o%20Diagn%C3%B3stico%20Estrat%C3%A9gico%20de%20R%24500." target="_blank" rel="noopener">Quero meu diagnóstico</a>
     </div>
   </div>
 </section>
@@ -343,8 +346,22 @@ footer a:hover{color:var(--texto)}
         </dl>
       </div>
       <div class="case">
+        <span class="cliente">Lead Performance</span>
+        <h3>Hub interno que centraliza a operação inteira da empresa</h3>
+        <div class="case-media"><video src="assets/cases/lead-performance-demo.mp4" poster="assets/cases/lead-performance-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <dl>
+          <dt>Problema</dt>
+          <dd>Equipe espalhada em vários sistemas — D4Sign, Asana, CapCut, planilhas — sem um lugar único da operação.</dd>
+          <dt>Solução</dt>
+          <dd>Sistema interno que conecta todas as ferramentas num só painel: briefing por setor, campanhas, contratos e tarefas integrados.</dd>
+          <dt>Resultado</dt>
+          <dd>A equipe inteira opera num lugar só, com dado de todos os sistemas conversando entre si.</dd>
+        </dl>
+      </div>
+      <div class="case">
         <span class="cliente">Capitalize Contabilidade</span>
         <h3>Analista de DP com IA que revisa folha de pagamento</h3>
+        <div class="case-media"><img src="assets/cases/capitalize-clean.png" alt="Dashboard do CAPITALIZE Audit Intelligence" loading="lazy"></div>
         <dl>
           <dt>Problema</dt>
           <dd>Folha de pagamento ia pro cliente com risco de erro humano na conferência.</dd>
@@ -369,6 +386,7 @@ footer a:hover{color:var(--texto)}
       <div class="case">
         <span class="cliente">Produto próprio</span>
         <h3>ARROBA CERTA — SaaS de gestão de lucro para pecuária</h3>
+        <div class="case-media"><img src="assets/cases/arroba-dashboard.png" alt="Dashboard do ARROBA CERTA com lotes e lucro estimado" loading="lazy"></div>
         <dl>
           <dt>Problema</dt>
           <dd>Pequeno e médio pecuarista não sabe o custo da arroba produzida nem a margem real do lote.</dd>

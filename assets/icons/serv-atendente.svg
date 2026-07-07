@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 224">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2A1838"/>
+      <stop offset="1" stop-color="#1E1028"/>
+    </linearGradient>
+    <linearGradient id="bub" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8B4BA3"/>
+      <stop offset="1" stop-color="#6F2E8F"/>
+    </linearGradient>
+  </defs>
+  <rect width="224" height="224" rx="28" fill="url(#bg)"/>
+  <!-- main chat bubble -->
+  <path d="M 58 44 h 108 a 20 20 0 0 1 20 20 v 62 a 20 20 0 0 1 -20 20 h -62 l -26 26 v -26 h -20 a 20 20 0 0 1 -20 -20 v -62 a 20 20 0 0 1 20 -20 z" fill="url(#bub)"/>
+  <!-- lightning bolt: instant reply -->
+  <path d="M 122 56 L 92 102 L 112 102 L 100 136 L 134 88 L 114 88 Z" fill="#FF6B35"/>
+  <!-- AI sparkles -->
+  <path d="M 170 130 l 4.5 11 11 4.5 -11 4.5 -4.5 11 -4.5 -11 -11 -4.5 11 -4.5 z" fill="#FF6B35"/>
+  <path d="M 46 152 l 3.5 8.5 8.5 3.5 -8.5 3.5 -3.5 8.5 -3.5 -8.5 -8.5 -3.5 8.5 -3.5 z" fill="#C4B2D1"/>
+  <!-- reply bubble typing back instantly -->
+  <rect x="120" y="164" width="66" height="30" rx="15" fill="#3A2249" stroke="#8B4BA3" stroke-width="4"/>
+  <circle cx="140" cy="179" r="4.5" fill="#C4B2D1"/>
+  <circle cx="154" cy="179" r="4.5" fill="#C4B2D1" opacity="0.65"/>
+  <circle cx="168" cy="179" r="4.5" fill="#C4B2D1" opacity="0.35"/>
+</svg>

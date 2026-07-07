@@ -25,12 +25,12 @@ Ele não quer aprender IA. Ele quer o problema resolvido. O site fala com ELE, n
 
 | Degrau | Oferta | Preço | Papel |
 |---|---|---|---|
-| 1 | **Diagnóstico Estratégico** | R$ 297 (único com preço no site) | Porta de entrada. Barato o bastante pra decidir sozinho, sério o bastante pra filtrar curioso. Entrega o método dos 6 blocos. |
-| 2 | **Projeto** (robô, automação, agente, ferramenta) | R$ 1.500 – R$ 3.500+ (sob medida) | O contrato principal. Âncora real: robô de atendimento advocacia = R$ 2.500. |
-| 3 | **Manutenção mensal** | R$ 300 – R$ 800/mês | Recorrência. Todo projeto sai com proposta de manutenção. |
-| 4 | **Treinamento de IA para equipes** | R$ 150/h | Upsell corporativo (modelo Capitalize). |
+| 1 | **Diagnóstico Estratégico** | R$ 500 (único com preço no site) | Porta de entrada. Entrega o método dos 6 blocos. |
+| 2 | **Projeto** (robô, automação, agente, ferramenta) | Sob medida | O contrato principal. Âncora real: robô de atendimento advocacia = R$ 2.500. |
+| 3 | **Manutenção mensal** | Sob medida | Recorrência. Todo projeto sai com proposta de manutenção. |
+| 4 | **Treinamento de IA para equipes** | Sob medida | Upsell corporativo (modelo Capitalize). Preço por hora tirado do site — passava impressão de barato. |
 
-Regra: **o site só mostra preço do Diagnóstico.** Projeto é "sob medida" — o valor sai na conversa, depois do diagnóstico, quando você já mapeou a dor.
+Regra: **o site só mostra preço do Diagnóstico (R$ 500).** Todo o resto é "sob medida" — o valor sai na conversa, depois do diagnóstico, quando você já mapeou a dor.
 
 ## 4. Site — Arquitetura (one-page)
 
