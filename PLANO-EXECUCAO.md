@@ -12,6 +12,13 @@
 
 **Próximos passos = só o Backlog abaixo.**
 
+## ✅ SESSÃO 2 (07/07 tarde) — vídeos reais nos cases + privacidade + finalização
+
+- Cases com mídia real enviada pela Luh: robô ADV "Dani" (vídeo), robô Toninho contabilidade (vídeo), Capitalize sistema pronto (vídeo), ARROBA CERTA navegação (vídeo), relatório Meta Ads no WhatsApp (imagem, ROAS 6,03x — usado também como resultado mensurável na copy do case da agência).
+- **Privacidade (pedido da Luh: "não mostrar dados reais")**: ADV = blur só no telefone do cabeçalho (gblur região 320x40@90,28); Toninho e Capitalize = blur no conteúdo inteiro (gblur sigma 14) porque CNPJ/sócios/CPF/salários apareciam em quase todo frame — cabeçalho/estrutura ficam nítidos. Vídeo do ARROBA auditado: só dados fictícios, sem tratamento. Brutos em `assets/raw/` (fora do git) se precisar re-tratar.
+- Finalização: `produtos.html` e `consultoria.html` (legadas, tinham preços R$1.000–2.500) viraram **redirect + noindex** pro index#servicos; adicionados og:image (`assets/og-cover.jpg`, print do hero 1200x630), og:url, twitter:card e favicon (`assets/favicon.svg`).
+- **Pendente da Luh:** foto da equipe pro card "Treinamento corporativo" (Capitalize) — ela vai mandar; aí é só inserir `case-media` no card.
+
 ## Estado ao encerrar hoje (o que JÁ está feito — não refazer)
 
 - **Site no ar:** https://lucianapandolfo9-spec.github.io/luhpanda-site/ (GitHub Pages reativado hoje; estava 404 porque o Pages estava desabilitado e havia commit local sem push).
