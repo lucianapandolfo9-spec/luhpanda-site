@@ -2,6 +2,16 @@
 *Escrito em 06/07/2026, ~22h40. Para ser executado por Claude (Sonnet 5) amanhã.*
 *Leia junto com a skill `site-luhpanda` (~/.claude/skills/site-luhpanda/SKILL.md) — ela tem o contexto permanente. Este arquivo é o checklist do que falta.*
 
+## ✅ EXECUTADO EM 07/07/2026 — todas as 6 etapas concluídas e publicadas (commit 14411f1)
+
+- Etapas 0–6 feitas; site no ar e verificado (index, ícones, vídeo e prints retornando 200).
+- **Desvio da Etapa 1/2:** Higgsfield estava sem créditos (plano free, 0 créditos) e Algrow com assinatura inativa (402). Os 8 ícones foram feitos como **SVG flat autorais** na identidade visual (`assets/icons/*.svg`, ~2 KB cada) — validados visualmente no Chrome. Se um dia quiser trocar por imagens Higgsfield, basta substituir os arquivos e trocar a extensão no HTML.
+- **Etapa 3 melhor que o plano:** capturado o **dashboard real logado** do ARROBA CERTA via Chrome MCP (sessão da Luh) → `assets/cases/arroba-dashboard.png` (é esse que o site usa; `arroba-clean.png` do login ficou de reserva pro deck). Truque usado: o save_to_disk da extensão não persiste arquivo — exportar GIF de 1 frame via gif_creator e converter com magick.
+- Vídeo Lead Performance: 84 MB → **2,6 MB** (`assets/cases/lead-performance-demo.mp4` + poster). Card novo da Lead Performance criado na seção Cases com a copy rascunhada aqui (revisar com a Luh se ela quiser ajustar).
+- `.gitignore` criado (assets/raw/); `*-raw.png` apagados.
+
+**Próximos passos = só o Backlog abaixo.**
+
 ## Estado ao encerrar hoje (o que JÁ está feito — não refazer)
 
 - **Site no ar:** https://lucianapandolfo9-spec.github.io/luhpanda-site/ (GitHub Pages reativado hoje; estava 404 porque o Pages estava desabilitado e havia commit local sem push).
