@@ -24,8 +24,10 @@ Essa ordem vale pra tudo: seções do site, cards de serviço, sequência de cas
 | Peça | Onde | Estado |
 |---|---|---|
 | **Site one-page** | `index.html` neste repo → https://lucianapandolfo9-spec.github.io/luhpanda-site/ | ✅ v2 no ar (reposicionado + motion) |
+| **Domínio próprio** | `luhpanda.com.br` (HostGator) | ✅ ativo, apontado pro GitHub Pages via CNAME. HTTPS pendente (certificado automático do GitHub, demorando mais que o normal — checar `gh api repos/lucianapandolfo9-spec/luhpanda-site/pages -F https_enforced=true`) |
 | **Deck PDF do portfólio** | `portfolio/deck.html` → `portfolio/Luh-Panda-Portfolio.pdf` (14 slides, ~1,7MB) | ✅ v2 pronto; regenerar quando site mudar |
-| **Domínio próprio** | www.luhpanda.com.br (Registro.br) | ⏳ não registrado; deck já exibe o domínio como texto |
+| **Currículo** | `Curriculo Luh Panda/LUCIANA PANDOLFO.docx` (+ `.pdf`) | ✅ atualizado com projeto do site/domínio e ARROBA CERTA; falta reexportar o PDF final (abrir no Word/Docs) |
+| **LinkedIn** | `linkedin.com/in/luciana-pandolfo-661308403` | ✅ headline, cargo (Lead Performance) e setor atualizados; ✅ arte de capa nova gerada, upload manual pendente com a Luh; ⏳ calendário de conteúdo (Notion) ainda não montado |
 | **Fonte da verdade dos cases** | Notion "🧠 Luh Panda — Portfólio & Projetos" | ⚠️ campos "Resultado Mensurável" incompletos |
 
 ## 3. Repositório
@@ -84,8 +86,13 @@ Motion: scroll reveal + stagger, blobs no hero, hover lift, gradiente animado no
 
 **Bloqueado esperando a Luh:**
 - [ ] Foto da equipe/treinamento pro case "Treinamento corporativo" (site + deck)
-- [ ] Registrar **luhpanda.com.br** no Registro.br → aí: configurar DNS + custom domain no Pages, atualizar og:url/URLs, regenerar PDF final
+- [ ] Subir manualmente a nova arte de capa do LinkedIn (`~/Downloads/linkedin-banner-ia.png`) — upload automático via Chrome MCP não funcionou nesta sessão
 - [ ] Preencher "Resultado Mensurável" de cada case no Notion (1 número por case)
+
+**Em andamento:**
+- [ ] Certificado HTTPS do domínio `luhpanda.com.br` (automático, aguardando GitHub)
+- [ ] Montar calendário de conteúdo do LinkedIn numa tabela no Notion (Metricool não serve — LinkedIn lá é só plano pago)
+- [ ] Reexportar o PDF do currículo a partir do `.docx` atualizado
 
 **Backlog (sem pressa):**
 - [ ] Depoimentos de clientes (áudio de WhatsApp vale) → seção de prova social
@@ -96,7 +103,7 @@ Motion: scroll reveal + stagger, blobs no hero, hover lift, gradiente animado no
 
 | Skill | Pra quê |
 |---|---|
-| `site-luhpanda` | Fatos DESTE site: URLs, regras de negócio, pipeline de assets, deploy |
+| `site-luhpanda` | Fatos da marca pessoal completa: site, domínio, currículo, LinkedIn (perfil + conteúdo), regras de negócio, pipeline de assets, deploy |
 | `site-alto-padrao` | Playbook genérico de site premium + motion + deck PDF (reutilizável pra clientes) |
 | `ui-ux-pro-max` | Design system, estilos, guidelines UX (usada pela site-alto-padrao) |
 
@@ -106,3 +113,4 @@ Motion: scroll reveal + stagger, blobs no hero, hover lift, gradiente animado no
 - **07/jul (manhã)** — Ícones SVG nas seções Dor/Serviços, vídeos comprimidos, cases com mídia real, preço R$ 500, deploy v1.
 - **07/jul (tarde)** — Blur de privacidade, redirects nas páginas legadas, favicon, og:image, ROAS 6,03x.
 - **07/jul (noite)** — **Deck PDF v1→v2** (foco IA/treinamento/plataformas, foto profissional, domínio no contato). **Site v2**: reposicionamento completo espelhando o deck + upgrade visual com motion (Inter, blobs, reveal, hover lift, ícone novo de Plataformas). Skills `site-alto-padrao` e este PROJETO.md criados.
+- **08/jul** — **Domínio `luhpanda.com.br` no ar**: CNAME + custom domain no GitHub Pages, DNS da HostGator limpo (removidas 3 landing pages antigas do Netlify) e reconfigurado. **Currículo atualizado** com o projeto do site e o ARROBA CERTA. **LinkedIn**: headline, cargo atual (Lead Performance, encerrando o vínculo desatualizado com a Lume Social), setor e arte de capa nova — LinkedIn passa a ser o canal oficial de vendas + conteúdo da marca. Skill `site-luhpanda` expandida pra cobrir marca pessoal completa (não só o site).
