@@ -131,9 +131,7 @@ header{
   font-size:.85rem;color:var(--texto-suave);
   border:1px solid var(--card-borda);background:var(--card);
   padding:8px 16px;border-radius:999px;
-  transition:border-color .2s,color .2s,transform .2s var(--ease-out);
 }
-.tech-strip span:hover{border-color:var(--roxo-claro);color:var(--texto);transform:translateY(-2px)}
 .hero-note{margin-top:14px;font-size:.85rem;color:var(--texto-suave);opacity:.8}
 
 /* ===== Dor ===== */
@@ -142,9 +140,7 @@ header{
 .dor-card{
   background:var(--fundo);border:1px solid var(--card-borda);
   border-radius:16px;padding:26px;
-  transition:transform .25s var(--ease-out),border-color .25s,box-shadow .25s;
 }
-.dor-card:hover{transform:translateY(-5px);border-color:var(--roxo-claro);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .dor-card p{color:var(--texto-suave);font-size:.98rem}
 .dor-card strong{color:var(--texto)}
 .dor-punch{margin-top:36px;text-align:center;font-size:1.15rem}
@@ -155,9 +151,7 @@ header{
 .servico{
   background:var(--card);border:1px solid var(--card-borda);
   border-radius:16px;padding:28px;
-  transition:transform .25s var(--ease-out),border-color .25s,box-shadow .25s;
 }
-.servico:hover{transform:translateY(-5px);border-color:var(--roxo-claro);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .servico h3{font-size:1.1rem;margin-bottom:10px}
 .servico p{color:var(--texto-suave);font-size:.95rem}
 .servico .preco{display:block;margin-top:14px;font-size:.85rem;color:var(--laranja);font-weight:600}
@@ -168,12 +162,8 @@ header{
   display:flex;align-items:center;justify-content:center;margin-bottom:14px;
   background:radial-gradient(circle at 32% 28%,rgba(139,75,163,.4),rgba(18,8,26,.9) 72%);
   border:1px solid var(--card-borda);
-  transition:transform .3s var(--ease-out),border-color .3s,box-shadow .3s;
 }
 .icon-badge svg{width:26px;height:26px;overflow:visible}
-.dor-card:hover .icon-badge,.servico:hover .icon-badge{
-  transform:scale(1.08) translateY(-2px);border-color:var(--laranja);box-shadow:0 0 22px rgba(255,107,53,.32);
-}
 .ic-spin{transform-box:view-box;transform-origin:12px 12px;animation:icRotate 7s linear infinite}
 .ic-hand-min{transform-box:view-box;transform-origin:12px 12px;animation:icRotate 4s linear infinite}
 .ic-hand-hr{transform-box:view-box;transform-origin:12px 12px;animation:icRotate 12s linear infinite}
@@ -216,14 +206,11 @@ header{
 .cases{background:var(--card);border-top:1px solid var(--card-borda);border-bottom:1px solid var(--card-borda)}
 .cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
 .case-media{border-radius:12px;overflow:hidden;border:1px solid var(--card-borda);margin-bottom:4px}
-.case-media img,.case-media video{width:100%;display:block;transition:transform .4s var(--ease-out)}
-.case:hover .case-media img,.case:hover .case-media video{transform:scale(1.025)}
+.case-media img,.case-media video{width:100%;display:block}
 .case{
   background:var(--fundo);border:1px solid var(--card-borda);
   border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;
-  transition:transform .25s var(--ease-out),border-color .25s,box-shadow .25s;
 }
-.case:hover{transform:translateY(-5px);border-color:var(--roxo-claro);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .case .etiqueta{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--roxo-claro)}
 .case h3{font-size:1.15rem;line-height:1.35}
 .case dl{display:flex;flex-direction:column;gap:10px;font-size:.93rem}
@@ -253,9 +240,7 @@ header{
 .metodo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 .passo{
   background:var(--card);border:1px solid var(--card-borda);border-radius:16px;padding:26px;position:relative;
-  transition:transform .25s var(--ease-out),border-color .25s;
 }
-.passo:hover{transform:translateY(-5px);border-color:var(--roxo-claro)}
 .passo .num{
   width:40px;height:40px;border-radius:12px;
   background:linear-gradient(135deg,var(--roxo),var(--laranja));
