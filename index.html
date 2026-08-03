@@ -189,11 +189,30 @@ header{
   transition:transform .25s var(--ease-out),border-color .25s,box-shadow .25s;
 }
 .case:hover{transform:translateY(-5px);border-color:var(--roxo-claro);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.case .cliente{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--roxo-claro)}
+.case .etiqueta{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--roxo-claro)}
 .case h3{font-size:1.15rem;line-height:1.35}
 .case dl{display:flex;flex-direction:column;gap:10px;font-size:.93rem}
 .case dt{font-weight:700;color:var(--laranja);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
 .case dd{color:var(--texto-suave)}
+
+/* ===== Cases — sistemas construídos (nível 1) ===== */
+.cases-largo{display:flex;flex-direction:column;gap:64px;margin-bottom:56px}
+.case-largo{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:center}
+.case-largo:nth-child(even){grid-template-columns:1fr 1.15fr}
+.case-largo:nth-child(even) .case-largo-media{order:2}
+.case-largo-media{border-radius:16px;overflow:hidden;border:1px solid var(--card-borda);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.case-largo-media video,.case-largo-media img{width:100%;display:block}
+.case-largo-texto{display:flex;flex-direction:column;gap:16px}
+.case-largo .etiqueta{font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--laranja)}
+.case-largo h3{font-size:1.6rem;line-height:1.3}
+.case-largo dl{display:flex;flex-direction:column;gap:12px;font-size:.98rem}
+.case-largo dt{font-weight:700;color:var(--roxo-claro);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+.case-largo dd{color:var(--texto-suave)}
+.cases-sub-tag{display:block;margin:0 0 20px;font-size:.95rem;color:var(--texto-suave)}
+@media (max-width:760px){
+  .case-largo,.case-largo:nth-child(even){grid-template-columns:1fr}
+  .case-largo .case-largo-media,.case-largo:nth-child(even) .case-largo-media{order:0}
+}
 
 /* ===== Método ===== */
 .metodo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
@@ -387,11 +406,76 @@ footer a:hover{color:var(--texto)}
   <div class="container">
     <span class="tag reveal">Cases reais</span>
     <h2 class="reveal">Construído, entregue e rodando.</h2>
-    <p class="section-sub reveal">Projetos em produção em negócios reais — contabilidade, marketing, advocacia e agro.</p>
+    <p class="section-sub reveal">Sistemas em produção em negócios reais — cada um etiquetado pela frente de serviço, não pelo nome do cliente.</p>
+
+    <div class="cases-largo">
+      <article class="case-largo reveal">
+        <div class="case-largo-media"><video src="assets/cases/hub-interno-demo.mp4" poster="assets/cases/hub-interno-demo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="case-largo-texto">
+          <span class="etiqueta">Plataforma sob medida</span>
+          <h3>Hub interno que centraliza a operação inteira da agência</h3>
+          <dl>
+            <dt>Problema</dt>
+            <dd>Equipe espalhada em vários sistemas — assinatura, tarefas, edição, planilhas — sem um lugar único.</dd>
+            <dt>Solução</dt>
+            <dd>Painel único: briefing por setor, campanhas, contratos e tarefas integrados.</dd>
+            <dt>Resultado</dt>
+            <dd>Operação inteira num lugar só.</dd>
+          </dl>
+        </div>
+      </article>
+      <article class="case-largo reveal">
+        <div class="case-largo-media"><video src="assets/cases/auditor-folha-demo.mp4" poster="assets/cases/auditor-folha-demo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="case-largo-texto">
+          <span class="etiqueta">Agente de IA</span>
+          <h3>Auditor de folha com IA que revisa antes do envio</h3>
+          <dl>
+            <dt>Problema</dt>
+            <dd>Folha de pagamento ia pro cliente com risco de erro humano.</dd>
+            <dt>Solução</dt>
+            <dd>Agente de IA audita antes do envio — valores, verbas, inconsistências.</dd>
+            <dt>Resultado</dt>
+            <dd>Camada extra de revisão automática.</dd>
+          </dl>
+        </div>
+      </article>
+      <article class="case-largo reveal">
+        <div class="case-largo-media"><video src="assets/cases/arroba-demo-v3.mp4" poster="assets/cases/arroba-demo-v3-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="case-largo-texto">
+          <span class="etiqueta">Produto próprio</span>
+          <h3>ARROBA CERTA — SaaS de gestão de lucro para pecuária</h3>
+          <dl>
+            <dt>Problema</dt>
+            <dd>Pequeno e médio pecuarista não sabe o custo da arroba nem a margem real do lote.</dd>
+            <dt>Solução</dt>
+            <dd>App completo — lotes, custo por @, margem, simulações — construído e publicado do zero.</dd>
+            <dt>Resultado</dt>
+            <dd>Produto no ar, com autenticação, banco de dados e cálculos validados.</dd>
+          </dl>
+        </div>
+      </article>
+      <article class="case-largo reveal">
+        <div class="case-largo-media"><video src="assets/cases/aprovi-demo.mp4" poster="assets/cases/aprovi-demo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="case-largo-texto">
+          <span class="etiqueta">Produto próprio</span>
+          <h3>Aprovi.ai — portal de aprovação de conteúdo sem WhatsApp perdido</h3>
+          <dl>
+            <dt>Problema</dt>
+            <dd>Aprovação de conteúdo vivia no WhatsApp — print perdido, "manda de novo".</dd>
+            <dt>Solução</dt>
+            <dd>Portal com link único, sem login: cliente vê, ajusta legenda, aprova ou pede alteração.</dd>
+            <dt>Resultado</dt>
+            <dd>Rodando em produção com cliente real, histórico de cada aprovação registrado.</dd>
+          </dl>
+        </div>
+      </article>
+    </div>
+
     <div class="cases-grid stagger">
       <div class="case">
-        <span class="cliente">Capitalize Contabilidade</span>
+        <span class="etiqueta">Treinamento de equipes</span>
         <h3>Treinamento corporativo de IA para a equipe</h3>
+        <div class="case-media"><img src="assets/cases/treinamento-turma.jpg" alt="Turma em treinamento corporativo de IA, com certificados" loading="lazy"></div>
         <dl>
           <dt>Problema</dt>
           <dd>Equipe queria usar IA no dia a dia, mas sem método virava tentativa e erro.</dd>
@@ -402,46 +486,7 @@ footer a:hover{color:var(--texto)}
         </dl>
       </div>
       <div class="case">
-        <span class="cliente">Capitalize Contabilidade</span>
-        <h3>Analista de DP com IA que revisa folha de pagamento</h3>
-        <div class="case-media"><video src="assets/cases/capitalize-demo.mp4" poster="assets/cases/capitalize-demo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
-        <dl>
-          <dt>Problema</dt>
-          <dd>Folha de pagamento ia pro cliente com risco de erro humano na conferência.</dd>
-          <dt>Solução</dt>
-          <dd>Agente de IA que audita a folha antes do envio: confere valores, verbas e inconsistências.</dd>
-          <dt>Resultado</dt>
-          <dd>Camada extra de revisão automática em toda folha que sai.</dd>
-        </dl>
-      </div>
-      <div class="case">
-        <span class="cliente">Lead Performance</span>
-        <h3>Hub interno que centraliza a operação inteira da empresa</h3>
-        <div class="case-media"><video src="assets/cases/lead-performance-demo.mp4" poster="assets/cases/lead-performance-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
-        <dl>
-          <dt>Problema</dt>
-          <dd>Equipe espalhada em vários sistemas — D4Sign, Asana, CapCut, planilhas — sem um lugar único da operação.</dd>
-          <dt>Solução</dt>
-          <dd>Sistema interno que conecta todas as ferramentas num só painel: briefing por setor, campanhas, contratos e tarefas integrados.</dd>
-          <dt>Resultado</dt>
-          <dd>A equipe inteira opera num lugar só, com dado de todos os sistemas conversando entre si.</dd>
-        </dl>
-      </div>
-      <div class="case">
-        <span class="cliente">Produto próprio</span>
-        <h3>ARROBA CERTA — SaaS de gestão de lucro para pecuária</h3>
-        <div class="case-media"><video src="assets/cases/arroba-demo.mp4" poster="assets/cases/arroba-demo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
-        <dl>
-          <dt>Problema</dt>
-          <dd>Pequeno e médio pecuarista não sabe o custo da arroba produzida nem a margem real do lote.</dd>
-          <dt>Solução</dt>
-          <dd>Aplicativo completo — cadastro de lotes, custo por @, margem, simulações — construído e publicado do zero por mim.</dd>
-          <dt>Resultado</dt>
-          <dd>Produto no ar, com autenticação, banco de dados e cálculos validados. Prova de capacidade full-stack.</dd>
-        </dl>
-      </div>
-      <div class="case">
-        <span class="cliente">Agência de marketing</span>
+        <span class="etiqueta">Automação de processos</span>
         <h3>Relatório diário de tráfego pago, direto no WhatsApp</h3>
         <div class="case-media"><img src="assets/cases/metaads-report.png" alt="Relatório de performance do Meta Ads enviado pelo robô no WhatsApp" loading="lazy"></div>
         <dl>
@@ -454,29 +499,16 @@ footer a:hover{color:var(--texto)}
         </dl>
       </div>
       <div class="case">
-        <span class="cliente">Escritório de advocacia</span>
-        <h3>Atendente de IA que responde com o dado real do processo</h3>
+        <span class="etiqueta">Agente de IA</span>
+        <h3>Atendente de IA que responde com dado real do sistema</h3>
         <div class="case-media"><video src="assets/cases/adv-robo.mp4" poster="assets/cases/adv-robo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
         <dl>
           <dt>Problema</dt>
-          <dd>Cliente ligava toda semana pra perguntar do processo; a equipe parava tudo pra responder sempre a mesma coisa.</dd>
+          <dd>Cliente perguntava toda semana a mesma coisa; a equipe parava tudo pra responder.</dd>
           <dt>Solução</dt>
-          <dd>Atendente de IA no WhatsApp conectado ao banco de processos: responde com dado real, agenda reunião e escala pra humano quando precisa.</dd>
+          <dd>Atendente de IA no WhatsApp conectado ao sistema: responde com dado real, agenda e escala pra humano quando precisa.</dd>
           <dt>Resultado</dt>
-          <dd>Atendimento imediato 24h e equipe liberada do repetitivo. Projeto com manutenção mensal ativa.</dd>
-        </dl>
-      </div>
-      <div class="case">
-        <span class="cliente">Empresa de contabilidade</span>
-        <h3>Robô de atendimento com dados em tempo real</h3>
-        <div class="case-media"><video src="assets/cases/toninho-robo.mp4" poster="assets/cases/toninho-robo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
-        <dl>
-          <dt>Problema</dt>
-          <dd>Volume de perguntas repetidas de clientes sobrecarregava a equipe contábil.</dd>
-          <dt>Solução</dt>
-          <dd>Robô de WhatsApp que responde com dados atualizados em tempo real, sem intervenção humana no primeiro nível.</dd>
-          <dt>Resultado</dt>
-          <dd>Equipe focada no trabalho técnico; cliente atendido na hora.</dd>
+          <dd>Atendimento imediato 24h, equipe liberada do repetitivo. Monta pra qualquer segmento.</dd>
         </dl>
       </div>
     </div>
@@ -519,7 +551,7 @@ footer a:hover{color:var(--texto)}
   <div class="container">
     <div class="sobre-wrap">
       <div class="video-frame reveal">
-        <video src="assets/hero.mp4" controls playsinline preload="metadata" aria-label="Vídeo de apresentação da Luh Panda"></video>
+        <video src="assets/hero-v5-final.mp4" controls playsinline preload="metadata" aria-label="Vídeo de apresentação da Luh Panda"></video>
       </div>
       <div class="sobre-texto reveal">
         <span class="tag">Quem constrói</span>
