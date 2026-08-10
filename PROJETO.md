@@ -23,12 +23,15 @@ Essa ordem vale pra tudo: seções do site, cards de serviço, sequência de cas
 
 | Peça | Onde | Estado |
 |---|---|---|
-| **Site one-page** | `index.html` neste repo → https://lucianapandolfo9-spec.github.io/luhpanda-site/ | ✅ **v3 pronto (03/ago)** — Cases reescritos (seção 6-A) e vídeo do Sobre trocado (seção 6-B), ver histórico |
+| **Site — 3 páginas** | `index.html` (central) · `sistemas.html` · `turmas.html` | 🎯 **v4 construído em 07/ago, ainda NÃO publicado** (local, sem commit/push) — ver seção 6-C. Substitui a v3 one-page. |
 | **Domínio próprio** | `luhpanda.com.br` (HostGator) | ✅ ativo, apontado pro GitHub Pages via CNAME. HTTPS pendente (certificado automático do GitHub, demorando mais que o normal — checar `gh api repos/lucianapandolfo9-spec/luhpanda-site/pages -F https_enforced=true`) |
 | **Deck PDF do portfólio** | `portfolio/deck.html` → `portfolio/Luh-Panda-Portfolio.pdf` (14 slides, ~1,7MB) | ✅ v2 pronto; regenerar quando site mudar |
 | **Currículo** | `Curriculo Luh Panda/LUCIANA PANDOLFO.docx` (+ `.pdf`) | ✅ atualizado em 02/ago com Aprovi.ai, ROAS 6,03x e números da auditoria de folha (Capitalize); corrigido dado da Pandoka (era Recife/575%, certo é Beach Club em Pipa-RN/60%); falta reexportar o PDF final (abrir no Word/Docs — conversão local perde a foto do cabeçalho) |
 | **LinkedIn** | `linkedin.com/in/luciana-pandolfo-661308403` | ✅ headline, cargo (Lead Performance), setor, banner e capa novos já no ar; ✅ seção "Em destaque" com posts + link do site já ativa; ✅ 02/ago: removidas as 2 entradas de Lume Social Produções da Experiência (empresa nova/pequena, não valia manter como vínculo aparente); ⚠️ gargalo real de geração de leads é rede pequena (58 conexões/60 seguidores) — só 2 visualizações de perfil e 1 aparição em busca na última semana; ⏳ calendário de conteúdo (Notion) ainda não montado |
 | **Fonte da verdade dos cases** | Notion "🧠 Luh Panda — Portfólio & Projetos" | ⚠️ campos "Resultado Mensurável" incompletos |
+| **Site v4 — pivô de vendas** | `BLUEPRINT-V4-VENDAS.md` neste repo | ✅ desenhado em 06/ago, **construído em 07/ago** (ver seção 6-C). Ler antes de mexer no site. |
+| **Tabela de preços vigente** | `TABELA-PRECOS-2026.md` neste repo | ✅ aprovada em 07/ago — 3 faixas de sistemas (R$5k/15k/25k+), in-company M1/M2, particular M1/M2. Fonte da verdade de preço. |
+| **Estratégia comercial (funil, preço, conteúdo, tráfego)** | `ESTRATEGIA-VENDAS-2026.md` neste repo | 🎯 **desenhada em 06/ago** — decide que o tráfego pago vai TODO pro Módulo 1 (não pra sistemas), fecha parcelamento em 12x, separa conteúdo orgânico de criativo de anúncio. Substitui a §3 (escada de oferta) do `ESTRATEGIA.md` antigo. |
 
 ## 3. Repositório
 
@@ -69,8 +72,8 @@ Motion: scroll reveal + stagger, blobs no hero, hover lift, gradiente animado no
 
 ## 5. Regras invioláveis
 
-1. **Único preço público: Diagnóstico Estratégico R$ 500** (pagamento único). Resto é "Projeto sob medida". Nunca valor/hora.
-2. **Todo CTA → WhatsApp** (`wa.me/5584994127476`). Sem formulário, sem captura de e-mail.
+1. ~~Único preço público: Diagnóstico Estratégico R$500, resto "Projeto sob medida", nunca valor/hora~~ — **SUPERADA em 06/ago pelo pivô de vendas** (`BLUEPRINT-V4-VENDAS.md`): agora o site mostra âncora de preço em tudo — Diagnóstico R$500, Sistema "a partir de R$4.000" + manutenção R$500/mês, e na `/formacao` preço fechado por módulo (M1 R$1.600, M2 R$3.600/R$14.400 in-company, aula avulsa R$200–300/h). Motivo: tráfego pago precisa filtrar por preço, não só por conversa.
+2. **Todo CTA → WhatsApp** (`wa.me/5584994127476`), **exceto** os CTAs de Módulo 1/2 na `/formacao`, que pagam direto via Mercado Pago (ver blueprint, Parte 3-B) com fallback pro WhatsApp. Sem formulário na home; a `/formacao` pode ter captura de e-mail pra lista de espera do Módulo 2 (exceção aprovada no blueprint).
 3. Copy pra dono de negócio; resultado primeiro, tecnologia como prova.
 4. **Cases: NUNCA nome de empresa cliente (mudou em 30/jul)** — etiqueta cada case pela frente de serviço (Treinamento de equipes / Agente de IA / Plataforma sob medida / Automação de processos), nunca pelo nome do cliente. Só **produto próprio** pode ser nomeado (ARROBA CERTA, Aprovi.ai).
 5. **Zero emoji** como ícone (site e deck) — SVG próprio, linha-fina, animado (não flat "sticker"; padrão vigente desde 03/ago, ver seção 4).
@@ -142,6 +145,94 @@ Gravado pela Luh em 5 pedaços (`Downloads/Criativos/Videos para editar/Site/IMG
 
 **✅ Feito em 03/ago:** trocado no `index.html` (seção Sobre, `assets/hero.mp4` → `assets/hero-v5-final.mp4`); `hero-v4-preview.mp4` (rascunho intermediário) removido do disco.
 
+## 6-C. Site v4 — construído em 07/ago (3 páginas, NÃO publicado ainda)
+
+**Contexto:** pivô de vendas completo (`BLUEPRINT-V4-VENDAS.md` + `ESTRATEGIA-VENDAS-2026.md` + `TABELA-PRECOS-2026.md`, todos de 06–07/ago). Direção visual nova aprovada pela Luh via maquete em Artifact (inspirada no linear.app: tipografia grande, sem badge de ícone, aurora de fundo em vez de motion miniatura, cartão com fio de gradiente no topo).
+
+**Arquitetura:** 3 páginas HTML/CSS/JS puro (mesma stack de sempre — decidido explicitamente NÃO migrar pra React/Tailwind agora, ver decisão abaixo):
+- `index.html` — central: Hero, Dor, **Duas Frentes** (sistemas × turmas, peso igual — decisão da Luh: ama as duas), Depoimentos, Sobre (vídeo + credenciais, herdado da v3), CTA final.
+- `sistemas.html` — Hero, **3 faixas de preço** (Automação R$5k / Agente de IA R$15k / Plataforma a partir de R$25k, cada uma com manutenção proporcional), Método em 4 passos, os 4 cases largos com vídeo real (hub interno, auditor de folha, ARROBA CERTA, Aprovi.ai) + 2 cases compactos (relatório Meta Ads, atendente IA), fecho.
+- `turmas.html` — Hero, Dor específica de time, foto da turma como prova, **in-company** (M1 R$9.600/R$1.200 por pessoa · M2 R$14.400/R$1.800 por pessoa, ambos com comparação honesta vs. individual), **particular 1:1** (M1 12x R$133 · M2 12x R$300), Depoimentos, FAQ, fecho.
+
+**Decisões de escopo tomadas nesta sessão (todas já propagadas no HTML):**
+- **Diagnóstico Estratégico R$500 saiu do site** — vira ferramenta de conversa, não produto de vitrine (a Luh: "a primeira conversa não se paga nada"). CTAs viraram "primeira conversa sem custo".
+- **Aula avulsa saiu da `/turmas`** — produto de pós-venda (só pra quem já é aluno), não pertence à vitrine.
+- **Headline das Duas Frentes:** "Eu construo o sistema e ensino seu time a trabalhar com IA do jeito certo" (não é "ou" — a Luh faz e vende as duas).
+- **Preço de sistema saiu de R$4.000 fixo pra 3 faixas** (R$5k / R$15k / R$25k+) — ver `TABELA-PRECOS-2026.md` pro racional completo (a Luh cobrava R$83–150/hora construindo contra R$1.200/hora dando aula; as faixas existem pra sistema se pagar sem depender de vender abaixo do valor real).
+- **In-company do Módulo 1 ganhou preço de turma** (R$9.600, antes só existia preço individual R$1.600 — o mesmo erro que gerou a subprecificação da turma da Capitalize).
+
+**Decisão técnica registrada — NÃO migrar pra React/Tailwind:** a Luh pediu referência (linear.app) achando que precisava do framework pra ter aquele visual. Esclarecido: a diferença visual é CSS/tipografia, não stack — site de 3 páginas sem tela repetida não tem o problema que React resolve. Reproduzido o padrão visual em CSS puro. Migração fica como possível v5, sem pressa, não antes do prazo de vendas.
+
+**Agenda / Google Calendar:** a Luh pediu que o agendamento "não choque com nada" — conta dela tem **8 calendários** (Luh Panda, Gestão PDK, Pandoka, Alma Pipa, Preserve Pipa, Calígula, Lume Social, Feriados), confirmado via `list_calendars`. Solução correta é o **Agendamento nativo do Google Calendar** embutido por iframe (site estático não pode chamar a API do Google direto sem expor credencial). **Ainda não criado** — é ação manual da Luh no painel do Calendar, marcando os 8 calendários em "verificar conflitos". Conta pessoal permite só 1 página de agendamento (suficiente, já que aula avulsa saiu do site). Enquanto isso não existe, os CTAs de particular (`Garantir minha vaga`) vão pro WhatsApp — MVP honesto, sem fingir automação que não existe.
+
+**Verificação antes de considerar pronto:**
+- Balanço de tags (section/div/article/ul) conferido nas 3 páginas — ok.
+- Todos os 15 assets referenciados (vídeos, posters, imagens) existem no repo — conferido caminho por caminho.
+- Screenshot headless 1440px das 3 páginas — hero, preços, cases com vídeo real e planos in-company revisados visualmente, batem com a maquete aprovada.
+- Teste mobile: primeira rodada em `--window-size=390` deu falso positivo de texto cortado — era a **armadilha dos 500px mínimos do headless** (Chrome clampa a viewport interna pra 500px mesmo pedindo menos), não bug do site. Confirmado via script injetado (`scrollWidth === innerWidth` em 500px, sem overflow real) — ver skill `site-alto-padrao` pra essa armadilha específica.
+
+**NÃO feito ainda (bloqueia publicar):**
+- [ ] Autorização dos 3 clientes pra publicar os depoimentos (mesmo reescritos como conversa de WhatsApp anônima por segmento, sem nome/foto) — pendência repetida desde a sessão de 06/ago, ainda sem resposta
+- [ ] Confirmar taxa real de parcelamento 12x no painel do Mercado Pago (hoje é estimativa)
+- [ ] Criar a página de Agendamento no Google Calendar (marcar os 8 calendários)
+- [x] ~~`consultoria.html`/`produtos.html` redirecionando pro `#servicos` antigo~~ — ✅ corrigido em 07/ago: agora vão pra `sistemas.html#precos`, e o `canonical` das duas aponta pro domínio próprio (`luhpanda.com.br`) em vez do GitHub Pages
+- [ ] **Commit e push não foram feitos** — arquivos existem só localmente. Pedir autorização explícita da Luh antes de publicar (o site vai ao ar em ~1-2min depois do push, via GitHub Pages)
+
+## 6-D. Pagamento automático (Módulo 1/2 particular) — construído em 10/ago
+
+**Contexto:** a Luh confirmou que o n8n dela não é local — roda em servidor próprio, público, em `mcp.luhpanda.com.br`, e já processa Mercado Pago de verdade pro ARROBA CERTA (2 workflows ativos: `Criar assinatura` e `Confirmação Mercado Pago`, usando `checkout/preferences`/`preapproval` + Postgres). Copiado o mesmo padrão pra Formação, simplificado (pagamento único, não assinatura).
+
+**Decisões da Luh:**
+- In-company (M1 R$9.600 / M2 R$14.400) continua **fora do pagamento automático** — só conversa/proposta, como já estava.
+- Pagamento automático só pra **particular** (M1 R$1.600 / M2 R$3.600).
+- Credencial do Mercado Pago **separada** da do ARROBA CERTA (a Luh vai lançar o ARROBA CERTA pra venda em breve e não quer misturar o dinheiro nem arriscar nada lá).
+- Aviso de venda por **e-mail** (não WhatsApp) — o nó de WhatsApp Cloud API que já existe no n8n dela está no número de TESTE da Meta, não no BR de produção.
+- Registro de vendas em **Google Sheets** (não Postgres) — de novo, pra não tocar no schema do ARROBA CERTA.
+
+**O que foi criado:**
+- **Planilha:** [`Luh Panda — Vendas Formação`](https://docs.google.com/spreadsheets/d/10QXU8Wek-H2sl3wJuk8Vjtppoboe4h-RbdaLO7RtKu8/edit) (Drive da Luh) — colunas: Data, Hora, Módulo, Nome, E-mail, Telefone, Valor, Forma, ID Pagamento Mercado Pago, Status.
+- **Workflow 1 — `Luh Panda — Criar Pagamento (Formação)`** (`yEIEMrq9B4Mpsou6`): webhook `POST /webhook/formacao-criar-pagamento` recebe `{modulo: "m1"|"m2"}` do site, decide o preço **no servidor** (nunca confia no valor vindo do navegador), cria a preferência no Mercado Pago (pagamento único), devolve `{checkout_url}`.
+- **Workflow 2 — `Luh Panda — Confirmação Pagamento (Formação)`** (`ufOUlQRF0OrGorNA`): webhook `POST /webhook/formacao-mp-notificacao` que o Mercado Pago chama sozinho. Busca o pagamento real na API deles (não confia no payload da notificação), e se aprovado: registra linha na planilha + manda e-mail pra Luh com os detalhes.
+- **Site:** botões "Garantir minha vaga" (`turmas.html`, M1 e M2 particular) chamam o webhook via `fetch`, com timeout de 8s — **se falhar por qualquer motivo, cai automaticamente no WhatsApp de sempre**, nunca trava uma venda. Criada `obrigado.html`: página pós-checkout com 3 estados (aprovado / pendente / falhou) lida pela querystring que o Mercado Pago devolve no redirect.
+
+**Trava técnica descoberta:** a ferramenta de automação (`update_workflow` → `setNodeCredential`) recusa ligar credencial em nó de autenticação genérica (`genericCredentialType`/`httpBearerAuth`) — erro "does not accept credential". É preciso abrir o nó no n8n e escolher a credencial manualmente no dropdown, 1 clique por nó. Registrar isso caso apareça de novo em workflow futuro com o mesmo padrão de autenticação.
+
+**Status em 10/ago (fim da sessão):**
+- [x] Credencial `Mercado Pago Luh Panda` (Bearer Auth) ligada em **"Criar preferência Mercado Pago"** (Workflow 1) — testado com curl real, devolveu `checkout_url` válido
+- [x] Mesma credencial ligada em **"Buscar detalhes do pagamento"** (Workflow 2) — confirmado via execução real: erro 404 "Payment not found" pra um ID inventado (não 401) prova que a credencial está correta
+- [x] Credencial `Gmail account` (gmailOAuth2) criada e ligada em **"Avisar Luh por e-mail"** — corrigido também um bug de criação (faltavam os parâmetros `resource`/`operation` no nó)
+- [x] Credencial `Google Sheets account` (googleSheetsOAuth2Api) criada e ligada em **"Registrar venda na planilha"** — ⚠️ achado: a primeira tentativa criou o tipo errado (`Google Sheets Trigger`, que é um credential type diferente e não serve pro nó de escrita); resolvido criando a credencial correta e reaproveitando o mesmo Client ID/Secret do Google Cloud
+- [x] Workflow 2 publicado (`publish_workflow`) — os dois workflows estão ativos
+- [ ] **Falta só o teste ponta a ponta com pagamento real** — webhook 1 e a parte do Mercado Pago do webhook 2 já foram validados com chamadas reais; Sheets + Gmail só disparam com pagamento **aprovado** de verdade (não dá pra simular com segurança). Combinado: pedir pra alguém de confiança pagar R$1 no Módulo 1 particular e conferir se a linha cai na planilha e o e-mail chega
+- [ ] Confirmar taxa real de parcelamento 12x no painel do Mercado Pago (item já pendente na seção 6-C)
+
+**Achado técnico pra próxima sessão:** `update_workflow` → `setNodeCredential` funciona bem pra credencial de tipo nomeado (Gmail, Google Sheets — `credentialKey` = o nome do campo tipado, ex. `gmailOAuth2`), mas **rejeita** ligação em nó de autenticação genérica (`genericCredentialType`/`httpBearerAuth`, usado pelo Mercado Pago) com erro "does not accept credential" — nesses casos só dá pra ligar manualmente na UI do n8n (a Luh faz, eu confirmo depois via `get_execution`).
+
+## 6-E. Domínios extras — redirect pra luhpanda.com.br (10/ago)
+
+**Contexto:** a Luh queria `luhpanda.com` funcionando também. Investigação: `luhpanda.com` **não está registrado** por ninguém (confirmado via whois direto no Verisign) — precisa comprar antes de configurar qualquer coisa. Enquanto isso, descobrimos que ela já tem **`luhpanda.store`** e **`luhpanda.online`** registrados (HostGator) e sem uso — sem DNS, sem hospedagem, "soltos".
+
+**Decisão:** em vez de comprar o `.com`, redirecionar os dois domínios que ela já tem pro `luhpanda.com.br` (site oficial). Sem custo adicional.
+
+**Como foi feito:** GitHub Pages só aceita 1 domínio customizado por repositório, então não dá pra "hospedar nos dois ao mesmo tempo" — a solução foi criar **2 repositórios novos, só de redirecionamento**:
+- [`luhpanda-store-redirect`](https://github.com/lucianapandolfo9-spec/luhpanda-store-redirect) — `index.html` com meta-refresh + `window.location.replace` pra `https://luhpanda.com.br`, `CNAME` = `luhpanda.store`
+- [`luhpanda-online-redirect`](https://github.com/lucianapandolfo9-spec/luhpanda-online-redirect) — mesma coisa, `CNAME` = `luhpanda.online`
+
+Os dois já estão publicados e com GitHub Pages ativado (`gh api .../pages`). **Falta só a Luh apontar o DNS** na Zona de DNS do HostGator (painel "Configurar Domínio" → "Sem hospedagem, apenas Zona de DNS") — os mesmos 4 A records + CNAME `www` que já usamos no `.com.br`:
+
+```
+A     @     185.199.108.153
+A     @     185.199.109.153
+A     @     185.199.110.153
+A     @     185.199.111.153
+CNAME www   lucianapandolfo9-spec.github.io
+```
+
+**Pendente:**
+- [ ] Luh adicionar os registros DNS acima nos dois domínios
+- [ ] Depois que propagar, ativar HTTPS enforcement nos 2 repos novos (`gh api -X PUT .../pages -F "https_enforced=true"`, mesmo comando usado no `.com.br` — só funciona depois do certificado emitir)
+- [ ] Decidir se registra o `luhpanda.com` de verdade no futuro (hoje está livre pra qualquer um registrar)
+
 ## 7. Pendências e backlog
 
 **Bloqueado esperando a Luh:**
@@ -204,9 +295,16 @@ O nome do produto no `posta-ai` repo local (`/Users/luhpanda/Downloads/Luh Panda
 - **02/ago** — **Auditoria de LinkedIn + atualização de currículo.** Diagnóstico do LinkedIn: conteúdo e headline já estavam bons, mas a rede é pequena demais (58 conexões/60 seguidores) pra gerar alcance orgânico — é a causa raiz de "ninguém procurando ainda", não falta de post. Achado crítico: Experiência mostrava a Lume Social Produções como emprego atual em duas entradas duplicadas — removidas a pedido da Luh (empresa nova/pequena, ainda sendo pensada, não vale manter como vínculo aparente no perfil). **Currículo (.docx) atualizado** com dados puxados do banco Notion "Projetos": Aprovi.ai (produto próprio em produção), ROAS 6,03x do robô de relatório de tráfego pago, e os números da auditoria automática de folha da Capitalize (144 e 138 colaboradores, ~95% extração via OCR). Corrigido dado incorreto da Pandoka (currículo tinha "Recife, +575%"; correto é Beach Club em Pipa/RN, +60% de faturamento, vendas dobradas no 2º mês — mesmo dado do Sobre do LinkedIn). PDF final ainda precisa ser reexportado pela Luh (Word/Docs).
 - **31/jul** — **Foto do treinamento resolvida**: a Luh reorganizou `Turma IA na Pratica.HEIC` pra `Aulas /Turmas/`, convertida e aprovada em `assets/cases/treinamento-turma.jpg`. **Vídeo de apresentação (Sobre + tráfego pago) roteirizado, gravado pela Luh em 5 takes e montado** (ver seção 6-B completa): 1ª versão tinha 2,5s de silêncio nos cortes de tela (reprovada, "corte amador"); refeita com fala contínua e sistemas entrando por cima da voz — aprovada. Achado de segurança durante a montagem: `aprovi-demo.mp4` expõe o link secreto de aprovação da cliente Gigi (acesso sem senha) — mascarado no vídeo final; **o arquivo original do case ainda expõe o link, pendente mascarar antes de usar nos Cases v3**. A Luh editou a versão dela com música e legenda (2 rounds — 1º tinha "AUTOMATIZAR" quebrado em duas linhas, corrigido no 2º) em `PARA VENDER.mp4`; nós então corrigimos a cor (estava com brancos travados em 198 e saturação baixa, dando aspecto lavado) gerando `PARA VENDER - COR AJUSTADA.mp4`, **aprovada e é a versão final**. Comprimida pro site em `assets/hero-v5-final.mp4` (5,6MB) — falta só trocar no `index.html` e dar push (fica pra segunda). **Decisão de negócio:** ordem da marca agora é site v3 → criativos → **tráfego pago**, com subida de campanha prevista pra semana de 03/ago usando esse vídeo como criativo principal (checklist completo na seção 7).
 
+- **06/ago** — **Pivô de vendas desenhado (site v4).** A Luh trouxe um blueprint novo: mudar a home pra mostrar âncora de preço real ("a partir de R$4.000" + manutenção R$500/mês nos 4 cards de serviço) em vez de "Projeto sob medida", e criar a página `/formacao` (Módulo 1 R$1.600, Módulo 2 R$3.600/R$14.400 in-company, aula avulsa) — motivo: vai rodar tráfego pago pra vender produtos e aulas, precisa de filtro de preço. Reconciliado com o Notion "Aulas IA na Prática" (Módulo 2 já estava fechado em 6 aulas/12h desde 26/jul, não "4 a 6 a definir" como o rascunho da Luh dizia). Decisões tomadas: aula avulsa com preço por módulo (R$200/h M1, R$300/h M2), aulas ficam todas gravadas, crédito do Diagnóstico mantido, pagamento via Mercado Pago integrado ao site com redirecionamento pra agenda + WhatsApp como fallback (infra do webhook automático travada porque o n8n dela é local — desenhado um MVP com link de pagamento fixo pra sair do papel primeiro). Blueprint completo salvo em `BLUEPRINT-V4-VENDAS.md`. Depoimentos: recebidos 3 prints de WhatsApp (pasta `Depoimentos/`) — 2 aprovados por conteúdo (Priscilla/aulas, Keila/automação de NFs), precisam ser borrados (nome+foto) antes de publicar; 1 (Ianca) com contexto não confirmado; 1 vídeo recebido é prova de entrega técnica (Claude Code processando PDFs), não depoimento falado. **HTML ainda não escrito — é o próximo passo.**
+
+- **06/ago (parte 2)** — **Estratégia comercial completa desenhada** (`ESTRATEGIA-VENDAS-2026.md`). Chamado da sessão: a Luh vai investir em tráfego pago e precisa de leads. Diagnóstico: o gargalo não é produto nem prova, é **distribuição** — site sem pixel/captura, LinkedIn com rede pequena demais (58 conexões) pra gerar lead em 60 dias, Instagram com audiência de viagem (dado dela: pitch de IA fica preso na base), e nenhuma lista de e-mail. **Decisão central: o tráfego pago vai TODO pro Módulo 1, não pros sistemas** — turma de 10 = R$16.000 por 8h de aula (≈R$2.000/h) contra R$50–100/h num sistema de R$4.000, e aluno adicional custa zero. Sistemas continuam vendendo por site/inbound/indicação/Diagnóstico, sem verba de anúncio. **Parcelamento fechado em 12x sem juros absorvidos por ela** (manchete de preço vira "12x de R$133", não "R$1.600") com vitrine de 3 opções calibrada pra ela ficar quase indiferente: Pix R$1.440 (10% off) / 12x de R$133 / à vista R$1.600 — in-company R$14.400 fica fora do cartão (proposta + boleto). Conteúdo separado em 3 trilhas: Instagram mantém viagem como motor de alcance + IA só em formato de espetáculo visual ("a máquina trabalhando sozinha", reaproveitando a gravação dos 25 PDFs), LinkedIn como obra de 90 dias, e a lista de e-mail como o ativo que falta. Apontado o **dinheiro de custo zero na mesa**: clientes atuais (Capitalize, a cliente do auditor de folha que acabou de pedir pra expandir acesso pro time, Lead Performance) são candidatos a in-company R$14.400 — uma venda dessas vale ~9 alunos conquistados a peso de anúncio. **Depoimento novo recebido:** print da Gabriela sobre o auditor de folha, o mais forte do conjunto (cliente pedindo pra espalhar o acesso internamente) — precisa borrar nome/foto como os outros.
+
 ---
-**RETOMAR SEGUNDA-FEIRA POR AQUI:**
-1. Trocar `assets/hero.mp4` por `assets/hero-v5-final.mp4` no `index.html` (seção Sobre) → commit → push → conferir no ar.
-2. Escrever o HTML/CSS da seção de Cases v3 (copy e assets prontos, seção 6-A) — inclui mascarar o link secreto em `assets/cases/aprovi-demo.mp4` antes de usar.
-3. Depois disso, entrar na frente de tráfego pago (checklist na seção 7: BM/conta de anúncios via skill `gestor-trafego`, destino do CTA, público/orçamento, pixel/medição antes de subir campanha).
+**RETOMAR POR AQUI:**
+1. Ler `ESTRATEGIA-VENDAS-2026.md` (o porquê e a ordem) e `BLUEPRINT-V4-VENDAS.md` (o que vai no site).
+2. **Semana 1 — custo zero primeiro:** puxar conversa de in-company com os clientes atuais (§7 da estratégia); borrar nome+foto dos 3 depoimentos aprovados (Priscilla, Keila, Gabriela); confirmar contexto do print da Ianca.
+3. **Semana 1 — home:** trocar "Projeto sob medida" → "A partir de R$4.000" nos 4 cards, promover Diagnóstico R$500 pra bloco próprio, trocar textos pré-preenchidos dos botões.
+4. **Semana 2 — `/formacao`:** construir completa, com "12x de R$133" como manchete de preço (Módulo 2 = 6 aulas/12h + opção in-company R$14.400 com CTA de conversa, não de compra) + link de pagamento Mercado Pago (MVP: link fixo) + captura de e-mail.
+5. **Semana 3 — medição:** Pixel da Meta + eventos (PageView/Lead/InitiateCheckout/Purchase) nas duas páginas, testados de verdade.
+6. **Semana 4 — tráfego:** uma campanha só (Módulo 1 → `/formacao`), 3 criativos, R$30–50/dia, sem mexer por 7 dias.
 ---

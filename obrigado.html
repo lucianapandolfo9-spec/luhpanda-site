@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento — Luh Panda</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#12081A; --poco:#0C0512; --superficie:#1A0E24;
+  --borda:#2C1A3A; --borda-forte:#3A2249;
+  --roxo:#6F2E8F; --roxo-claro:#8B4BA3; --laranja:#FF6B35; --zap:#25D366;
+  --texto:#F2EAF7; --suave:#C4B2D1; --fraco:#8B7A98;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --wrap:720px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--fundo);color:var(--texto);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:24px}
+
+.nav{padding:20px 0;border-bottom:1px solid var(--borda)}
+.nav .wrap{display:flex;align-items:center}
+.marca{font-weight:600;letter-spacing:-.02em;font-size:1.02rem;text-decoration:none}
+.marca span{color:var(--laranja)}
+
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aurora i{position:absolute;display:block;border-radius:50%;filter:blur(90px);opacity:.5}
+.aurora .a1{width:600px;height:600px;top:-260px;left:50%;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(111,46,143,.7),transparent 68%);
+  animation:drift1 26s var(--ease) infinite alternate}
+@keyframes drift1{to{transform:translate3d(-50%,40px,0) scale(1.1)}}
+
+main{flex:1;display:flex;align-items:center;position:relative;padding:64px 0}
+main .wrap{position:relative;z-index:1;text-align:center}
+
+.selo{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 28px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--borda-forte);
+}
+.selo--ok{background:radial-gradient(circle,rgba(37,211,102,.18),transparent 70%);border-color:rgba(37,211,102,.4)}
+.selo--pendente{background:radial-gradient(circle,rgba(255,107,53,.18),transparent 70%);border-color:rgba(255,107,53,.4)}
+.selo--erro{background:radial-gradient(circle,rgba(139,75,163,.22),transparent 70%);border-color:var(--roxo-claro)}
+.selo svg{width:28px;height:28px}
+
+.eyebrow{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--laranja);margin:0 0 16px}
+h1{font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.18;letter-spacing:-.03em;font-weight:600;margin:0 0 16px;text-wrap:balance}
+.lead{font-size:1.05rem;line-height:1.6;color:var(--suave);max-width:48ch;margin:0 auto}
+
+.bloco{
+  margin-top:40px;text-align:left;border:1px solid var(--borda-forte);border-radius:14px;
+  background:linear-gradient(180deg,var(--superficie),rgba(12,5,18,.6));
+  padding:clamp(26px,4vw,36px);position:relative;
+}
+.bloco::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,107,53,.7),transparent)}
+.bloco h2{margin:0;font-size:1.15rem;font-weight:600;letter-spacing:-.02em}
+.bloco p{margin:12px 0 0;color:var(--suave);font-size:.96rem;line-height:1.6}
+.bloco-nota{
+  margin-top:20px;padding:14px 16px;border:1px dashed var(--borda-forte);border-radius:9px;
+  font-family:var(--mono);font-size:.76rem;color:var(--fraco);line-height:1.6;
+}
+
+.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:inherit;
+  font-size:.95rem;font-weight:550;padding:13px 24px;border-radius:9px;text-decoration:none;
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:transform .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease)}
+.btn--zap{background:var(--zap);color:#06301A}
+.btn--zap:hover{transform:translateY(-2px);background:#2ee673}
+.btn--ghost{border-color:var(--borda-forte);color:var(--texto);background:transparent}
+.btn--ghost:hover{border-color:var(--roxo-claro);background:rgba(139,75,163,.1)}
+
+.rodape{padding:28px 0;border-top:1px solid var(--borda);background:var(--poco);text-align:center}
+.rodape p{margin:0;font-family:var(--mono);font-size:.76rem;color:var(--fraco)}
+
+[data-estado]{display:none}
+[data-estado].ativo{display:block}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="marca" href="index.html">Luh <span>Panda</span></a>
+  </div>
+</nav>
+
+<main>
+  <div class="aurora" aria-hidden="true"><i class="a1"></i></div>
+  <div class="wrap">
+
+    <div data-estado="approved">
+      <div class="selo selo--ok" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p class="eyebrow">Pagamento aprovado</p>
+      <h1 id="titulo-aprovado">Sua vaga está garantida.</h1>
+      <p class="lead">Recebi a confirmação do pagamento. Falta só combinar as datas das aulas.</p>
+
+      <div class="bloco">
+        <h2>Como marcar sua aula</h2>
+        <p>Me chama no WhatsApp que eu já te passo os horários disponíveis e a gente fecha o calendário certinho — sem chocar com nada da minha agenda.</p>
+        <div class="bloco-nota">Em breve essa etapa fica automática, com uma agenda aqui na tela pra você escolher o horário sozinha. Por enquanto, é rapidinho comigo direto.</div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--zap" id="cta-zap-aprovado" href="https://wa.me/5584994127476" target="_blank" rel="noopener">Combinar minhas aulas no WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-estado="pending">
+      <div class="selo selo--pendente" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      </div>
+      <p class="eyebrow">Pagamento em processamento</p>
+      <h1>Recebemos sua solicitação.</h1>
+      <p class="lead">Se foi Pix ou boleto, a confirmação pode levar alguns minutos. Assim que cair, eu te chamo pra combinar as aulas.</p>
+
+      <div class="ctas">
+        <a class="btn btn--zap" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Fiz%20um%20pagamento%20que%20ainda%20est%C3%A1%20processando%2C%20pode%20conferir%3F" target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-estado="failure">
+      <div class="selo selo--erro" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </div>
+      <p class="eyebrow">Pagamento não concluído</p>
+      <h1>Não rolou dessa vez.</h1>
+      <p class="lead">Pode ter sido o cartão, um dado errado ou você mesma cancelou no meio. Sem problema — tenta de novo ou me chama que a gente resolve.</p>
+
+      <div class="ctas">
+        <a class="btn btn--zap" href="turmas.html#particular">Tentar de novo</a>
+        <a class="btn btn--ghost" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Tentei%20pagar%20a%20forma%C3%A7%C3%A3o%20mas%20n%C3%A3o%20deu%20certo." target="_blank" rel="noopener">Falar comigo</a>
+      </div>
+    </div>
+
+    <div data-estado="default">
+      <div class="selo selo--ok" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <p class="eyebrow">Recebido</p>
+      <h1>Chegou aqui certinho.</h1>
+      <p class="lead">Me chama no WhatsApp pra a gente confirmar os detalhes e combinar as aulas.</p>
+      <div class="ctas">
+        <a class="btn btn--zap" href="https://wa.me/5584994127476" target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="wrap"><p>© 2026 Luh Panda</p></div>
+</footer>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var status = (params.get('status') || params.get('collection_status') || '').toLowerCase();
+  var externalRef = params.get('external_reference') || '';
+
+  var estado = 'default';
+  if (status === 'approved') estado = 'approved';
+  else if (status === 'pending' || status === 'in_process') estado = 'pending';
+  else if (status === 'failure' || status === 'rejected') estado = 'failure';
+
+  var alvo = document.querySelector('[data-estado="' + estado + '"]');
+  if (alvo) alvo.classList.add('ativo');
+
+  if (estado === 'approved') {
+    var nomeModulo = externalRef === 'm2' ? 'do Módulo 2' : externalRef === 'm1' ? 'do Módulo 1' : '';
+    var titulo = document.getElementById('titulo-aprovado');
+    if (titulo && nomeModulo) titulo.textContent = 'Sua vaga ' + nomeModulo + ' está garantida.';
+
+    var textoZap = 'Oi Luh! Acabei de pagar' + (nomeModulo ? ' ' + nomeModulo : '') + ' e quero combinar as datas das aulas.';
+    var ctaZap = document.getElementById('cta-zap-aprovado');
+    if (ctaZap) ctaZap.href = 'https://wa.me/5584994127476?text=' + encodeURIComponent(textoZap);
+  }
+})();
+</script>
+</body>
+</html>
