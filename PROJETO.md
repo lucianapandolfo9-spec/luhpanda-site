@@ -228,10 +228,16 @@ A     @     185.199.111.153
 CNAME www   lucianapandolfo9-spec.github.io
 ```
 
-**Pendente:**
+**Pendente (baixa prioridade — decisão da Luh em 10/ago: foco no `.com.br` publicado, resto fica pra depois):**
 - [ ] Luh adicionar os registros DNS acima nos dois domínios
 - [ ] Depois que propagar, ativar HTTPS enforcement nos 2 repos novos (`gh api -X PUT .../pages -F "https_enforced=true"`, mesmo comando usado no `.com.br` — só funciona depois do certificado emitir)
 - [ ] Decidir se registra o `luhpanda.com` de verdade no futuro (hoje está livre pra qualquer um registrar)
+
+## 6-F. Site v4 publicado em produção — 10/ago ✅
+
+`luhpanda.com.br` está no ar com o site completo: `index.html` (central), `sistemas.html`, `turmas.html`, `obrigado.html`, pagamento automático nos módulos particulares. Verificado ao vivo (não só local): 6 páginas + 8 assets pesados (vídeos/imagens dos cases) respondendo 200, CORS do webhook de pagamento confirmado funcionando pro domínio real (preflight OPTIONS + POST com `access-control-allow-origin: https://luhpanda.com.br`), visual conferido por screenshot no domínio público batendo com o aprovado. **Aprovação da Luh: "ele tá incrivelmente lindo... amei muito."**
+
+Único ponto que só ela pode fechar: teste com pagamento real de R$1 (planilha + e-mail — ver seção 6-D) e autorização final dos depoimentos já publicados.
 
 ## 7. Pendências e backlog
 
