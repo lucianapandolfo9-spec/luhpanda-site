@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /obrigado.html
+Disallow: /consultoria.html
+Disallow: /produtos.html
+Disallow: /portfolio/
+
+Sitemap: https://luhpanda.com.br/sitemap.xml
