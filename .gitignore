@@ -1,3 +1,11 @@
 assets/raw/
 Depoimentos/
 .DS_Store
+
+# Nunca versionar: valores crus de segredo (acrescentado 01/10/2026, baseline de segurança).
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
