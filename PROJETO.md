@@ -314,3 +314,30 @@ O nome do produto no `posta-ai` repo local (`/Users/luhpanda/Downloads/Luh Panda
 5. **Semana 3 — medição:** Pixel da Meta + eventos (PageView/Lead/InitiateCheckout/Purchase) nas duas páginas, testados de verdade.
 6. **Semana 4 — tráfego:** uma campanha só (Módulo 1 → `/formacao`), 3 criativos, R$30–50/dia, sem mexer por 7 dias.
 ---
+
+## 6-G. Site v5 + venda da Skill Assistente de Obra (05/10/2026, branch `site-v5-skill-obra`, NÃO publicado)
+
+Plano fechado no 2º /grill-me (vault: `Luh Panda/Produtos/Skill Assistente de Obra.md`).
+
+- **Home curta:** quem ela é + 4 portas (Bot de atendimento a partir de R$ 1.500 · Skill de obra R$ 97 ·
+  Formação · Automação sob medida com o Hub Luh Panda de vitrine). CTA principal único:
+  **"Diagnóstico grátis de 20 min no WhatsApp"**, mensagem pronta em `assets/js/site.js` (`MSG_DIAGNOSTICO`).
+- **Páginas:** `bot.html` · `skill-obra.html` (LP de venda) · `turmas.html` (formação, simplificada,
+  checkout dos particulares inalterado) · `automacao.html`. `sistemas.html`, `consultoria.html` e
+  `produtos.html` viraram redirect pra `automacao.html`.
+- **Saiu do site:** a tabela pública R$ 5k/15k/25k. O "setor de IA R$ 3.000" nunca foi publicado
+  (`setor-de-ia.html` segue fora do Git). Automação entra pelo diagnóstico.
+- **CSS/JS compartilhados:** `assets/css/v5.css` (tokens v4) e `assets/js/site.js` (pixel, CTA, compra, reveal).
+  As páginas novas não têm mais CSS inline.
+- **Venda da skill:** pré-requisitos (Claude pago, foto salva pelo link do Drive) **antes** do botão de
+  compra, que fica travado até marcar a caixa. Demonstração rotulada "dados de exemplo", sem nada de cliente.
+- **Pagamento e entrega:** workflow novo `n8n/skill-obra.workflow.json` (3 webhooks: criar pagamento,
+  notificação do MP, acesso). Formação não foi tocada. Detalhe, credenciais e checklist do teste de R$ 1:
+  `n8n/LEIA-ME.md`.
+- **`acesso.html`:** só mostra o link do kit se o n8n confirmar no Mercado Pago que o pagamento está
+  aprovado **e** o token `t` (gerado na criação, guardado no `metadata`) bater. O link nunca está no HTML.
+- **`obrigado.html`:** reconhece `produto=skill` e manda pra `acesso.html`; Formação segue igual.
+- **Pixel + CAPI:** `PIXEL_ID` vazio = pixel desligado. PageView, ViewContent, InitiateCheckout e Lead no
+  navegador; Purchase com valor só pelo servidor (CAPI). Token da CAPI só na credencial do n8n.
+- **Falta (dela):** pixel + token CAPI, `KIT_URL`, credenciais no n8n, OK pra importar/publicar o
+  workflow, teste de R$ 1, OK pra merge na `main`.

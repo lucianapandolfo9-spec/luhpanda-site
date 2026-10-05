@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formação em IA — Luh Panda</title>
-<meta name="description" content="Turma in-company ou aula particular: seu time aprendendo a operar IA do jeito certo, com os problemas reais de vocês em cima da mesa. In-company a partir de R$ 9.600.">
-<meta property="og:title" content="Formação em IA — Luh Panda">
-<meta property="og:description" content="Seu setor inteiro operando IA — não uma pessoa só. Turma fechada dentro da empresa ou aula particular 1:1.">
+<title>Formação em IA para equipes e particular · Luh Panda</title>
+<meta name="description" content="Turma in-company ou aula particular: seu time usando IA do jeito certo, com os problemas reais de vocês em cima da mesa. Nível zero.">
+<meta property="og:title" content="Formação em IA para equipes e particular · Luh Panda">
+<meta property="og:description" content="Turma in-company ou aula particular: seu time usando IA do jeito certo, com os problemas reais de vocês em cima da mesa. Nível zero.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://luhpanda.com.br/turmas.html">
 <meta property="og:image" content="https://luhpanda.com.br/assets/og-cover.jpg">
@@ -15,195 +15,36 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --fundo:#12081A; --poco:#0C0512; --superficie:#1A0E24;
-  --borda:#2C1A3A; --borda-forte:#3A2249;
-  --roxo:#6F2E8F; --roxo-claro:#8B4BA3; --laranja:#FF6B35; --zap:#25D366;
-  --texto:#F2EAF7; --suave:#C4B2D1; --fraco:#8B7A98;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-  --wrap:1120px; --secao:clamp(84px,11vw,150px);
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--fundo);color:var(--texto);font-family:var(--sans);
-  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img,video{max-width:100%;display:block}
-a{color:inherit}
-.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:24px}
-
-.eyebrow{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--laranja);margin:0 0 20px}
-.eyebrow--calmo{color:var(--fraco)}
-.display{font-size:clamp(2.5rem,5.3vw,4.2rem);line-height:1.04;letter-spacing:-.042em;font-weight:600;margin:0;text-wrap:balance;max-width:17ch}
-.h2{font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.12;letter-spacing:-.032em;font-weight:600;margin:0;text-wrap:balance;max-width:20ch}
-.h3{font-size:clamp(1.5rem,2.4vw,1.95rem);line-height:1.2;letter-spacing:-.028em;font-weight:600;margin:0;text-wrap:balance}
-.lead{font-size:clamp(1.05rem,1.5vw,1.22rem);line-height:1.6;color:var(--suave);margin:24px 0 0;max-width:54ch}
-.corpo{color:var(--suave);margin:0}
-
-.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.aurora i{position:absolute;display:block;border-radius:50%;filter:blur(90px);opacity:.5}
-.aurora .a1{width:640px;height:640px;top:-260px;left:-120px;background:radial-gradient(circle,rgba(111,46,143,.85),transparent 68%);animation:drift1 26s var(--ease) infinite alternate}
-.aurora .a2{width:520px;height:520px;top:-140px;right:-140px;background:radial-gradient(circle,rgba(255,107,53,.4),transparent 66%);animation:drift2 32s var(--ease) infinite alternate}
-.aurora .a3{width:760px;height:420px;top:280px;left:38%;background:radial-gradient(ellipse,rgba(139,75,163,.45),transparent 70%);animation:drift3 38s var(--ease) infinite alternate}
-@keyframes drift1{to{transform:translate3d(90px,70px,0) scale(1.14)}}
-@keyframes drift2{to{transform:translate3d(-80px,110px,0) scale(1.1)}}
-@keyframes drift3{to{transform:translate3d(-120px,-50px,0) scale(1.08)}}
-
-.nav{position:sticky;top:0;z-index:40;background:rgba(18,8,26,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--borda)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:62px}
-.marca{font-weight:600;letter-spacing:-.02em;font-size:1.02rem;text-decoration:none}
-.marca span{color:var(--laranja)}
-.navlinks{display:flex;gap:28px;align-items:center}
-.navlinks a{color:var(--suave);text-decoration:none;font-size:.92rem;transition:color .2s var(--ease)}
-.navlinks a:hover,.navlinks a:focus-visible{color:var(--texto)}
-.navlinks a.on{color:var(--texto)}
-@media(max-width:860px){.navlinks{display:none}}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:inherit;font-size:.95rem;font-weight:550;padding:12px 22px;border-radius:9px;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease)}
-.btn--zap{background:var(--zap);color:#06301A}
-.btn--zap:hover,.btn--zap:focus-visible{transform:translateY(-2px);background:#2ee673}
-.btn--ghost{border-color:var(--borda-forte);color:var(--texto);background:transparent}
-.btn--ghost:hover,.btn--ghost:focus-visible{border-color:var(--roxo-claro);background:rgba(139,75,163,.1)}
-.btn--sm{padding:9px 16px;font-size:.88rem}
-.btn--full{width:100%}
-a:focus-visible,button:focus-visible{outline:2px solid var(--laranja);outline-offset:3px;border-radius:6px}
-
-.hero{position:relative;padding:clamp(72px,9vw,120px) 0 clamp(56px,7vw,86px)}
-.hero .wrap{position:relative;z-index:1}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:13px;margin-top:36px}
-.hero-nota{font-family:var(--mono);font-size:.76rem;color:var(--fraco);margin:18px 0 0}
-
-.moldura{position:relative;margin-top:clamp(46px,6vw,72px);border:1px solid var(--borda-forte);border-radius:14px;background:linear-gradient(180deg,var(--superficie),var(--poco));overflow:hidden}
-.moldura::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,53,.75),rgba(139,75,163,.55),transparent)}
-.moldura-barra{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--borda)}
-.moldura-barra i{width:10px;height:10px;border-radius:50%;background:var(--borda-forte);display:block}
-.moldura-barra b{font-family:var(--mono);font-size:.72rem;font-weight:400;color:var(--fraco);margin-left:10px}
-.moldura-corpo{padding:clamp(28px,4.4vw,52px) clamp(20px,4vw,44px);display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
-.stat b{display:block;font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.stat b em{font-style:normal;color:var(--laranja)}
-.stat p{margin:11px 0 0;font-size:.89rem;line-height:1.5;color:var(--fraco);max-width:24ch}
-
-.risco{height:1px;border:0;margin:0;background:linear-gradient(90deg,transparent,var(--borda-forte) 22%,var(--borda-forte) 78%,transparent)}
-.secao{padding:var(--secao) 0;position:relative}
-.secao--poco{background:var(--poco)}
-.secao-topo{max-width:52ch;margin-bottom:clamp(42px,5vw,66px)}
-.secao-topo .corpo{margin-top:20px}
-
-.dor-grade{display:grid;gap:1px;background:var(--borda);border:1px solid var(--borda);border-radius:13px;overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
-.dor-item{background:var(--fundo);padding:clamp(30px,3.4vw,42px) clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:14px}
-.secao--poco .dor-item{background:var(--poco)}
-.dor-item h3{margin:0;font-size:1.16rem;line-height:1.34;letter-spacing:-.018em;font-weight:600}
-.dor-item p{margin:0;font-size:.96rem;line-height:1.62;color:var(--suave)}
-
-.turma{display:grid;gap:clamp(30px,4vw,54px);align-items:center;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.turma-img{border:1px solid var(--borda-forte);border-radius:14px;overflow:hidden;line-height:0;position:relative}
-.turma-img::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,107,53,.6),transparent)}
-.turma-img img{width:100%;height:auto;display:block}
-.case-res{margin:22px 0 0;padding:15px 18px;border-left:2px solid var(--laranja);background:rgba(255,107,53,.07);border-radius:0 8px 8px 0;color:var(--texto);font-size:.95rem;line-height:1.55}
-
-.planos{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:clamp(40px,5vw,60px)}
-.plano{position:relative;border:1px solid var(--borda-forte);border-radius:15px;background:linear-gradient(180deg,var(--superficie),rgba(12,5,18,.6));padding:clamp(30px,3.4vw,40px);display:flex;flex-direction:column}
-.plano::before{content:"";position:absolute;inset-inline:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,53,.7),transparent)}
-.plano h3{margin:0;font-size:1.34rem;font-weight:600;letter-spacing:-.024em}
-.plano .sub{margin:9px 0 0;color:var(--suave);font-size:.95rem;line-height:1.55}
-.plano-formato{font-family:var(--mono);font-size:.76rem;color:var(--fraco);margin:20px 0 0}
-.preco{margin:26px 0 0;padding:24px 0 0;border-top:1px solid var(--borda)}
-.preco-total{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
-.preco-total b{font-size:clamp(2.1rem,3.4vw,2.7rem);font-weight:600;letter-spacing:-.042em;line-height:1;font-variant-numeric:tabular-nums}
-.preco-total span{font-size:.92rem;color:var(--fraco)}
-.porcabeca{margin:20px 0 0;padding:17px 19px;background:rgba(255,107,53,.09);border:1px solid rgba(255,107,53,.26);border-radius:10px;display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
-.porcabeca b{font-size:1.5rem;font-weight:600;color:var(--laranja);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-.porcabeca span{font-size:.9rem;color:var(--suave)}
-.extra{margin:15px 0 0;font-size:.86rem;color:var(--fraco);line-height:1.55}
-.lista{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
-.lista li{position:relative;padding-left:22px;font-size:.94rem;color:var(--suave);line-height:1.5}
-.lista li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:2px;border-radius:1px;background:var(--laranja)}
-.plano-fim{margin-top:auto;padding-top:30px}
-.plano-nota{font-family:var(--mono);font-size:.73rem;color:var(--fraco);margin:13px 0 0;line-height:1.55;text-align:center}
-.comparacao{margin:clamp(34px,4vw,46px) 0 0;padding:22px 26px;border:1px solid var(--borda);border-radius:11px;background:var(--superficie);color:var(--suave);font-size:.97rem;line-height:1.6}
-.comparacao b{color:var(--texto);font-weight:600}
-
-.depos{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));margin-top:clamp(40px,5vw,60px)}
-.depo{border:1px solid var(--borda-forte);border-radius:14px;background:var(--superficie);padding:26px;display:flex;flex-direction:column;gap:16px}
-.zapbolha{background:#1F2C33;border-radius:12px 12px 12px 4px;padding:13px 16px;font-size:.97rem;line-height:1.5;color:#E9EDEF}
-.zapbolha--minha{background:#144D37;border-radius:12px 12px 4px 12px;align-self:flex-end;max-width:88%}
-.zaphora{display:block;font-family:var(--mono);font-size:.66rem;color:rgba(233,237,239,.45);margin-top:7px;text-align:right}
-.depo-quem{display:flex;align-items:center;gap:11px;padding-top:16px;border-top:1px solid var(--borda);margin-top:auto}
-.depo-av{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--roxo),var(--roxo-claro))}
-.depo-quem p{margin:0;font-size:.85rem;line-height:1.4;color:var(--suave)}
-.depo-quem p b{display:block;color:var(--texto);font-weight:550}
-
-.faq{display:flex;flex-direction:column;gap:1px;background:var(--borda);border:1px solid var(--borda);border-radius:13px;overflow:hidden}
-.faq-item{background:var(--fundo);padding:26px clamp(22px,2.6vw,32px)}
-.secao--poco .faq-item{background:var(--poco)}
-.faq-item h3{margin:0;font-size:1.04rem;font-weight:600;letter-spacing:-.014em}
-.faq-item p{margin:11px 0 0;font-size:.95rem;line-height:1.6;color:var(--suave)}
-
-.fecho{text-align:center;padding:clamp(74px,9vw,120px) 0;position:relative}
-.fecho .wrap{position:relative;z-index:1}
-.fecho .h2{margin-inline:auto}
-.fecho .lead{margin-inline:auto}
-.fecho-ctas{display:flex;flex-wrap:wrap;gap:13px;justify-content:center;margin-top:34px}
-
-.rodape{padding:44px 0;border-top:1px solid var(--borda);background:var(--poco)}
-.rodape .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
-.rodape-links{display:flex;gap:22px}
-.rodape-links a{color:var(--suave);text-decoration:none;font-size:.88rem;transition:color .2s var(--ease)}
-.rodape-links a:hover{color:var(--texto)}
-.rodape p{margin:0;font-family:var(--mono);font-size:.76rem;color:var(--fraco)}
-
-.zap-float{position:fixed;bottom:22px;right:22px;z-index:200;width:58px;height:58px;border-radius:50%;background:var(--zap);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(37,211,102,.4);animation:pulse 2.6s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-
-.rv{opacity:0;transform:translateY(20px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
-.rv.on{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .aurora i,.zap-float{animation:none}
-  .rv{opacity:1;transform:none;transition:none}
-  .btn{transition:none}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/v5.css">
+<script src="assets/js/site.js" defer></script>
 </head>
-<body>
+<body data-pagina="formacao" data-conteudo="formacao-ia">
 
 <nav class="nav">
   <div class="wrap">
     <a class="marca" href="index.html">Luh <span>Panda</span></a>
     <div class="navlinks">
-      <a href="index.html">Início</a>
-      <a href="sistemas.html">Sistemas</a>
-      <a href="turmas.html" class="on">Turmas</a>
-      <a href="index.html#sobre">Sobre</a>
+      <a href="bot.html">Bot de atendimento</a>
+      <a href="skill-obra.html">Skill de obra</a>
+      <a href="turmas.html" class="on">Formação</a>
+      <a href="automacao.html">Automação</a>
     </div>
-    <a class="btn btn--zap btn--sm" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Vim%20do%20site%20e%20quero%20conversar." target="_blank" rel="noopener">Falar comigo</a>
+    <a class="btn btn--zap btn--sm" data-diag="formacao" href="https://wa.me/5584994127476">Diagnóstico grátis</a>
   </div>
 </nav>
 
 <header class="hero">
-  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
   <div class="wrap">
     <p class="eyebrow">Formação em IA</p>
-    <h1 class="display">Seu setor inteiro operando IA — não uma pessoa só.</h1>
-    <p class="lead">Turma fechada dentro da empresa, com os problemas reais de vocês em cima da mesa. Nível zero: ninguém precisa saber programar pra sair usando.</p>
+    <h1 class="display">Seu time inteiro usando IA do jeito certo, não uma pessoa só.</h1>
+    <p class="lead">Turma fechada dentro da empresa ou aula particular, com os problemas reais de vocês em cima da mesa. Nível zero: ninguém precisa saber programar.</p>
     <div class="hero-ctas">
       <a class="btn btn--zap" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20fechar%20uma%20turma%20in-company%20pro%20meu%20time." target="_blank" rel="noopener">Fechar turma pro meu time</a>
       <a class="btn btn--ghost" href="#particular">Quero aula particular</a>
     </div>
-    <p class="hero-nota">In-company a partir de R$ 9.600 (R$ 1.200 por pessoa) · particular 1:1 a partir de R$ 1.600</p>
-
-    <div class="moldura rv">
-      <div class="moldura-barra" aria-hidden="true"><i></i><i></i><i></i><b>como funciona a formação</b></div>
-      <div class="moldura-corpo">
-        <div class="stat"><b>4<em>–</em>6</b><p>aulas ao vivo, de 2h cada, conforme o módulo</p></div>
-        <div class="stat"><b>0</b><p>pré-requisito técnico: ninguém precisa programar</p></div>
-        <div class="stat"><b>100<em>%</em></b><p>das aulas gravadas pro time rever depois</p></div>
-        <div class="stat"><b>12</b><p>pessoas no máximo por turma, pra prática funcionar</p></div>
-      </div>
-    </div>
+    <p class="hero-nota">4 a 6 aulas ao vivo de 2h · todas gravadas · datas combinadas com você</p>
   </div>
 </header>
 
@@ -211,33 +52,41 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--laranja);outline-of
 
 <section class="secao">
   <div class="wrap">
-    <div class="secao-topo rv">
-      <p class="eyebrow eyebrow--calmo">O problema</p>
-      <h2 class="h2">Seu time já usa IA. Só não usa nem 10% do que ela faz.</h2>
-    </div>
-    <div class="dor-grade rv">
-      <div class="dor-item"><h3>Faz a mesma pergunta de três jeitos</h3><p>Até sair alguma coisa aproveitável — e ninguém sabe explicar por que funcionou daquela vez.</p></div>
-      <div class="dor-item"><h3>Cada um usa de um jeito diferente</h3><p>O resultado não padroniza, e aí ninguém confia o suficiente pra colocar no processo.</p></div>
-      <div class="dor-item"><h3>Abre conversa nova toda vez</h3><p>E perde tudo que já tinha ensinado. Todo dia começa do zero.</p></div>
-      <div class="dor-item"><h3>Quem aprende sozinho vira exceção</h3><p>Entrega mais rápido que o resto do time — e leva o conhecimento embora quando sai da empresa.</p></div>
+    <div class="case rv">
+      <div>
+        <p class="etiqueta">Prova</p>
+        <h2 class="h3">Time inteiro formado em 4 aulas.</h2>
+        <p class="corpo" style="margin-top:14px">Equipe de um escritório de contabilidade. Saíram com IA rodando na rotina de fechamento, não com certificado na parede.</p>
+        <p class="corpo" style="margin-top:12px">Cada aluno termina com uma ferramenta que ele mesmo construiu, em cima do problema real dele.</p>
+      </div>
+      <div class="case-midia"><img src="assets/cases/treinamento-turma.jpg" alt="Turma formada no treinamento de IA, com os certificados na mão" loading="lazy"></div>
     </div>
   </div>
 </section>
 
 <hr class="risco">
 
-<section class="secao secao--poco">
+<section class="secao secao--poco" id="in-company">
   <div class="wrap">
     <div class="secao-topo rv">
-      <p class="eyebrow">Prova</p>
-      <h2 class="h2">Turmas que já saíram daqui.</h2>
+      <p class="eyebrow">Para empresas</p>
+      <h2 class="h2">Turma fechada, só o seu time na sala.</h2>
+      <p class="corpo">Proposta e nota fiscal para a empresa. Até 8 pessoas no preço fechado, até 12 no total.</p>
     </div>
-    <div class="turma rv">
-      <div class="turma-img"><img src="assets/cases/treinamento-turma.jpg" alt="Turma formada no treinamento de IA, com os certificados na mão" loading="lazy"></div>
-      <div>
-        <h3 class="h3">Time inteiro formado em 4 aulas</h3>
-        <p class="corpo" style="margin-top:16px;">Equipe de um escritório de contabilidade. Saíram com IA rodando na rotina de fechamento — não com certificado na parede.</p>
-        <p class="case-res">Cada aluno termina com uma ferramenta que ele mesmo construiu, usando o problema real dele. Se eu sair da sala nos últimos 30 minutos, o aluno continua produzindo.</p>
+    <div class="grade-2 rv">
+      <div class="cartao">
+        <h3>Módulo 1 · Usar IA do jeito certo</h3>
+        <p class="corpo">Do prompt ao time operando a plataforma inteira: conectores, skills e projeto homologado.</p>
+        <p class="preco-grande" style="margin-top:20px">R$ 9.600<small>até 8 pessoas</small></p>
+        <p class="preco-linha">R$ 1.200 por pessoa · 4 aulas de 2h · gravadas</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20fechar%20o%20M%C3%B3dulo%201%20in-company%20pro%20meu%20time." target="_blank" rel="noopener">Fechar turma pro meu time</a>
+      </div>
+      <div class="cartao">
+        <h3>Módulo 2 · Construir e colocar no ar</h3>
+        <p class="corpo">O time sai com um sistema próprio rodando: banco de dados, login, automação e pagamento.</p>
+        <p class="preco-grande" style="margin-top:20px">R$ 14.400<small>até 8 pessoas</small></p>
+        <p class="preco-linha">R$ 1.800 por pessoa · 6 aulas de 2h · pré-requisito: Módulo 1</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20fechar%20o%20M%C3%B3dulo%202%20in-company%20pro%20meu%20time." target="_blank" rel="noopener">Fechar turma pro meu time</a>
       </div>
     </div>
   </div>
@@ -245,129 +94,30 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--laranja);outline-of
 
 <hr class="risco">
 
-<section class="secao" id="in-company">
-  <div class="wrap">
-    <div class="secao-topo rv">
-      <p class="eyebrow">Para empresas</p>
-      <h2 class="h2">Turma fechada, só o seu time na sala.</h2>
-      <p class="corpo">As datas a gente combina junto, conforme a rotina do setor. Sem turma marcada, sem esperar abrir vaga.</p>
-    </div>
-
-    <div class="planos rv">
-      <article class="plano">
-        <h3>Módulo 1 — Usar IA do jeito certo</h3>
-        <p class="sub">Da caixinha de pergunta ao time operando a plataforma inteira: prompt, conectores, skills e projeto homologado.</p>
-        <p class="plano-formato">4 aulas ao vivo · 2h cada · 8h · fica gravado</p>
-        <div class="preco">
-          <div class="preco-total"><b>R$ 9.600</b><span>até 8 pessoas</span></div>
-          <div class="porcabeca"><b>R$ 1.200</b><span>por pessoa</span></div>
-          <p class="extra">9ª pessoa em diante: R$ 900 cada · teto de 12 por turma</p>
-        </div>
-        <ul class="lista">
-          <li>Nível zero — ninguém precisa saber programar</li>
-          <li>Aulas gravadas para o time rever</li>
-          <li>Certificado com ementa e carga horária</li>
-          <li>Datas combinadas direto com você</li>
-        </ul>
-        <div class="plano-fim">
-          <a class="btn btn--zap btn--full" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20fechar%20o%20M%C3%B3dulo%201%20in-company%20(R%249.600)%20pro%20meu%20time." target="_blank" rel="noopener">Fechar turma pro meu time</a>
-          <p class="plano-nota">Proposta e nota fiscal · não é compra de cartão</p>
-        </div>
-      </article>
-
-      <article class="plano">
-        <h3>Módulo 2 — Construir e colocar no ar</h3>
-        <p class="sub">O time sai com um sistema próprio rodando: banco de dados, login com permissão, automação e caminho pra receber pagamento.</p>
-        <p class="plano-formato">6 aulas ao vivo · 2h cada · 12h · fica gravado</p>
-        <div class="preco">
-          <div class="preco-total"><b>R$ 14.400</b><span>até 8 pessoas</span></div>
-          <div class="porcabeca"><b>R$ 1.800</b><span>por pessoa</span></div>
-          <p class="extra">9ª pessoa em diante: R$ 1.200 cada · teto de 12 por turma</p>
-        </div>
-        <ul class="lista">
-          <li>Pré-requisito: Módulo 1 ou autonomia nas ferramentas</li>
-          <li>Sistema em produção ao fim do módulo, não protótipo</li>
-          <li>Suporte técnico pós-curso à parte</li>
-          <li>Datas combinadas direto com você</li>
-        </ul>
-        <div class="plano-fim">
-          <a class="btn btn--zap btn--full" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20fechar%20o%20M%C3%B3dulo%202%20in-company%20(R%2414.400)%20pro%20meu%20time." target="_blank" rel="noopener">Fechar turma pro meu time</a>
-          <p class="plano-nota">Proposta e nota fiscal · não é compra de cartão</p>
-        </div>
-      </article>
-    </div>
-
-    <p class="comparacao rv">Comparação honesta: oito vagas individuais do Módulo 1 sairiam por <b>R$ 12.800</b>. Fechando a turma para o seu time: <b>R$ 9.600</b>.</p>
-  </div>
-</section>
-
-<hr class="risco">
-
-<section class="secao secao--poco" id="particular">
+<section class="secao" id="particular">
   <div class="wrap">
     <div class="secao-topo rv">
       <p class="eyebrow">Para você</p>
       <h2 class="h2">Prefere aprender sozinha? Aula particular.</h2>
-      <p class="corpo">Só você e eu, no seu ritmo, em cima do seu problema. Sem turma, sem esperar.</p>
+      <p class="corpo">Só você e eu, no seu ritmo, em cima do seu problema.</p>
     </div>
-
-    <div class="planos rv">
-      <article class="plano">
-        <h3>Módulo 1 — particular</h3>
-        <p class="sub">Mesmo conteúdo da turma, só que 1:1 e adaptado ao que você faz.</p>
-        <p class="plano-formato">4 aulas · 2h cada · fica gravado</p>
-        <div class="preco">
-          <div class="preco-total"><b>12x R$ 133</b><span>ou R$ 1.440 no Pix</span></div>
-          <p class="extra">À vista no cartão: R$ 1.600</p>
-        </div>
-        <div class="plano-fim">
-          <a class="btn btn--zap btn--full" data-pagar="m1" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%201%20particular%20(R%241.600%20ou%2012x%20de%20R%24133)." target="_blank" rel="noopener">Garantir minha vaga</a>
-          <p class="plano-nota">Pagamento seguro pelo Mercado Pago · Pix ou cartão em 12x</p>
-        </div>
-      </article>
-
-      <article class="plano">
-        <h3>Módulo 2 — particular</h3>
-        <p class="sub">Você sai com um sistema seu no ar: banco, login, automação e pagamento.</p>
-        <p class="plano-formato">6 aulas · 2h cada · fica gravado · inclui 2h de suporte</p>
-        <div class="preco">
-          <div class="preco-total"><b>12x R$ 300</b><span>ou R$ 3.240 no Pix</span></div>
-          <p class="extra">À vista no cartão: R$ 3.600 · pré-requisito: Módulo 1 ou autonomia</p>
-        </div>
-        <div class="plano-fim">
-          <a class="btn btn--zap btn--full" data-pagar="m2" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%202%20particular%20(R%243.600%20ou%2012x%20de%20R%24300)." target="_blank" rel="noopener">Garantir minha vaga</a>
-          <p class="plano-nota">Pagamento seguro pelo Mercado Pago · Pix ou cartão em 12x</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<hr class="risco">
-
-<section class="secao">
-  <div class="wrap">
-    <div class="secao-topo rv">
-      <p class="eyebrow eyebrow--calmo">Prova</p>
-      <h2 class="h2">O que dizem os alunos.</h2>
-    </div>
-    <div class="depos rv">
-      <article class="depo">
-        <div class="zapbolha zapbolha--minha">E tão curtindo as aulas? Galera tá aplicando?<span class="zaphora">10:00</span></div>
-        <div class="zapbolha">Sim sim. Muito.<span class="zaphora">10:02</span></div>
-        <div class="zapbolha">Os meninos fizeram muita coisa legal<span class="zaphora">10:02</span></div>
-        <div class="depo-quem"><span class="depo-av" aria-hidden="true"></span><p><b>Gestora de equipe</b>Turma in-company do Módulo 1</p></div>
-      </article>
-      <article class="depo">
-        <div class="zapbolha">Tem gente organizando minhas pastas e baixando minhas NFs pra salvar mensalmente<span class="zaphora">14:47</span></div>
-        <div class="zapbolha zapbolha--minha">É pra isso que ela serve<span class="zaphora">15:14</span></div>
-        <div class="depo-quem"><span class="depo-av" aria-hidden="true"></span><p><b>Aluna</b>Automação de documentos</p></div>
-      </article>
-      <article class="depo">
-        <div class="zapbolha">Sim! Até agora as que testei deu certinho<span class="zaphora">10:51</span></div>
-        <div class="zapbolha">Esse acesso posso passar para outras pessoas? Aqui da equipe<span class="zaphora">10:51</span></div>
-        <div class="depo-quem"><span class="depo-av" aria-hidden="true"></span><p><b>Cliente de contabilidade</b>Sistema construído em aula</p></div>
-      </article>
+    <div class="grade-2 rv">
+      <div class="cartao">
+        <h3>Módulo 1 · particular</h3>
+        <p class="corpo">Mesmo conteúdo da turma, 1:1 e adaptado ao que você faz.</p>
+        <p class="preco-grande" style="margin-top:20px">12x R$ 133</p>
+        <p class="preco-linha">ou R$ 1.440 no Pix · R$ 1.600 à vista no cartão · 4 aulas de 2h</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m1" data-valor="1600" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%201%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
+        <p class="nota" style="text-align:center">Pagamento seguro pelo Mercado Pago</p>
+      </div>
+      <div class="cartao">
+        <h3>Módulo 2 · particular</h3>
+        <p class="corpo">Você sai com um sistema seu no ar: banco, login, automação e pagamento.</p>
+        <p class="preco-grande" style="margin-top:20px">12x R$ 300</p>
+        <p class="preco-linha">ou R$ 3.240 no Pix · R$ 3.600 à vista no cartão · 6 aulas de 2h + 2h de suporte</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m2" data-valor="3600" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%202%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
+        <p class="nota" style="text-align:center">Pagamento seguro pelo Mercado Pago</p>
+      </div>
     </div>
   </div>
 </section>
@@ -381,12 +131,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--laranja);outline-of
       <h2 class="h2">O que perguntam antes de fechar.</h2>
     </div>
     <div class="faq rv">
-      <div class="faq-item"><h3>Precisa saber programar?</h3><p>Não. Nível zero, sem pré-requisito técnico. O Módulo 2 pede que você já tenha feito o Módulo 1 ou que opere as ferramentas com autonomia.</p></div>
-      <div class="faq-item"><h3>As aulas ficam gravadas?</h3><p>Todas. O time pode rever quando quiser, e quem faltar não fica pra trás.</p></div>
-      <div class="faq-item"><h3>Quando são as aulas?</h3><p>Não trabalho com turma de data fixa. A gente combina o calendário conforme a rotina do seu setor.</p></div>
-      <div class="faq-item"><h3>Quantas pessoas cabem?</h3><p>Até 8 no preço fechado, e até 12 no total. Acima disso a prática ao vivo deixa de funcionar.</p></div>
-      <div class="faq-item"><h3>Como funciona o pagamento?</h3><p>Aula particular: Pix ou cartão parcelado, combinado direto comigo. In-company: proposta e nota fiscal para a empresa.</p></div>
-      <div class="faq-item"><h3>E depois do curso, se quebrar?</h3><p>Suporte técnico avulso, ou plano de acompanhamento mensal — a gente combina o escopo depois que o sistema estiver no ar.</p></div>
+      <details><summary>Precisa saber programar?</summary><p>Não. Nível zero. O Módulo 2 pede o Módulo 1 ou autonomia nas ferramentas.</p></details>
+      <details><summary>As aulas ficam gravadas?</summary><p>Todas. O time revê quando quiser, e quem faltar não fica pra trás.</p></details>
+      <details><summary>Quando são as aulas?</summary><p>Não trabalho com data fixa. A gente combina o calendário conforme a rotina de vocês.</p></details>
+      <details><summary>Como funciona o pagamento?</summary><p>Particular: Pix ou cartão pelo Mercado Pago. In-company: proposta e nota fiscal para a empresa.</p></details>
     </div>
   </div>
 </section>
@@ -397,82 +145,52 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--laranja);outline-of
   <div class="aurora" aria-hidden="true"><i class="a3"></i></div>
   <div class="wrap">
     <h2 class="h2 rv">Me conta como seu time trabalha hoje.</h2>
-    <p class="lead rv">Em dez minutos de conversa eu te digo se faz mais sentido a turma fechada, a aula particular, ou nenhuma das duas por enquanto.</p>
+    <p class="lead rv">Em 20 minutos eu te digo se faz mais sentido a turma fechada, a aula particular, ou nenhuma das duas por enquanto.</p>
     <div class="fecho-ctas rv">
-      <a class="btn btn--zap" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20conversar%20sobre%20forma%C3%A7%C3%A3o%20em%20IA%20pro%20meu%20time%20(ou%20pra%20mim)." target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
+      <a class="btn btn--zap" data-diag="formacao" href="https://wa.me/5584994127476">Diagnóstico grátis de 20 min no WhatsApp</a>
     </div>
   </div>
 </section>
 
 <footer class="rodape">
   <div class="wrap">
-    <p>© 2026 Luh Panda — Automação &amp; IA para negócios que querem escalar.</p>
+    <p>© 2026 Luh Panda · Automação e IA para negócios</p>
     <div class="rodape-links">
+      <a href="index.html">Início</a>
       <a href="https://www.instagram.com/luhpanda" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://wa.me/5584994127476" target="_blank" rel="noopener">WhatsApp</a>
       <a href="mailto:lucianapandolfo9@gmail.com">E-mail</a>
+      <a href="privacidade.html">Privacidade</a>
+      <a href="termos.html">Termos</a>
     </div>
   </div>
 </footer>
 
-<a class="zap-float" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20automa%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a class="zap-float" data-diag="formacao" href="https://wa.me/5584994127476" aria-label="Diagnóstico grátis no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+
 </a>
 
 <script>
-(function(){
-  var alvos = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    alvos.forEach(function(el){ el.classList.add('on'); });
-    return;
-  }
-  var obs = new IntersectionObserver(function(ents){
-    ents.forEach(function(e){
-      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
-  alvos.forEach(function(el){ obs.observe(el); });
-})();
-
-// Pagamento particular (M1/M2) — tenta checkout automático via Mercado Pago.
-// Se o webhook ainda não existir, der erro ou demorar, cai no WhatsApp normalmente.
+// Pagamento particular (M1/M2): checkout automatico via Mercado Pago (workflow de Formacao, inalterado).
+// Se o webhook falhar ou demorar, cai no WhatsApp normalmente.
 (function(){
   var WEBHOOK_URL = 'https://mcp.luhpanda.com.br/webhook/formacao-criar-pagamento';
-  var TIMEOUT_MS = 8000;
-
   document.querySelectorAll('[data-pagar]').forEach(function(link){
     var textoOriginal = link.textContent;
     var whatsappFallback = link.getAttribute('href');
-
     link.addEventListener('click', function(ev){
       ev.preventDefault();
-      link.style.opacity = '.7';
-      link.style.pointerEvents = 'none';
-      link.textContent = 'Abrindo pagamento…';
-
+      if (window.LuhPanda) window.LuhPanda.rastrear('InitiateCheckout', { content_ids: [link.dataset.pagar], content_type: 'product', value: Number(link.dataset.valor || 0), currency: 'BRL', num_items: 1 });
+      link.style.opacity = '.7'; link.style.pointerEvents = 'none'; link.textContent = 'Abrindo pagamento...';
       var controller = ('AbortController' in window) ? new AbortController() : null;
-      var timeoutId = setTimeout(function(){ if (controller) controller.abort(); }, TIMEOUT_MS);
-
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ modulo: link.dataset.pagar }),
-        signal: controller ? controller.signal : undefined
-      })
-        .then(function(r){
-          clearTimeout(timeoutId);
-          if (!r.ok) throw new Error('webhook respondeu ' + r.status);
-          return r.json();
-        })
-        .then(function(data){
-          if (!data || !data.checkout_url) throw new Error('sem checkout_url na resposta');
-          window.location.href = data.checkout_url;
-        })
+      var timeoutId = setTimeout(function(){ if (controller) controller.abort(); }, 8000);
+      fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ modulo: link.dataset.pagar }), signal: controller ? controller.signal : undefined })
+        .then(function(r){ clearTimeout(timeoutId); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+        .then(function(data){ if (!data || !data.checkout_url) throw new Error('sem checkout_url'); window.location.href = data.checkout_url; })
         .catch(function(){
           clearTimeout(timeoutId);
-          link.style.opacity = '';
-          link.style.pointerEvents = '';
-          link.textContent = textoOriginal;
+          link.style.opacity = ''; link.style.pointerEvents = ''; link.textContent = textoOriginal;
           window.open(whatsappFallback, '_blank', 'noopener');
         });
     });
