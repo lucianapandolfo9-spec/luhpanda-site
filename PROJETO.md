@@ -314,3 +314,90 @@ O nome do produto no `posta-ai` repo local (`/Users/luhpanda/Downloads/Luh Panda
 5. **Semana 3 — medição:** Pixel da Meta + eventos (PageView/Lead/InitiateCheckout/Purchase) nas duas páginas, testados de verdade.
 6. **Semana 4 — tráfego:** uma campanha só (Módulo 1 → `/formacao`), 3 criativos, R$30–50/dia, sem mexer por 7 dias.
 ---
+
+## 6-G. Site v5 + venda da Skill Assistente de Obra (05/10/2026, branch `site-v5-skill-obra`, NÃO publicado)
+
+Plano fechado no 2º /grill-me (vault: `Luh Panda/Produtos/Skill Assistente de Obra.md`).
+
+- **Home curta:** quem ela é + 4 portas (Bot de atendimento a partir de R$ 1.500 · Skill de obra R$ 97 ·
+  Formação · Automação sob medida com o Hub Luh Panda de vitrine). CTA principal único:
+  **"Diagnóstico grátis de 20 min no WhatsApp"**, mensagem pronta em `assets/js/site.js` (`MSG_DIAGNOSTICO`).
+- **Páginas:** `bot.html` · `skill-obra.html` (LP de venda) · `turmas.html` (formação, simplificada,
+  checkout dos particulares inalterado) · `automacao.html`. `sistemas.html`, `consultoria.html` e
+  `produtos.html` viraram redirect pra `automacao.html`.
+- **Saiu do site:** a tabela pública R$ 5k/15k/25k. O "setor de IA R$ 3.000" nunca foi publicado
+  (`setor-de-ia.html` segue fora do Git). Automação entra pelo diagnóstico.
+- **CSS/JS compartilhados:** `assets/css/v5.css` (tokens v4) e `assets/js/site.js` (pixel, CTA, compra, reveal).
+  As páginas novas não têm mais CSS inline.
+- **Venda da skill:** pré-requisitos (Claude pago, foto salva pelo link do Drive) **antes** do botão de
+  compra, que fica travado até marcar a caixa. Demonstração rotulada "dados de exemplo", sem nada de cliente.
+- **Pagamento e entrega:** workflow novo `n8n/skill-obra.workflow.json` (3 webhooks: criar pagamento,
+  notificação do MP, acesso). Formação não foi tocada. Detalhe, credenciais e checklist do teste de R$ 1:
+  `n8n/LEIA-ME.md`.
+- **`acesso.html`:** só mostra o link do kit se o n8n confirmar no Mercado Pago que o pagamento está
+  aprovado **e** o token `t` (gerado na criação, guardado no `metadata`) bater. O link nunca está no HTML.
+- **`obrigado.html`:** reconhece `produto=skill` e manda pra `acesso.html`; Formação segue igual.
+- **Pixel + CAPI:** `PIXEL_ID` vazio = pixel desligado. PageView, ViewContent, InitiateCheckout e Lead no
+  navegador; Purchase com valor só pelo servidor (CAPI). Token da CAPI só na credencial do n8n.
+- **Falta (dela):** pixel + token CAPI, `KIT_URL`, credenciais no n8n, OK pra importar/publicar o
+  workflow, teste de R$ 1, OK pra merge na `main`.
+
+### 6-G.1 Rodada de 05/10 (noite): preço, acesso e protótipo de motion
+
+- **Preço in-company novo (pedido dela):** Módulo 1 **R$ 3.000** e Módulo 2 **R$ 10.000**, turma de
+  **até 10 pessoas** (era R$ 9.600 / R$ 14.400 até 8). Particular **não mudou** (M1 R$ 1.600 = 12x R$ 133
+  ou R$ 1.440 no Pix · M2 R$ 3.600 = 12x R$ 300 ou R$ 3.240 no Pix). Atualizado em `turmas.html`
+  (cartões + FAQ "Quanto custa?"), na porta 03 da home e em `TABELA-PRECOS-2026.md`. Preço por pessoa
+  acima de 10 ainda não decidido. Checkout do particular e workflow de Formação intocados.
+- **`acesso.html`, estado "negado":** texto suavizado ("Ainda não consegui confirmar seu pagamento…
+  esta página confere sozinha") e agora ele **reconfere de verdade** (mesma chamada ao servidor, a cada
+  20 s, sem piscar a tela; teto de 12 tentativas somando com o "pendente"). Link incompleto ou que não
+  bate com o pagamento (`link_invalido`) mostra outro texto e não promete reconferir. Regra de
+  liberação (n8n + token `t`) não mudou.
+- **Motion, PROTÓTIPO em 2 lugares** (`assets/css/motion.css` + `assets/js/motion.js`, só carregados
+  em `skill-obra.html` e `automacao.html`):
+  - Sem GSAP: Web Animations API nativa + IntersectionObserver, ~0 KB de terceiro. Só `transform` e
+    `opacity`; nenhum listener de scroll. CLS medido 0 nos 4 cenários.
+  - Conteúdo final está no HTML. O `<head>` liga `html.mo` só sem `prefers-reduced-motion`; se o
+    `motion.js` não carregar em 4 s, a página volta ao estado final sozinha.
+  - **skill-obra:** "O que faz" monta os 4 passos em sequência (linha desenha, texto sobe). Demonstração:
+    foto chega → Claude "pensa" e digita a leitura → cursor clica em "sim" → linha voa do chat e
+    encaixa na planilha (espera a planilha estar 85% visível, descontando a barra fixa do celular) →
+    total da obra conta de R$ 312,45 a R$ 799,35 → pasta do Drive aparece e o cursor clica. Botão
+    "Ver de novo".
+  - **automacao:** maquete do Hub virou abas acessíveis (Visão geral · Financeiro · Comercial ·
+    Contratos · Agenda), todas com dados de exemplo no HTML. Tour com cursor, números contando,
+    gráfico desenhando; no desktop o mouse num módulo assume (volta 3,5 s depois de sair); clique,
+    toque e setas do teclado também. No celular o menu vira faixa horizontal.
+  - Vídeos de prévia: `~/Downloads/Luh Panda/Prints site v5 (05-10)/motion/`.
+- **Bug corrigido de carona:** `skill-obra.html` abria com 745 px de largura no celular (a coluna da
+  demonstração não encolhia abaixo da tabela). `.demo > *{min-width:0}` em `v5.css`.
+
+### 6-G.2 Rodada de 05/10 (madrugada): motion aprovado, bot animado e preço da particular
+
+- **Decisões dela sobre o protótipo:** sequência com cursor só nas demos de produto (skill, Hub, bot).
+  Resto do site: entrada suave ao rolar, **só opacidade, sem slide** (`.rv` em `v5.css`; grades de
+  cartões aparecem um a um). Os passos da skill também perderam o slide. Skill roda 1 vez + "Ver de
+  novo" (ritmo de ~16 s mantido); Hub em loop enquanto está na tela; bot igual à skill.
+- **Celular:** onde a tela é de toque (`hover: none` e `pointer: coarse`), a seta vira **toque de
+  dedo**: círculo que aparece no ponto, afunda e pulsa duas ondas. Desktop segue com a seta.
+- **`bot.html`, demo nova** ("Veja funcionando", dados de exemplo): cliente chama 22:01, bot responde
+  na hora, 2 perguntas de qualificação, oferece 09:00 e 10:30, o toque escolhe 10:30, o compromisso
+  voa pra mini-agenda e fecha com o selo **"Lead atendido às 22h04"**. Agenda fica fixa ao lado no
+  desktop. O HTML já tem a conversa inteira (SEO e reduced-motion).
+- **Failsafe ampliado:** o `.rv` só esconde com `html.rvj`, que o `<head>` liga sem reduced-motion e
+  desliga sozinho em 4 s se o `site.js` não carregar (antes, sem JS a página ficava invisível).
+- **CLS:** animações 0 em todas as páginas. Sobra ~0,006 no desktop de `bot` e `turmas` vindo da
+  troca da fonte Inter no hero (já existia; o `bot` tinha 0,032 e caiu pra 0,006 com quebra fixa no
+  título). Zerar de vez pede `display=optional` ou Inter servida do próprio site: decisão dela.
+- **Preço da particular (pedido dela):** M1 **R$ 997** (12x R$ 83 · **R$ 897 no Pix**) e M2
+  **R$ 2.497** (12x R$ 208 · **R$ 2.247 no Pix**). Pix arredondado pro real inteiro, no padrão que o
+  site já usava (sem centavos). Turma de empresa **acima de 10 pessoas: sob consulta**, com botão pro
+  WhatsApp em `turmas.html`, no FAQ e na porta 03 da home. `data-valor` dos botões: 997 / 2497.
+- 🔴 **ANTES DO MERGE:** o valor cobrado de verdade mora no workflow n8n `Criar Pagamento (Formação)`
+  `yEIEMrq9B4Mpsou6`, ainda fixo em **1600/3600**. Precisa virar 997/2497 (e, se o Pix for cobrado
+  com desconto no servidor, 897/2247 exatos). Não foi mexido nesta rodada: a sessão principal faz isso
+  com o OK dela. Se mergear antes, o site anuncia R$ 997 e o checkout cobra R$ 1.600.
+- Vídeos: `bot-celular` · `bot-desktop` · `home-celular` · `home-desktop` · `skill-obra-celular`
+  (toque de dedo) em `~/Downloads/Luh Panda/Prints site v5 (05-10)/motion/`. Celular gravado em
+  390×844 (resolução de tela, não retina).

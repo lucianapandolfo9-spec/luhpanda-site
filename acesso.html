@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso ao kit · Skill Assistente de Obra · Luh Panda</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/v5.css">
+<script src="assets/js/site.js" defer></script>
+</head>
+<body data-pagina="acesso">
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="marca" href="index.html">Luh <span>Panda</span></a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <!-- O link do kit NUNCA esta neste arquivo. Ele so chega pela resposta do servidor (n8n),
+       depois que o n8n consulta o pagamento direto no Mercado Pago. -->
+
+  <div class="estado" data-estado="verificando">
+    <div class="selo" aria-hidden="true"><span class="girando"></span></div>
+    <p class="eyebrow">Conferindo seu pagamento</p>
+    <h1>Só um instante.</h1>
+    <p class="lead">Estou confirmando a compra direto no Mercado Pago antes de liberar o kit.</p>
+  </div>
+
+  <div class="estado" data-estado="liberado">
+    <div class="selo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <p class="eyebrow">Pagamento confirmado</p>
+    <h1>Seu kit está liberado.</h1>
+    <p class="lead">O mesmo link também foi pro seu e-mail. Guarde os dois.</p>
+    <div class="ctas">
+      <a class="btn btn--compra" id="link-kit" href="#" target="_blank" rel="noopener noreferrer">Abrir o kit no Google Drive</a>
+    </div>
+    <div class="bloco">
+      <h2>Por onde começar</h2>
+      <ul class="lista">
+        <li>Abra o <b>manual de instalação em PDF</b> e siga na ordem.</li>
+        <li>Faça uma cópia da <b>planilha modelo</b> pro seu Drive.</li>
+        <li>Suba as <b>2 skills</b> no Claude e cole o texto das <b>Instruções do Projeto</b>.</li>
+        <li>Teste com um comprovante de verdade antes de usar no dia a dia.</li>
+      </ul>
+      <p>Travou na instalação? O manual tem as dúvidas mais comuns. Se mesmo assim não sair, me chama pro diagnóstico grátis de 20 minutos.</p>
+    </div>
+    <div class="ctas">
+      <a class="btn btn--ghost" data-diag="acesso" href="https://wa.me/5584994127476">Falar comigo no WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="estado" data-estado="pendente">
+    <div class="selo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    </div>
+    <p class="eyebrow">Pagamento em processamento</p>
+    <h1>Quase lá.</h1>
+    <p class="lead">O Mercado Pago ainda não confirmou. Pix costuma levar poucos minutos. Esta página confere de novo sozinha, e o link do kit também chega no seu e-mail assim que confirmar.</p>
+    <div class="ctas">
+      <button class="btn btn--ghost" type="button" id="tentar-de-novo">Conferir de novo agora</button>
+    </div>
+  </div>
+
+  <div class="estado" data-estado="negado">
+    <div class="selo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    </div>
+    <p class="eyebrow">Ainda conferindo</p>
+    <h1>Ainda não consegui confirmar seu pagamento.</h1>
+    <p class="lead" id="texto-negado">Se pagou agora por Pix, pode levar alguns minutos: esta página confere sozinha. Se já passou disso, use o link do e-mail da compra ou me chame.</p>
+    <div class="ctas">
+      <button class="btn btn--ghost" type="button" id="tentar-negado">Conferir de novo agora</button>
+      <a class="btn btn--zap" id="zap-negado" href="https://wa.me/5584994127476" target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
+      <a class="btn btn--ghost" href="skill-obra.html">Voltar pra página da skill</a>
+    </div>
+  </div>
+
+  <div class="estado" data-estado="erro">
+    <div class="selo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>
+    </div>
+    <p class="eyebrow">Falha ao conferir</p>
+    <h1>Não consegui falar com o servidor agora.</h1>
+    <p class="lead">Seu pagamento não se perde. Tente de novo em alguns minutos, confira seu e-mail ou me chame no WhatsApp.</p>
+    <div class="ctas">
+      <button class="btn btn--ghost" type="button" id="tentar-erro">Tentar de novo</button>
+      <a class="btn btn--zap" id="zap-erro" href="https://wa.me/5584994127476" target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="wrap"><p>© 2026 Luh Panda</p></div>
+</footer>
+
+<script>
+(function () {
+  var ENDPOINT = 'https://mcp.luhpanda.com.br/webhook/skill-acesso';
+  var params = new URLSearchParams(location.search);
+  // O Mercado Pago devolve o id como payment_id (e collection_id). O "t" e o token de acesso
+  // que o n8n gerou na hora de criar o pagamento: sem ele, um id de pagamento sozinho nao abre nada.
+  var paymentId = (params.get('payment_id') || params.get('collection_id') || '').trim();
+  var token = (params.get('t') || '').trim();
+  var tentativas = 0, MAX_AUTO = 12, timer = null;
+
+  function mostrar(estado) {
+    document.querySelectorAll('[data-estado]').forEach(function (el) {
+      el.classList.toggle('ativo', el.getAttribute('data-estado') === estado);
+    });
+  }
+
+  function zapComId(texto) {
+    var t = texto + (paymentId ? ' Pagamento: ' + paymentId + '.' : '');
+    return 'https://wa.me/5584994127476?text=' + encodeURIComponent(t);
+  }
+  document.getElementById('zap-negado').href = zapComId('Oi Luh! Comprei a Skill Assistente de Obra e a página de acesso não liberou o kit.');
+  document.getElementById('zap-erro').href = zapComId('Oi Luh! Comprei a Skill Assistente de Obra e a página de acesso deu erro.');
+
+  // So aceita link de kit hospedado no Google Drive/Docs. Qualquer outra coisa e tratada como erro.
+  function linkSeguro(u) {
+    return typeof u === 'string' && /^https:\/\/(drive|docs)\.google\.com\//.test(u);
+  }
+
+  // Link incompleto ou que nao bate com o pagamento: conferir de novo nao adianta, entao o texto nao promete isso.
+  function linkIncompleto() {
+    var bloco = document.querySelector('[data-estado="negado"]');
+    bloco.querySelector('.eyebrow').textContent = 'Link incompleto';
+    bloco.querySelector('h1').textContent = 'Não consegui abrir este link.';
+    document.getElementById('texto-negado').textContent = 'Este link parece incompleto. Abra a página pelo link do e-mail da compra ou me chame que eu resolvo.';
+    document.getElementById('tentar-negado').style.display = 'none';
+    mostrar('negado');
+  }
+
+  // silencioso: rechecagem automatica, sem piscar a tela de "conferindo" a cada volta
+  function conferir(silencioso) {
+    clearTimeout(timer);
+    if (!/^\d{5,25}$/.test(paymentId) || !/^[a-f0-9]{32}$/.test(token)) { linkIncompleto(); return; }
+    if (silencioso !== true) mostrar('verificando');
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var corte = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+    fetch(ENDPOINT + '?payment_id=' + encodeURIComponent(paymentId) + '&t=' + encodeURIComponent(token), {
+      method: 'GET', cache: 'no-store', signal: ctrl ? ctrl.signal : undefined
+    })
+      .then(function (r) { clearTimeout(corte); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(function (d) {
+        if (d && d.liberado === true && linkSeguro(d.kit_url)) {
+          document.getElementById('link-kit').href = d.kit_url;
+          mostrar('liberado');
+          return;
+        }
+        if (d && d.status === 'pendente') {
+          mostrar('pendente');
+          if (tentativas++ < MAX_AUTO) timer = setTimeout(function () { conferir(true); }, 10000);
+          return;
+        }
+        if (d && d.status === 'kit_indisponivel') { mostrar('erro'); return; }
+        if (d && d.status === 'link_invalido') { linkIncompleto(); return; }
+        // Sem aprovacao ainda: pode ser Pix compensando. Mesma checagem no servidor, repetida com folga.
+        mostrar('negado');
+        if (tentativas++ < MAX_AUTO) timer = setTimeout(function () { conferir(true); }, 20000);
+      })
+      .catch(function () {
+        clearTimeout(corte);
+        // numa rechecagem automatica, uma falha de rede nao derruba a tela: tenta de novo em silencio
+        if (silencioso === true && tentativas++ < MAX_AUTO) { timer = setTimeout(function () { conferir(true); }, 20000); return; }
+        mostrar('erro');
+      });
+  }
+
+  document.getElementById('tentar-de-novo').addEventListener('click', function () { tentativas = 0; conferir(); });
+  document.getElementById('tentar-negado').addEventListener('click', function () { tentativas = 0; conferir(); });
+  document.getElementById('tentar-erro').addEventListener('click', function () { tentativas = 0; conferir(); });
+  conferir();
+})();
+</script>
+</body>
+</html>

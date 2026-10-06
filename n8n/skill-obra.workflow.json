@@ -1,0 +1,1134 @@
+{
+  "name": "Luh Panda · Skill Obra (pagamento, entrega e acesso)",
+  "nodes": [
+    {
+      "id": "88fc743e-b6b1-40b2-a650-a239df09ae79",
+      "name": "Webhook criar pagamento",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "skill-criar-pagamento",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://luhpanda.com.br,https://lucianapandolfo9-spec.github.io"
+        }
+      },
+      "webhookId": "49726984-7bb7-44bb-aaa4-19c1c9d139fa"
+    },
+    {
+      "id": "a10e2f06-1ca5-4944-a265-8a4ba3e2b2f5",
+      "name": "Webhook notificação MP",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "skill-mp-notificacao",
+        "options": {}
+      },
+      "webhookId": "38639a3e-909b-4a45-b234-8dcef031c99f"
+    },
+    {
+      "id": "f6f46075-ac6d-4d5d-b86c-7086a39da486",
+      "name": "Webhook acesso",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        600
+      ],
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "skill-acesso",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://luhpanda.com.br,https://lucianapandolfo9-spec.github.io"
+        }
+      },
+      "webhookId": "6e7c3799-e467-4dbd-8e77-dc474b02c2d7"
+    },
+    {
+      "id": "eec2f8f8-db5d-4f0f-bbf8-1ad53d82ad17",
+      "name": "Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {
+        "jsCode": "// ===== CONFIG DA SKILL DE OBRA · o unico lugar pra editar =====\n// Preco decidido AQUI, no servidor. O site nunca manda valor.\nconst CONFIG = {\n  PRODUTO_REF: 'skill',                       // external_reference no Mercado Pago\n  PRODUTO_ID: 'skill-assistente-obra',        // content_id no pixel/CAPI\n  TITULO: 'Skill Assistente de Obra (kit completo)',\n  PRECO: 97,                                  // TESTE DE R$ 1: trocar pra 1, testar, VOLTAR PRA 97 antes de lançar\n  KIT_URL: 'PREENCHER_LINK_DA_PASTA_DO_KIT',  // link da pasta do kit no Drive (só leitura)\n  SITE: 'https://luhpanda.com.br',\n  NOTIF_URL: 'https://mcp.luhpanda.com.br/webhook/skill-mp-notificacao',\n  EMAIL_LUCIANA: 'lucianapandolfo9@gmail.com',\n  PIXEL_ID: '',                               // PREENCHER: ID do conjunto de dados (pixel), só números\n  GRAPH_VERSION: 'v26.0',\n  CAPI_TEST_CODE: ''                          // opcional: código \"TEST...\" da aba Eventos de teste\n};\n\nlet rota = 'desconhecida';\nif ($('Webhook criar pagamento').isExecuted) rota = 'criar';\nelse if ($('Webhook notificação MP').isExecuted) rota = 'notificacao';\nelse if ($('Webhook acesso').isExecuted) rota = 'acesso';\n\nconst kitOk = /^https:\\/\\/(drive|docs)\\.google\\.com\\//.test(CONFIG.KIT_URL);\nconst pixelOk = /^\\d{6,20}$/.test(CONFIG.PIXEL_ID);\n\nreturn [{ json: { config: CONFIG, kitOk, pixelOk, rota, entrada: $input.first().json } }];\n"
+      }
+    },
+    {
+      "id": "6ebf67a3-9f83-42e2-a424-b7ade3ad1648",
+      "name": "Rota",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        480,
+        300
+      ],
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "afc470ed-6953-4b3f-a663-bb04ef63a677",
+                    "leftValue": "={{ $json.rota }}",
+                    "rightValue": "criar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "criar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0f98ff1b-3566-4dc3-a14a-e70f51e226cf",
+                    "leftValue": "={{ $json.rota }}",
+                    "rightValue": "notificacao",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "notificacao"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1097f1d5-f388-4a6a-b903-f589ee9c7223",
+                    "leftValue": "={{ $json.rota }}",
+                    "rightValue": "acesso",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "acesso"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "99c584d8-1bad-4eed-9ef5-b431b8668130",
+      "name": "Gerar token de acesso",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "token",
+        "encodingType": "hex",
+        "stringLength": 32
+      }
+    },
+    {
+      "id": "9774e254-803f-4551-b44c-b970a8cae729",
+      "name": "Montar preferência",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// Monta a preferência do Mercado Pago. Preço vem do Config, nunca do navegador.\nconst base = $('Config').first().json;\nconst config = base.config;\nconst entrada = base.entrada || {};\nconst body = entrada.body || {};\nconst headers = entrada.headers || {};\n// O nó Crypto gera hex aleatório; normaliza pra exatamente 32 caracteres.\nconst token = String($input.first().json.token || '').toLowerCase().replace(/[^a-f0-9]/g, '').slice(0, 32);\n\nif (body.produto !== config.PRODUTO_REF) {\n  return [{ json: { ok: false, erro: 'produto_invalido' } }];\n}\nif (!/^[a-f0-9]{32}$/.test(token)) {\n  return [{ json: { ok: false, erro: 'token_invalido' } }];\n}\n\nfunction limpo(v, re, max) {\n  const s = String(v || '').trim().slice(0, max);\n  return re.test(s) ? s : '';\n}\nconst fbp = limpo(body.fbp, /^fb\\.\\d\\.\\d+\\.\\d+$/, 120);\nconst fbc = limpo(body.fbc, /^fb\\.\\d\\.\\d+\\.[A-Za-z0-9_-]+$/, 400);\nconst pagina = limpo(body.pagina, /^https:\\/\\/(luhpanda\\.com\\.br|lucianapandolfo9-spec\\.github\\.io)\\//, 200);\nconst ip = String(headers['x-forwarded-for'] || headers['x-real-ip'] || '').split(',')[0].trim().slice(0, 64);\nconst ua = String(headers['user-agent'] || '').slice(0, 400);\n\nconst volta = `${config.SITE}/obrigado.html?produto=${config.PRODUTO_REF}&t=${token}`;\n\nconst preferencia = {\n  items: [{\n    id: config.PRODUTO_ID,\n    title: config.TITULO,\n    description: 'Kit digital: 2 skills para o Claude, planilha modelo de obra e manual em PDF',\n    quantity: 1,\n    currency_id: 'BRL',\n    unit_price: Number(config.PRECO)\n  }],\n  external_reference: config.PRODUTO_REF,\n  back_urls: { success: volta, pending: volta, failure: volta },\n  auto_return: 'approved',\n  notification_url: config.NOTIF_URL,\n  statement_descriptor: 'LUHPANDA',\n  metadata: {\n    produto: config.PRODUTO_REF,\n    token_acesso: token,\n    fbp, fbc, ip, ua,\n    pagina: pagina || `${config.SITE}/skill-obra.html`\n  }\n};\n\nreturn [{ json: { ok: true, preferencia } }];\n"
+      }
+    },
+    {
+      "id": "db9d3320-7827-4a37-a384-23f06e0e7d69",
+      "name": "Produto válido?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1160,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8ea9a4a2-542f-46e2-880c-6079410ecd5a",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "c833e52e-3edf-4aba-bf8f-dc23c6aa8618",
+      "name": "Criar preferência MP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        -80
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mercadopago.com/checkout/preferences",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "timeout": 15000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.preferencia) }}"
+      },
+      "notes": "Credencial: selecionar 'Mercado Pago Luh Panda' (Bearer) na mão. A API não liga credencial genérica."
+    },
+    {
+      "id": "66b23e49-9050-497f-9596-4970ee26346b",
+      "name": "Responder checkout",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1600,
+        -80
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ checkout_url: $json.init_point }) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "0def41e1-3b34-4221-9893-c1805224fc7d",
+      "name": "Responder erro",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1380,
+        100
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ erro: $json.erro }) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          },
+          "responseCode": 400
+        }
+      }
+    },
+    {
+      "id": "83c8434d-5a81-46d2-be3a-d238b4b27b69",
+      "name": "Extrair ID do pagamento",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        300
+      ],
+      "parameters": {
+        "jsCode": "// Notificação do Mercado Pago: só confia no ID. O resto é buscado na API deles.\n// Formatos aceitos: webhook novo (body.data.id / ?data.id=) e IPN antigo (?topic=payment&id=).\nconst base = $input.first().json;\nconst e = base.entrada || {};\nconst q = e.query || {};\nconst b = e.body || {};\n\nconst tipo = String(b.type || q.type || q.topic || b.topic || '');\nconst id = String((b.data && b.data.id) || q['data.id'] || q.id || '').trim();\n\nif (tipo && tipo !== 'payment') return [];        // merchant_order etc: ignora\nif (!/^\\d{5,25}$/.test(id)) return [];\n\nreturn [{ json: { payment_id: id } }];\n"
+      }
+    },
+    {
+      "id": "fc8ef493-aac7-484c-bcbe-4034ad2267ea",
+      "name": "Buscar pagamento MP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        940,
+        300
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.mercadopago.com/v1/payments/{{ $json.payment_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "notes": "Credencial: selecionar 'Mercado Pago Luh Panda' (Bearer) na mão. A API não liga credencial genérica."
+    },
+    {
+      "id": "2cde29fc-f1ae-4e22-bc0f-6a1161c2fe5a",
+      "name": "Conferir venda aprovada",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        300
+      ],
+      "parameters": {
+        "jsCode": "// Recebe o pagamento lido DIRETO da API do Mercado Pago e decide se é venda nova da skill.\n// Monta tudo o que vem depois: linha da planilha, e-mail do comprador, aviso pra Luciana e evento CAPI.\nconst base = $('Config').first().json;\nconst config = base.config;\nconst p = $input.first().json || {};\nconst md = p.metadata || {};\n\nconst ehSkill = p.external_reference === config.PRODUTO_REF && md.produto === config.PRODUTO_REF;\nif (!ehSkill || p.status !== 'approved') return [];\n\nconst id = String(p.id);\n\n// Trava 1 (rápida): o mesmo pagamento notificado duas vezes não gera dois e-mails.\n// A trava 2 (durável) é a consulta na planilha, logo depois deste nó.\nconst sd = $getWorkflowStaticData('global');\nsd.skillPagos = sd.skillPagos || {};\nif (sd.skillPagos[id]) return [];\nsd.skillPagos[id] = Date.now();\nconst chaves = Object.keys(sd.skillPagos);\nif (chaves.length > 500) chaves.sort((a, b) => sd.skillPagos[a] - sd.skillPagos[b]).slice(0, chaves.length - 500).forEach(k => delete sd.skillPagos[k]);\n\n// ---------- SHA-256 em JS puro (o Code node não tem require('crypto') liberado por padrão) ----------\nfunction sha256(texto) {\n  const bytes = [];\n  const enc = encodeURIComponent(String(texto));\n  for (let i = 0; i < enc.length; i++) {\n    if (enc[i] === '%') { bytes.push(parseInt(enc.substr(i + 1, 2), 16)); i += 2; }\n    else bytes.push(enc.charCodeAt(i));\n  }\n  const K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];\n  const H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];\n  const bitLen = bytes.length * 8;\n  bytes.push(0x80);\n  while (bytes.length % 64 !== 56) bytes.push(0);\n  const hi = Math.floor(bitLen / 0x100000000), lo = bitLen >>> 0;\n  bytes.push((hi >>> 24) & 255, (hi >>> 16) & 255, (hi >>> 8) & 255, hi & 255, (lo >>> 24) & 255, (lo >>> 16) & 255, (lo >>> 8) & 255, lo & 255);\n  const rotr = (x, n) => (x >>> n) | (x << (32 - n));\n  for (let off = 0; off < bytes.length; off += 64) {\n    const w = new Array(64);\n    for (let i = 0; i < 16; i++) w[i] = (bytes[off + i * 4] << 24) | (bytes[off + i * 4 + 1] << 16) | (bytes[off + i * 4 + 2] << 8) | bytes[off + i * 4 + 3];\n    for (let i = 16; i < 64; i++) {\n      const s0 = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >>> 3);\n      const s1 = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >>> 10);\n      w[i] = (w[i - 16] + s0 + w[i - 7] + s1) | 0;\n    }\n    let [a, b, c, d, e, f, g, h] = H;\n    for (let i = 0; i < 64; i++) {\n      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);\n      const ch = (e & f) ^ (~e & g);\n      const t1 = (h + S1 + ch + K[i] + w[i]) | 0;\n      const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);\n      const maj = (a & b) ^ (a & c) ^ (b & c);\n      const t2 = (S0 + maj) | 0;\n      h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;\n    }\n    H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c) | 0; H[3] = (H[3] + d) | 0;\n    H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;\n  }\n  return H.map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');\n}\n\n// ---------- dados do comprador ----------\nconst payer = p.payer || {};\nconst email = String(payer.email || '').trim().toLowerCase();\nconst emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);\nconst nome = [payer.first_name, payer.last_name].filter(Boolean).join(' ').trim();\nconst fone = payer.phone ? String(payer.phone.area_code || '') + String(payer.phone.number || '') : '';\nconst foneDigitos = fone.replace(/\\D/g, '');\nconst foneE164 = foneDigitos ? (foneDigitos.startsWith('55') ? foneDigitos : '55' + foneDigitos) : '';\n\nconst quando = new Date(p.date_approved || p.date_created || Date.now());\nconst fmt = (opts) => new Intl.DateTimeFormat('pt-BR', Object.assign({ timeZone: 'America/Recife' }, opts)).format(quando);\nconst valor = Number(p.transaction_amount || 0);\nconst valorBR = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });\n\nconst linkAcesso = `${config.SITE}/acesso.html?payment_id=${encodeURIComponent(id)}&t=${encodeURIComponent(md.token_acesso || '')}`;\nconst primeiroNome = (payer.first_name || '').trim();\nconst esc = (t) => String(t).replace(/[&<>\"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]));\n\nconst linha = {\n  'Data': fmt({ day: '2-digit', month: '2-digit', year: 'numeric' }),\n  'Hora': fmt({ hour: '2-digit', minute: '2-digit' }),\n  'Módulo': 'skill',\n  'Nome': nome,\n  'E-mail': email,\n  'Telefone': fone,\n  'Valor': valor,\n  'Forma': String(p.payment_type_id || p.payment_method_id || ''),\n  'ID Pagamento Mercado Pago': id,\n  'Status': p.status\n};\n\nconst emailComprador = {\n  para: email,\n  assunto: 'Seu kit da Skill Assistente de Obra',\n  html: `<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;max-width:560px\">\n<p>Oi${primeiroNome ? ' ' + esc(primeiroNome) : ''}!</p>\n<p>Seu pagamento de <b>${esc(valorBR)}</b> foi confirmado. Aqui está o seu kit da <b>Skill Assistente de Obra</b>:</p>\n<p><a href=\"${esc(config.KIT_URL)}\" style=\"display:inline-block;background:#FF6B35;color:#2A0E02;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:8px\">Abrir o kit no Google Drive</a></p>\n<p><b>Por onde começar:</b></p>\n<ol>\n<li>Abra o manual de instalação em PDF e siga na ordem.</li>\n<li>Faça uma cópia da planilha modelo pro seu Drive.</li>\n<li>Suba as 2 skills no Claude e cole o texto das Instruções do Projeto.</li>\n</ol>\n<p>Lembrete: as skills funcionam no plano pago do Claude, e a foto do comprovante é salva por você no Drive, pelo link que o Claude manda.</p>\n<p>Guarde também o link da sua página de acesso: <a href=\"${esc(linkAcesso)}\">${esc(linkAcesso)}</a></p>\n<p>Você tem 7 dias de garantia: se não for pra você, é só responder este e-mail que eu devolvo o valor.</p>\n<p>Travou na instalação? Me chama pro diagnóstico grátis de 20 minutos no WhatsApp: <a href=\"https://wa.me/5584994127476\">wa.me/5584994127476</a></p>\n<p>Luh Panda</p>\n</div>`\n};\n\nconst entregaAuto = emailOk && base.kitOk;\nconst avisoLuciana = {\n  para: config.EMAIL_LUCIANA,\n  assunto: `${entregaAuto ? 'Venda' : 'ATENÇÃO: venda sem entrega automática'} · Skill de obra · ${valorBR}`,\n  html: `<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6\">\n<p><b>Nova venda da Skill Assistente de Obra</b></p>\n<p>Valor: ${esc(valorBR)}<br>Comprador: ${esc(nome || '(sem nome)')}<br>E-mail: ${esc(email || '(sem e-mail)')}<br>Telefone: ${esc(fone || '(sem telefone)')}<br>Forma: ${esc(linha['Forma'])}<br>ID Mercado Pago: ${esc(id)}<br>Data: ${esc(linha['Data'])} ${esc(linha['Hora'])}</p>\n<p>Entrega automática por e-mail: <b>${entregaAuto ? 'enviada' : 'NÃO enviada'}</b>${!emailOk ? ' (comprador sem e-mail válido)' : ''}${!base.kitOk ? ' (KIT_URL não preenchido no Config)' : ''}</p>\n${entregaAuto ? '' : '<p><b>Entregar o kit na mão.</b></p>'}\n<p>Página de acesso do comprador: ${esc(linkAcesso)}</p>\n</div>`\n};\n\n// ---------- Conversions API (Purchase com valor) ----------\nconst userData = {};\nif (emailOk) userData.em = [sha256(email)];\nif (foneE164) userData.ph = [sha256(foneE164)];\nif (payer.id) userData.external_id = [sha256('mp_' + String(payer.id))];\nif (md.fbp) userData.fbp = String(md.fbp);\nif (md.fbc) userData.fbc = String(md.fbc);\nif (md.ip) userData.client_ip_address = String(md.ip);\nif (md.ua) userData.client_user_agent = String(md.ua);\nconst fn = String(payer.first_name || '').trim().toLowerCase();\nconst ln = String(payer.last_name || '').trim().toLowerCase();\nif (fn) userData.fn = [sha256(fn)];\nif (ln) userData.ln = [sha256(ln)];\nuserData.country = [sha256('br')];\n\nconst evento = {\n  event_name: 'Purchase',\n  event_time: Math.floor(quando.getTime() / 1000),\n  event_id: 'mp_' + id,\n  action_source: 'website',\n  event_source_url: String(md.pagina || `${config.SITE}/skill-obra.html`),\n  user_data: userData,\n  custom_data: {\n    currency: 'BRL',\n    value: valor,\n    content_ids: [config.PRODUTO_ID],\n    content_type: 'product',\n    num_items: 1,\n    order_id: id\n  }\n};\nconst capi = { data: [evento] };\nif (config.CAPI_TEST_CODE) capi.test_event_code = config.CAPI_TEST_CODE;\n\nreturn [{\n  json: {\n    payment_id: id,\n    linha,\n    emailOk,\n    entregaAuto,\n    emailComprador,\n    avisoLuciana,\n    capi,\n    capiUrl: `https://graph.facebook.com/${config.GRAPH_VERSION}/${config.PIXEL_ID}/events`,\n    pixelOk: base.pixelOk\n  }\n}];\n"
+      }
+    },
+    {
+      "id": "7fe10068-4ba2-4f2b-848d-6153f46c0fea",
+      "name": "Já registrada?",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1380,
+        300
+      ],
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "10QXU8Wek-H2sl3wJuk8Vjtppoboe4h-RbdaLO7RtKu8"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultName": "Página1 (conferir)"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID Pagamento Mercado Pago",
+              "lookupValue": "={{ $json.payment_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nsMf63ZhXrQbDKx2",
+          "name": "Google Sheets account"
+        }
+      },
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "notes": "Trava durável contra e-mail duplicado. alwaysOutputData: venda nova devolve 0 linhas e a cadeia precisa seguir."
+    },
+    {
+      "id": "752a29fb-7ece-4568-aacf-a4b23e0cdad1",
+      "name": "Venda nova?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1600,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "63264463-09ca-4611-8098-73624bdbb9d8",
+              "leftValue": "={{ String($json['ID Pagamento Mercado Pago'] ?? '') }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "3bf96284-26f4-42aa-8486-0574bb5db823",
+      "name": "Registrar venda",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1820,
+        300
+      ],
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "10QXU8Wek-H2sl3wJuk8Vjtppoboe4h-RbdaLO7RtKu8"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultName": "Página1 (conferir)"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data": "={{ $('Conferir venda aprovada').first().json.linha['Data'] }}",
+            "Hora": "={{ $('Conferir venda aprovada').first().json.linha['Hora'] }}",
+            "Módulo": "={{ $('Conferir venda aprovada').first().json.linha['Módulo'] }}",
+            "Nome": "={{ $('Conferir venda aprovada').first().json.linha['Nome'] }}",
+            "E-mail": "={{ $('Conferir venda aprovada').first().json.linha['E-mail'] }}",
+            "Telefone": "={{ $('Conferir venda aprovada').first().json.linha['Telefone'] }}",
+            "Valor": "={{ $('Conferir venda aprovada').first().json.linha['Valor'] }}",
+            "Forma": "={{ $('Conferir venda aprovada').first().json.linha['Forma'] }}",
+            "ID Pagamento Mercado Pago": "={{ $('Conferir venda aprovada').first().json.linha['ID Pagamento Mercado Pago'] }}",
+            "Status": "={{ $('Conferir venda aprovada').first().json.linha['Status'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Data",
+              "displayName": "Data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hora",
+              "displayName": "Hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Módulo",
+              "displayName": "Módulo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "E-mail",
+              "displayName": "E-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Valor",
+              "displayName": "Valor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Forma",
+              "displayName": "Forma",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Pagamento Mercado Pago",
+              "displayName": "ID Pagamento Mercado Pago",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nsMf63ZhXrQbDKx2",
+          "name": "Google Sheets account"
+        }
+      },
+      "executeOnce": true
+    },
+    {
+      "id": "c1283143-8ec1-46ba-8fa1-f07b011602dd",
+      "name": "Entrega automática?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2060,
+        140
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "be888519-03d7-426d-ae73-49efd1f02ad6",
+              "leftValue": "={{ $('Conferir venda aprovada').first().json.entregaAuto }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "e9a32f0a-6947-41a6-b9af-56f8a5eabb1d",
+      "name": "E-mail ao comprador",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2300,
+        120
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Conferir venda aprovada').first().json.emailComprador.para }}",
+        "subject": "={{ $('Conferir venda aprovada').first().json.emailComprador.assunto }}",
+        "emailType": "html",
+        "message": "={{ $('Conferir venda aprovada').first().json.emailComprador.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Luh Panda"
+        }
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3TVkGO2iavVZOmZZ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "id": "8c435497-bf50-400f-a5eb-cc4ca3ca61be",
+      "name": "Avisar Luciana",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2060,
+        320
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Conferir venda aprovada').first().json.avisoLuciana.para }}",
+        "subject": "={{ $('Conferir venda aprovada').first().json.avisoLuciana.assunto }}",
+        "emailType": "html",
+        "message": "={{ $('Conferir venda aprovada').first().json.avisoLuciana.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Luh Panda"
+        }
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3TVkGO2iavVZOmZZ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "id": "152409be-8613-4fb1-8123-073a4d44c5e6",
+      "name": "Pixel configurado?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2060,
+        500
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e56cd3c4-f2e4-45fc-aaf6-dd8b3c57d7db",
+              "leftValue": "={{ $('Conferir venda aprovada').first().json.pixelOk }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "c527d567-a09a-41e2-83ed-8ce6c40dd5ea",
+      "name": "CAPI Purchase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2300,
+        480
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Conferir venda aprovada').first().json.capiUrl }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('Conferir venda aprovada').first().json.capi) }}",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Credencial nova 'Meta CAPI Luh Panda' (Query Auth): Name = access_token, Value = token gerado no Gerenciador de Eventos."
+    },
+    {
+      "id": "f3b5a64d-4de7-427f-8b75-8a1a3c14c274",
+      "name": "Validar pedido de acesso",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        600
+      ],
+      "parameters": {
+        "jsCode": "// Pedido da acesso.html: ?payment_id=<id>&t=<token de 32 hex>\nconst base = $input.first().json;\nconst q = (base.entrada && base.entrada.query) || {};\nconst id = String(q.payment_id || '').trim();\nconst t = String(q.t || '').trim();\n\nif (!/^\\d{5,25}$/.test(id) || !/^[a-f0-9]{32}$/.test(t)) {\n  return [{ json: { valido: false, resposta: { liberado: false, status: 'link_invalido' } } }];\n}\nreturn [{ json: { valido: true, payment_id: id, t } }];\n"
+      }
+    },
+    {
+      "id": "6d7309a1-2dd5-4596-96b7-dc3313d58987",
+      "name": "Pedido válido?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        940,
+        600
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d2faa305-74b5-48e3-b853-351bbf0106b2",
+              "leftValue": "={{ $json.valido }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "94ce5fa9-5f5a-4b5a-bc15-afbec2aeb519",
+      "name": "Consultar pagamento MP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        540
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.mercadopago.com/v1/payments/{{ $json.payment_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "timeout": 15000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "notes": "Credencial: selecionar 'Mercado Pago Luh Panda' (Bearer) na mão. A API não liga credencial genérica."
+    },
+    {
+      "id": "ceea00b3-c92f-4e01-a538-1932850ac50c",
+      "name": "Decidir acesso",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        540
+      ],
+      "parameters": {
+        "jsCode": "// Decide no SERVIDOR se libera o kit. O pagamento vem direto da API do Mercado Pago.\nconst base = $('Config').first().json;\nconst config = base.config;\nconst pedido = $('Validar pedido de acesso').first().json;\nconst p = $input.first().json || {};\nconst md = p.metadata || {};\n\nfunction resposta(r) { return [{ json: { resposta: r } }]; }\n\n// Comparação em tempo constante do token (evita adivinhar caractere por caractere)\nfunction iguais(a, b) {\n  a = String(a || ''); b = String(b || '');\n  if (a.length !== b.length || a.length === 0) return false;\n  let d = 0;\n  for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i);\n  return d === 0;\n}\n\nconst ehSkill = String(p.id || '') === pedido.payment_id\n  && p.external_reference === config.PRODUTO_REF\n  && md.produto === config.PRODUTO_REF\n  && iguais(md.token_acesso, pedido.t);\n\nif (!ehSkill) return resposta({ liberado: false, status: 'nao_encontrado' });\n\nif (p.status === 'approved') {\n  if (!base.kitOk) return resposta({ liberado: false, status: 'kit_indisponivel' });\n  return resposta({ liberado: true, status: 'aprovado', kit_url: config.KIT_URL });\n}\nif (p.status === 'pending' || p.status === 'in_process' || p.status === 'authorized') {\n  return resposta({ liberado: false, status: 'pendente' });\n}\nreturn resposta({ liberado: false, status: 'nao_aprovado' });\n"
+      }
+    },
+    {
+      "id": "b0d8a4d1-4be6-4b0f-9e8a-fdb2e72f66b1",
+      "name": "Responder acesso",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1600,
+        540
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json.resposta) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "3464a56c-99fd-4888-9802-20d2e0051b4c",
+      "name": "Responder link inválido",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1160,
+        720
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json.resposta) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "7c71915e-7040-4d21-b556-fb294c474578",
+      "name": "LEIA ANTES DE PUBLICAR",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -360
+      ],
+      "parameters": {
+        "width": 760,
+        "height": 300,
+        "content": "## Skill de obra · pagamento, entrega e acesso\nWorkflow NOVO e separado. Não mexe nos workflows de Formação.\n\n1. **Config**: preencher KIT_URL e PIXEL_ID. PRECO = 97 (no teste de R$ 1, trocar pra 1 e voltar).\n2. Selecionar a credencial **Mercado Pago Luh Panda** nos 3 nós do MP.\n3. Criar a credencial **Meta CAPI Luh Panda** (Query Auth, Name `access_token`) e ligar no nó CAPI.\n4. Conferir a aba da planilha nos 2 nós de Sheets (a mesma das vendas de Formação).\n5. Só publicar com o OK da Luciana. Checklist completo: `n8n/LEIA-ME.md` no repo do site."
+      }
+    }
+  ],
+  "connections": {
+    "Webhook criar pagamento": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook notificação MP": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook acesso": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Rota",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rota": {
+      "main": [
+        [
+          {
+            "node": "Gerar token de acesso",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extrair ID do pagamento",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Validar pedido de acesso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar token de acesso": {
+      "main": [
+        [
+          {
+            "node": "Montar preferência",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar preferência": {
+      "main": [
+        [
+          {
+            "node": "Produto válido?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Produto válido?": {
+      "main": [
+        [
+          {
+            "node": "Criar preferência MP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder erro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar preferência MP": {
+      "main": [
+        [
+          {
+            "node": "Responder checkout",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair ID do pagamento": {
+      "main": [
+        [
+          {
+            "node": "Buscar pagamento MP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar pagamento MP": {
+      "main": [
+        [
+          {
+            "node": "Conferir venda aprovada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conferir venda aprovada": {
+      "main": [
+        [
+          {
+            "node": "Já registrada?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Já registrada?": {
+      "main": [
+        [
+          {
+            "node": "Venda nova?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Venda nova?": {
+      "main": [
+        [
+          {
+            "node": "Registrar venda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar venda": {
+      "main": [
+        [
+          {
+            "node": "Entrega automática?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Avisar Luciana",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pixel configurado?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Entrega automática?": {
+      "main": [
+        [
+          {
+            "node": "E-mail ao comprador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pixel configurado?": {
+      "main": [
+        [
+          {
+            "node": "CAPI Purchase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar pedido de acesso": {
+      "main": [
+        [
+          {
+            "node": "Pedido válido?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedido válido?": {
+      "main": [
+        [
+          {
+            "node": "Consultar pagamento MP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder link inválido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consultar pagamento MP": {
+      "main": [
+        [
+          {
+            "node": "Decidir acesso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decidir acesso": {
+      "main": [
+        [
+          {
+            "node": "Responder acesso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "EzRXQD3fwkGQB39f",
+    "timezone": "America/Recife",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "active": false,
+  "pinData": {}
+}

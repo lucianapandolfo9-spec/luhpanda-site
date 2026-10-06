@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 
 Disallow: /obrigado.html
+Disallow: /acesso.html
+Disallow: /sistemas.html
 Disallow: /consultoria.html
 Disallow: /produtos.html
 Disallow: /portfolio/
