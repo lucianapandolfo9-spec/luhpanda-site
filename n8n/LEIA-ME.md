@@ -56,8 +56,8 @@ Eventos que saem:
 |---|---|---|
 | PageView | navegador | toda página |
 | ViewContent | navegador | páginas de oferta (bot, skill com valor 97, formação, automação) |
-| InitiateCheckout | navegador | clique em comprar a skill (e nos módulos particulares da formação) |
-| Lead | navegador | todo clique que abre o WhatsApp |
+| InitiateCheckout | navegador | clique em comprar a skill (a formação particular agora é pedido no WhatsApp, sem checkout) |
+| Lead e Contact | navegador | todo clique que abre o WhatsApp (com valor quando é pedido da formação particular) |
 | Purchase (com valor) | **servidor (CAPI)** | pagamento aprovado da skill, `event_id = mp_<id do pagamento>` |
 
 O Purchase sai **só** pelo servidor, então não há duplicação com o navegador. E-mail, telefone,
