@@ -11,6 +11,10 @@
  *   [data-motion="passos"]  passos que se montam em sequencia (so CSS, aqui so liga a classe)
  *   [data-motion="obra"]    demonstracao da skill de obra (chat -> planilha)
  *   [data-motion="hub"]     tour pelo Hub com cursor (abas acessiveis, assumivel pelo mouse)
+ *   [data-motion="bot"]     conversa de WhatsApp: bot qualifica, oferece horario, agenda (05/10)
+ *
+ * Cursor: no desktop e a seta que anda; em tela de toque (celular) vira um toque de dedo,
+ * um circulo que aparece e pulsa no ponto do clique, sem "andar" pela tela.
  */
 (function () {
   'use strict';
@@ -73,13 +77,21 @@
     });
   }
 
-  // ---------- cursor que anda e clica ----------
+  // ---------- cursor que anda e clica (desktop) ou toque de dedo (celular) ----------
+  var TOQUE = !!(window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+
   function Cursor(palco) {
     this.palco = palco;
+    this.toque = TOQUE;
     this.el = document.createElement('div');
-    this.el.className = 'mo-cursor';
     this.el.setAttribute('aria-hidden', 'true');
-    this.el.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3.5 2.2 19.6 12l-7 1.5 4 7.6-3 1.6-4-7.7-5.4 4.8z"/></svg>';
+    if (this.toque) {
+      this.el.className = 'mo-toque';
+      this.el.innerHTML = '<i></i>';
+    } else {
+      this.el.className = 'mo-cursor';
+      this.el.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3.5 2.2 19.6 12l-7 1.5 4 7.6-3 1.6-4-7.7-5.4 4.8z"/></svg>';
+    }
     palco.appendChild(this.el);
     this.x = 0; this.y = 0; this.visivel = false;
   }
@@ -92,18 +104,25 @@
     this.el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
   };
   Cursor.prototype.mostrar = function () {
+    if (this.toque) { this.visivel = true; return Promise.resolve(); } // o dedo so aparece no toque
     if (this.visivel) return Promise.resolve();
     this.visivel = true; this.el.style.opacity = '1';
     return anima(this.el, [{ opacity: 0 }, { opacity: 1 }], { duration: 260 });
   };
   Cursor.prototype.esconder = function () {
+    if (this.toque) { this.visivel = false; return Promise.resolve(); }
     if (!this.visivel) return Promise.resolve();
     this.visivel = false; this.el.style.opacity = '0';
     return anima(this.el, [{ opacity: 1 }, { opacity: 0 }], { duration: 220 });
   };
-  Cursor.prototype.ir = function (alvo, fx, fy) {
+  Cursor.prototype.ir = function (alvo, fx, fy, soApontar) {
     var d = this.ponto(alvo, fx, fy);
     var dist = Math.sqrt(Math.pow(d.x - this.x, 2) + Math.pow(d.y - this.y, 2));
+    if (this.toque) {
+      // dedo nao desliza pela tela: so muda o ponto e respeita o tempo que a mao levaria
+      this.pular(d.x, d.y);
+      return soApontar ? Promise.resolve() : espera(Math.min(520, Math.max(240, dist * 0.8)));
+    }
     var dur = Math.min(950, Math.max(380, dist * 1.5));
     var de = 'translate3d(' + this.x + 'px,' + this.y + 'px,0)';
     // leve curva no meio do caminho: parece mao, nao robo
@@ -113,6 +132,7 @@
       { duration: dur, easing: 'cubic-bezier(.45,.05,.25,1)' });
   };
   Cursor.prototype.clicar = function () {
+    if (this.toque) return this.tocar();
     var onda = document.createElement('span');
     onda.className = 'mo-clique';
     onda.setAttribute('aria-hidden', 'true');
@@ -122,6 +142,30 @@
       { duration: 560, easing: 'cubic-bezier(.2,.7,.3,1)' }).then(function () { onda.remove(); });
     return anima(this.el.firstChild, [{ transform: 'scale(1)' }, { transform: 'scale(.8)' }, { transform: 'scale(1)' }],
       { duration: 240, easing: 'ease-out' });
+  };
+
+  // toque de dedo: o circulo aparece no ponto, afunda, pulsa duas ondas e some
+  Cursor.prototype.tocar = function () {
+    var self = this, t = 'translate3d(' + this.x + 'px,' + this.y + 'px,0)';
+    this.el.style.transform = t;
+    [0, 230].forEach(function (atraso) {
+      var onda = document.createElement('span');
+      onda.className = 'mo-clique mo-clique--toque';
+      onda.setAttribute('aria-hidden', 'true');
+      self.palco.appendChild(onda);
+      anima(onda, [{ transform: t + ' scale(.5)', opacity: 0.9 }, { transform: t + ' scale(1.9)', opacity: 0 }],
+        { duration: 620, delay: 120 + atraso, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards' }).then(function () { onda.remove(); });
+    });
+    anima(this.el, [
+      { transform: t + ' scale(1.35)', opacity: 0 },
+      { transform: t + ' scale(1)', opacity: 0.95, offset: 0.18 },
+      { transform: t + ' scale(.82)', opacity: 0.95, offset: 0.3 },
+      { transform: t + ' scale(1)', opacity: 0.9, offset: 0.48 },
+      { transform: t + ' scale(1)', opacity: 0.9, offset: 0.72 },
+      { transform: t + ' scale(1.1)', opacity: 0 }
+    ], { duration: 1000, easing: 'ease-out' });
+    // a interface reage no momento em que o dedo afunda
+    return espera(300);
   };
 
   // ---------- 1) passos que se montam ----------
@@ -135,10 +179,11 @@
   // Cada trecho de texto vira [digitado][resto transparente]: a bolha ja nasce no tamanho final.
   function prepararDigitacao(bolha, pular) {
     var trechos = [];
+    var pulos = !pular ? [] : (pular.length !== undefined ? Array.prototype.slice.call(pular) : [pular]);
     var walker = document.createTreeWalker(bolha, NodeFilter.SHOW_TEXT, {
       acceptNode: function (n) {
         if (!n.data.trim()) return NodeFilter.FILTER_REJECT;
-        if (pular && pular.contains(n)) return NodeFilter.FILTER_REJECT;
+        for (var i = 0; i < pulos.length; i++) if (pulos[i].contains(n)) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -405,7 +450,7 @@
         await espera(650);
         if (!vivo()) return;
         var foco = paineis[prox].querySelector('[data-foco]');
-        if (foco) await cursor.ir(foco, 0.78, 0.3);
+        if (foco) await cursor.ir(foco, 0.78, 0.3, true);
         if (!vivo()) return;
         await espera(900);
       }
@@ -451,9 +496,131 @@
     obs.observe(mock);
   }
 
+  // ---------- 4) bot de WhatsApp: atende as 22h, qualifica, agenda ----------
+  function ligarBot(demo) {
+    function q(s) { return demo.querySelector(s); }
+    var msgs = Array.prototype.slice.call(demo.querySelectorAll('[data-mo^="m"]'));
+    var opcoes = q('[data-mo="opcoes"]'), horario = q('[data-mo-alvo="horario"]'), slot = q('[data-mo="agenda"]'),
+        agenda = q('.agenda'), selo = q('[data-mo="selo"]'), replay = q('.mo-replay'), corpo = q('.zap-corpo');
+    if (!msgs.length || !horario || !slot || !selo || !replay) return;
+
+    var pecas = msgs.concat([opcoes, slot, selo]);
+    var digs = {};
+    msgs.forEach(function (m) {
+      if (m.classList.contains('msg--ia')) digs[m.getAttribute('data-mo')] = prepararDigitacao(m, m.querySelectorAll('time, .chat-opcoes'));
+    });
+    var cursor = new Cursor(demo);
+    var rodando = false;
+
+    function entra(el, quadros, op) { el.classList.add('mo-ok'); return anima(el, quadros, op); }
+    function zerar() {
+      pecas.forEach(function (el) { if (el) el.classList.remove('mo-ok'); });
+      Object.keys(digs).forEach(function (k) { mostrarAte(digs[k], 0); });
+    }
+    function completar() {
+      pecas.forEach(function (el) { if (el) el.classList.add('mo-ok'); });
+      Object.keys(digs).forEach(function (k) { mostrarAte(digs[k], 1e9); });
+    }
+    function m(n) { return q('[data-mo="m' + n + '"]'); }
+
+    // mensagem do cliente: sobe da caixa de texto
+    function cliente(el) {
+      return entra(el, [{ opacity: 0, transform: 'translate3d(0,16px,0) scale(.96)' }, { opacity: 1, transform: 'none' }],
+        { duration: 340, easing: EASE });
+    }
+    // resposta do bot: bolha nasce no tamanho final, pontinhos, e o texto digita
+    async function bot(el, pausa, cps) {
+      var dig = digs[el.getAttribute('data-mo')];
+      mostrarAte(dig, 0);
+      await entra(el, [{ opacity: 0, transform: 'translate3d(0,10px,0) scale(.97)' }, { opacity: 1, transform: 'none' }],
+        { duration: 300, easing: EASE });
+      dig.pontos.style.display = 'flex';
+      await espera(pausa);
+      dig.pontos.style.display = 'none';
+      await digitar(dig, cps);
+    }
+
+    async function rodar() {
+      if (rodando) return;
+      rodando = true;
+      replay.hidden = true;
+      zerar();
+      await espera(300);
+
+      await cliente(m(1));                 // 22:01, cliente pergunta
+      await espera(450);
+      await bot(m(2), 650, 70);            // bot responde na hora e qualifica
+      await espera(550);
+      await cliente(m(3));
+      await espera(400);
+      await bot(m(4), 550, 70);            // segunda pergunta
+      await espera(550);
+      await cliente(m(5));
+      await espera(400);
+      await bot(m(6), 450, 64);            // oferece horarios
+      await entra(opcoes, [{ opacity: 0, transform: 'scale(.85)' }, { opacity: 1, transform: 'none' }],
+        { duration: 340, easing: MOLA });
+
+      // cursor (ou dedo) escolhe o horario
+      var c = corpo.getBoundingClientRect(), p = demo.getBoundingClientRect();
+      cursor.pular(c.right - p.left - 30, c.bottom - p.top - 10);
+      await cursor.mostrar();
+      await cursor.ir(horario, 0.5, 0.6);
+      await cursor.clicar();
+      anima(horario, [{ transform: 'scale(1)' }, { transform: 'scale(1.14)' }, { transform: 'scale(1)' }], { duration: 300 });
+      await espera(150);
+      await cliente(m(7));
+      cursor.esconder();
+
+      // o compromisso entra na agenda (espera a agenda estar na tela, sem puxar a rolagem)
+      await espera(200);
+      await quandoVisivel(agenda, 0.8, 90);
+      var pDemo = demo.getBoundingClientRect(), rOrig = m(7).getBoundingClientRect(), rDest = slot.querySelector('.ag-item').getBoundingClientRect();
+      var origemNaTela = rOrig.bottom > 0 && rOrig.top < window.innerHeight;
+      if (origemNaTela) {
+        var voo = document.createElement('div');
+        voo.className = 'mo-voo';
+        voo.setAttribute('aria-hidden', 'true');
+        voo.innerHTML = 'Quinta · <b>10:30</b> · Avaliação';
+        demo.appendChild(voo);
+        var sx = rOrig.left - pDemo.left, sy = rOrig.top - pDemo.top;
+        var ex = rDest.left - pDemo.left, ey = rDest.top - pDemo.top + (rDest.height - voo.offsetHeight) / 2;
+        var mx = (sx + ex) / 2, my = Math.min(sy, ey) - 40;
+        var t = function (x, y, s) { return 'translate3d(' + x + 'px,' + y + 'px,0) scale(' + s + ')'; };
+        await anima(voo, [
+          { transform: t(sx, sy, 0.7), opacity: 0 },
+          { transform: t(sx, sy - 6, 1), opacity: 1, offset: 0.15 },
+          { transform: t(mx, my, 1.05), offset: 0.55 },
+          { transform: t(ex, ey, 1), opacity: 1 }
+        ], { duration: 1000, easing: 'cubic-bezier(.5,0,.2,1)', fill: 'forwards' });
+        anima(voo, [{ opacity: 1 }, { opacity: 0 }], { duration: 140, fill: 'forwards' }).then(function () { voo.remove(); });
+      }
+      slot.classList.add('mo-ok');
+      await anima(slot.querySelector('.ag-item'), [{ opacity: 0, transform: 'translate3d(0,-8px,0) scale(.96)' }, { opacity: 1, transform: 'none' }],
+        { duration: 420, easing: MOLA });
+
+      // bot confirma e o selo fecha a historia
+      await espera(250);
+      await bot(m(8), 400, 72);
+      await espera(250);
+      await entra(selo, [{ opacity: 0, transform: 'scale(.8)' }, { opacity: 1, transform: 'none' }],
+        { duration: 520, easing: MOLA });
+
+      completar();
+      replay.hidden = false;
+      anima(replay, [{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+      rodando = false;
+    }
+
+    replay.addEventListener('click', function () { rodar(); });
+    zerar();
+    quandoVisivel(q('.zap'), 0.3).then(rodar);
+  }
+
   function iniciar() {
     if (podeAnimar) ligarPassos();
     if (podeAnimar) document.querySelectorAll('[data-motion="obra"]').forEach(ligarObra);
+    if (podeAnimar) document.querySelectorAll('[data-motion="bot"]').forEach(ligarBot);
     // as abas do Hub funcionam mesmo sem animacao (clique e teclado)
     document.querySelectorAll('[data-motion="hub"]').forEach(ligarHub);
   }

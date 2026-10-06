@@ -18,6 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/v5.css">
 <script src="assets/js/site.js" defer></script>
+<script>/* entrada suave ao rolar: so esconde o .rv se vai animar; se o site.js nao carregar em 4s, mostra tudo */
+(function(h){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){h.classList.add('rvj');setTimeout(function(){if(!window.LuhPanda)h.classList.remove('rvj')},4000)}})(document.documentElement);</script>
 </head>
 <body data-pagina="formacao" data-conteudo="formacao-ia">
 
@@ -71,7 +73,7 @@
     <div class="secao-topo rv">
       <p class="eyebrow">Para empresas</p>
       <h2 class="h2">Turma fechada, só o seu time na sala.</h2>
-      <p class="corpo">Proposta e nota fiscal para a empresa. Preço fechado por turma de até 10 pessoas.</p>
+      <p class="corpo">Proposta e nota fiscal para a empresa. Preço fechado por turma de até 10 pessoas. Acima de 10, sob consulta.</p>
     </div>
     <div class="grade-2 rv">
       <div class="cartao">
@@ -89,6 +91,10 @@
         <a class="btn btn--zap btn--full" style="margin-top:22px" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20fechar%20o%20M%C3%B3dulo%202%20in-company%20pro%20meu%20time." target="_blank" rel="noopener">Fechar turma pro meu time</a>
       </div>
     </div>
+    <div class="sob-consulta rv">
+      <p><b>Mais de 10 pessoas?</b> Turma maior é sob consulta: o formato e o preço saem da conversa.</p>
+      <a class="btn btn--ghost btn--sm" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20uma%20turma%20in-company%20pra%20mais%20de%2010%20pessoas." target="_blank" rel="noopener">Pedir no WhatsApp</a>
+    </div>
   </div>
 </section>
 
@@ -105,17 +111,17 @@
       <div class="cartao">
         <h3>Módulo 1 · particular</h3>
         <p class="corpo">Mesmo conteúdo da turma, 1:1 e adaptado ao que você faz.</p>
-        <p class="preco-grande" style="margin-top:20px">12x R$ 133</p>
-        <p class="preco-linha">ou R$ 1.440 no Pix · R$ 1.600 à vista no cartão · 4 aulas de 2h</p>
-        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m1" data-valor="1600" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%201%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
+        <p class="preco-grande" style="margin-top:20px">12x R$ 83</p>
+        <p class="preco-linha">ou R$ 897 no Pix · R$ 997 à vista no cartão · 4 aulas de 2h</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m1" data-valor="997" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%201%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
         <p class="nota" style="text-align:center">Pagamento seguro pelo Mercado Pago</p>
       </div>
       <div class="cartao">
         <h3>Módulo 2 · particular</h3>
         <p class="corpo">Você sai com um sistema seu no ar: banco, login, automação e pagamento.</p>
-        <p class="preco-grande" style="margin-top:20px">12x R$ 300</p>
-        <p class="preco-linha">ou R$ 3.240 no Pix · R$ 3.600 à vista no cartão · 6 aulas de 2h + 2h de suporte</p>
-        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m2" data-valor="3600" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%202%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
+        <p class="preco-grande" style="margin-top:20px">12x R$ 208</p>
+        <p class="preco-linha">ou R$ 2.247 no Pix · R$ 2.497 à vista no cartão · 6 aulas de 2h + 2h de suporte</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m2" data-valor="2497" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%202%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
         <p class="nota" style="text-align:center">Pagamento seguro pelo Mercado Pago</p>
       </div>
     </div>
@@ -134,7 +140,7 @@
       <details><summary>Precisa saber programar?</summary><p>Não. Nível zero. O Módulo 2 pede o Módulo 1 ou autonomia nas ferramentas.</p></details>
       <details><summary>As aulas ficam gravadas?</summary><p>Todas. O time revê quando quiser, e quem faltar não fica pra trás.</p></details>
       <details><summary>Quando são as aulas?</summary><p>Não trabalho com data fixa. A gente combina o calendário conforme a rotina de vocês.</p></details>
-      <details><summary>Quanto custa?</summary><p>Turma da empresa, até 10 pessoas: Módulo 1 por R$ 3.000 e Módulo 2 por R$ 10.000. Particular: Módulo 1 por R$ 1.600 (12x de R$ 133 ou R$ 1.440 no Pix) e Módulo 2 por R$ 3.600 (12x de R$ 300 ou R$ 3.240 no Pix).</p></details>
+      <details><summary>Quanto custa?</summary><p>Turma da empresa, até 10 pessoas: Módulo 1 por R$ 3.000 e Módulo 2 por R$ 10.000. Acima de 10 pessoas, sob consulta: me chama no <a href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20uma%20turma%20in-company%20pra%20mais%20de%2010%20pessoas." target="_blank" rel="noopener">WhatsApp</a>. Particular: Módulo 1 por R$ 997 (12x de R$ 83 ou R$ 897 no Pix) e Módulo 2 por R$ 2.497 (12x de R$ 208 ou R$ 2.247 no Pix).</p></details>
       <details><summary>Como funciona o pagamento?</summary><p>Particular: Pix ou cartão pelo Mercado Pago. In-company: proposta e nota fiscal para a empresa.</p></details>
     </div>
   </div>

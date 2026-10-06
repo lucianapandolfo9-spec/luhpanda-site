@@ -1,5 +1,5 @@
 /*
- * Luh Panda · site v5 · MOTION (prototipo 05/10/2026: skill-obra.html e automacao.html).
+ * Luh Panda · site v5 · MOTION (05/10/2026: skill-obra.html, automacao.html e bot.html).
  * Regras: so transform e opacity animam; o conteudo final ja esta no HTML; nada muda de tamanho
  * durante a animacao (sem layout shift). O estado inicial escondido so vale com html.mo, que o
  * <head> so liga se prefers-reduced-motion nao estiver ativo e o motion.js carregar.
@@ -10,11 +10,15 @@
 .mo-cursor svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 3px 6px rgba(0,0,0,.45));transform-origin:20% 15%}
 .mo-cursor path{fill:#fff;stroke:#12081A;stroke-width:1.4;stroke-linejoin:round}
 .mo-clique{position:absolute;left:-17px;top:-17px;width:34px;height:34px;border-radius:50%;border:2px solid var(--laranja);z-index:5;pointer-events:none;opacity:0}
+/* celular: toque de dedo no lugar da seta */
+.mo-toque{position:absolute;left:-19px;top:-19px;width:38px;height:38px;z-index:6;pointer-events:none;opacity:0;will-change:transform,opacity}
+.mo-toque i{display:block;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95) 0 34%,rgba(255,255,255,.55) 35% 62%,rgba(255,255,255,.18) 63%);box-shadow:0 0 0 2px rgba(255,107,53,.75),0 6px 16px rgba(0,0,0,.45)}
+.mo-clique--toque{left:-22px;top:-22px;width:44px;height:44px;border-color:rgba(255,255,255,.85)}
 
 /* ---------- Skill de obra: os 4 passos se montando ---------- */
 .mo [data-motion="passos"] .passo{position:relative;border-top-color:transparent}
 .mo [data-motion="passos"] .passo::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,var(--laranja),var(--borda-forte) 70%);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease);transition-delay:calc(var(--i) * .32s)}
-.mo [data-motion="passos"] .passo > *{opacity:0;transform:translate3d(0,14px,0);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.mo [data-motion="passos"] .passo > *{opacity:0;transition:opacity .6s var(--ease)}
 .mo [data-motion="passos"] .passo > :nth-child(1){transition-delay:calc(var(--i) * .32s + .18s)}
 .mo [data-motion="passos"] .passo > :nth-child(2){transition-delay:calc(var(--i) * .32s + .26s)}
 .mo [data-motion="passos"] .passo > :nth-child(3){transition-delay:calc(var(--i) * .32s + .34s)}
@@ -23,7 +27,7 @@
 [data-motion="passos"] .passo:nth-child(3){--i:2}
 [data-motion="passos"] .passo:nth-child(4){--i:3}
 .mo [data-motion="passos"].mo-in .passo::before{transform:none}
-.mo [data-motion="passos"].mo-in .passo > *{opacity:1;transform:none}
+.mo [data-motion="passos"].mo-in .passo > *{opacity:1}
 
 /* ---------- Skill de obra: demonstracao ---------- */
 .demo{position:relative}
@@ -54,6 +58,49 @@
 .mo-scan{position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(180deg,transparent,rgba(255,107,53,.85),transparent);opacity:0}
 .mo-voo{position:absolute;left:0;top:0;z-index:4;pointer-events:none;white-space:nowrap;max-width:calc(100% - 8px);overflow:hidden;text-overflow:ellipsis;background:#fff;color:#1d1d1f;font-size:.78rem;font-variant-numeric:tabular-nums;border-radius:8px;padding:7px 11px;box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 0 2px rgba(255,107,53,.7);will-change:transform}
 .mo-voo b{color:#C2410C}
+
+/* ---------- Bot: conversa de WhatsApp + mini-agenda (dados de exemplo) ---------- */
+.demo--bot{grid-template-columns:minmax(0,400px) minmax(0,460px);gap:clamp(18px,3vw,40px);padding-top:34px}
+/* desktop: a agenda acompanha a conversa enquanto a pessoa rola */
+.bot-lado{position:sticky;top:92px}
+@media(max-width:860px){.demo--bot{grid-template-columns:1fr}.bot-lado{position:static}}
+.zap{border:1px solid var(--borda-forte);border-radius:18px;overflow:hidden;background:#0B141A}
+.zap-topo{display:flex;align-items:center;gap:11px;padding:12px 14px;background:#1F2C34;border-bottom:1px solid rgba(255,255,255,.06)}
+.zap-av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--roxo);color:#fff;font-weight:600;font-size:.8rem;flex-shrink:0}
+.zap-topo b{display:block;font-size:.92rem;font-weight:600;color:#E9EDEF}
+.zap-topo small{display:block;font-size:.72rem;color:#8696A0}
+.zap-corpo{display:flex;flex-direction:column;gap:7px;padding:14px 12px 16px;background-color:#0B141A;background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:14px 14px}
+.zap-dia{align-self:center;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:#8696A0;background:#182229;border-radius:6px;padding:3px 9px;margin-bottom:3px}
+.zap .msg{font-size:.86rem;line-height:1.45;padding:7px 10px 6px;border-radius:9px;max-width:86%;border:0}
+.zap .msg--eu{background:#005C4B;color:#E9EDEF;border-radius:9px 2px 9px 9px}
+.zap .msg--ia{background:#202C33;color:#D1D7DB;border-radius:2px 9px 9px 9px}
+.zap .msg--ia b{color:#fff}
+.zap .msg time{display:block;text-align:right;font-family:var(--mono);font-size:.6rem;color:rgba(233,237,239,.55);margin-top:2px;line-height:1}
+.zap .msg--eu time::after{content:" \2713\2713";color:#53BDEB;letter-spacing:-.25em;padding-left:.3em}
+.zap .mo-dots{left:11px;top:10px}
+.zap .chat-opcoes{margin-top:8px}
+.zap .chip{border-color:rgba(83,189,235,.45);color:#53BDEB;font-variant-numeric:tabular-nums}
+.zap .chip--sim{background:rgba(83,189,235,.14);border-color:#53BDEB}
+.agenda{border:1px solid var(--borda-forte);border-radius:14px;background:var(--superficie);overflow:hidden}
+.agenda-topo{display:flex;justify-content:space-between;align-items:baseline;padding:13px 16px;border-bottom:1px solid var(--borda)}
+.agenda-topo b{font-size:.92rem;font-weight:600}
+.agenda-topo small{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fraco)}
+.agenda ul{list-style:none;margin:0;padding:8px 12px 12px;display:flex;flex-direction:column;gap:6px}
+.agenda li{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center;position:relative}
+.agenda li time{font-family:var(--mono);font-size:.72rem;color:var(--fraco);font-variant-numeric:tabular-nums}
+.ag-item{display:block;border-radius:8px;padding:9px 11px;font-size:.82rem;line-height:1.35;background:rgba(139,75,163,.2);border-left:3px solid var(--roxo-claro);color:var(--texto)}
+.ag-item small{display:block;font-family:var(--mono);font-size:.64rem;color:var(--suave);margin-top:3px}
+.ag-item--nova{background:rgba(255,107,53,.14);border-left-color:var(--laranja)}
+.ag-vazio{display:block;border:1px dashed var(--borda-forte);border-radius:8px;padding:9px 11px;font-size:.78rem;color:var(--fraco)}
+.ag-ph{display:none}
+.mo [data-motion="bot"] .ag-ph{display:block;position:absolute;left:58px;right:0;top:50%;transform:translateY(-50%);transition:opacity .25s}
+.mo [data-motion="bot"] .ag-nova.mo-ok .ag-ph{opacity:0}
+.selo-atendido{display:inline-flex;align-items:center;gap:9px;margin:16px 0 0;padding:9px 15px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.45);color:#5FE08F;font-weight:600;font-size:.92rem}
+.selo-atendido svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.bot-legenda{margin:12px 0 0;font-size:.9rem;color:var(--suave);line-height:1.55}
+.mo [data-motion="bot"] [data-mo]:not(.mo-ok){opacity:0}
+.mo [data-motion="bot"] .ag-nova:not(.mo-ok){opacity:1}
+.mo [data-motion="bot"] .ag-nova:not(.mo-ok) .ag-item{opacity:0}
 
 /* ---------- Automacao: vitrine do Hub em abas ---------- */
 .hubmock{position:relative}
@@ -105,6 +152,6 @@
 .mo [data-motion="hub"]:not(.mo-vivo) .hub-painel.ativo [data-in]{opacity:0}
 
 @media (prefers-reduced-motion:reduce){
-  .mo-cursor,.mo-clique,.mo-voo,.mo-dots{display:none}
+  .mo-cursor,.mo-toque,.mo-clique,.mo-voo,.mo-dots{display:none}
   .hubmock-menu button{transition:none}
 }

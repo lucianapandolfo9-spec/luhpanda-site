@@ -61,6 +61,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/v5.css">
 <script src="assets/js/site.js" defer></script>
+<script>/* entrada suave ao rolar: so esconde o .rv se vai animar; se o site.js nao carregar em 4s, mostra tudo */
+(function(h){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){h.classList.add('rvj');setTimeout(function(){if(!window.LuhPanda)h.classList.remove('rvj')},4000)}})(document.documentElement);</script>
 </head>
 <body data-pagina="home">
 
@@ -118,7 +120,7 @@
         <p class="porta-n">03</p>
         <h3>Formação em IA</h3>
         <p class="corpo">Turma fechada pro seu time ou aula particular. Nível zero, com o problema real de vocês em cima da mesa.</p>
-        <p class="porta-preco">turma até 10 pessoas a partir de <b>R$ 3.000</b> · particular 12x R$ 133</p>
+        <p class="porta-preco">turma até 10 pessoas a partir de <b>R$ 3.000</b> · acima de 10, sob consulta · particular 12x R$ 83</p>
         <span class="porta-ir">Ver as turmas</span>
       </a>
       <a class="cartao" href="automacao.html">

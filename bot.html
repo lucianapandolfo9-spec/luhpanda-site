@@ -18,6 +18,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/v5.css">
 <script src="assets/js/site.js" defer></script>
+<script>/* entrada suave ao rolar: so esconde o .rv se vai animar; se o site.js nao carregar em 4s, mostra tudo */
+(function(h){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){h.classList.add('rvj');setTimeout(function(){if(!window.LuhPanda)h.classList.remove('rvj')},4000)}})(document.documentElement);</script>
+<link rel="stylesheet" href="assets/css/motion.css">
+<script>/* motion: so esconde o estado inicial se a animacao vai rodar; se o motion.js nao carregar em 4s, mostra tudo */
+(function(d){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.documentElement.classList.add('mo');setTimeout(function(){if(!window.LuhMotion)d.documentElement.classList.remove('mo')},4000)}})(document);</script>
+<script src="assets/js/motion.js" defer></script>
 </head>
 <body data-pagina="bot" data-conteudo="bot-atendimento">
 
@@ -38,7 +44,7 @@
   <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
   <div class="wrap">
     <p class="eyebrow">Bot de atendimento no WhatsApp</p>
-    <h1 class="display">Cliente que espera resposta fecha com o concorrente.</h1>
+    <h1 class="display">Cliente que espera<br> resposta fecha<br> com o concorrente.</h1>
     <p class="lead">Um atendente de IA no seu WhatsApp que responde na hora, faz as perguntas certas, agenda e só chama você quando o cliente está pronto pra fechar.</p>
     <div class="hero-ctas">
       <a class="btn btn--zap" data-diag="bot" href="https://wa.me/5584994127476">Diagnóstico grátis de 20 min no WhatsApp</a>
@@ -67,7 +73,50 @@
 
 <hr class="risco">
 
-<section class="secao secao--poco">
+<section class="secao secao--poco" id="demo">
+  <div class="wrap">
+    <div class="secao-topo rv">
+      <p class="eyebrow">Veja funcionando</p>
+      <h2 class="h2">22h, você já foi pra casa. O bot atende assim.</h2>
+      <p class="corpo">O cliente chama fora do horário, o bot responde na hora, faz as perguntas que você faria e marca na sua agenda.</p>
+    </div>
+    <p class="rotulo-exemplo">Dados de exemplo</p>
+    <div class="demo demo--bot rv" data-motion="bot">
+      <button class="mo-replay" type="button" hidden>Ver de novo</button>
+      <div class="zap" role="group" aria-label="Conversa de exemplo no WhatsApp">
+        <div class="zap-topo"><span class="zap-av" aria-hidden="true">CE</span><div><b>Clínica Exemplo</b><small>atendimento automático · online</small></div></div>
+        <div class="zap-corpo">
+          <span class="zap-dia">hoje · quarta</span>
+          <div class="msg msg--eu" data-mo="m1">Oi, boa noite! Vocês fazem clareamento? Quanto fica?<time>22:01</time></div>
+          <div class="msg msg--ia" data-mo="m2">Boa noite! Fazemos sim. Pra te passar o valor certo: é a primeira vez que você faz clareamento?<time>22:01</time></div>
+          <div class="msg msg--eu" data-mo="m3">Primeira vez<time>22:02</time></div>
+          <div class="msg msg--ia" data-mo="m4">Então o primeiro passo é a avaliação, que é <b>gratuita</b>. Você prefere manhã ou tarde?<time>22:02</time></div>
+          <div class="msg msg--eu" data-mo="m5">Manhã, de preferência<time>22:03</time></div>
+          <div class="msg msg--ia" data-mo="m6">Tenho estes horários amanhã de manhã:<span class="chat-opcoes" data-mo="opcoes"><span class="chip">09:00</span><span class="chip chip--sim" data-mo-alvo="horario">10:30</span></span><time>22:03</time></div>
+          <div class="msg msg--eu" data-mo="m7">10:30<time>22:04</time></div>
+          <div class="msg msg--ia" data-mo="m8">Agendado: <b>quinta, 10:30</b>, avaliação de clareamento. Amanhã cedo te mando um lembrete.<time>22:04</time></div>
+        </div>
+      </div>
+      <div class="bot-lado">
+        <div class="agenda">
+          <div class="agenda-topo"><b>Sua agenda · quinta</b><small>manhã</small></div>
+          <ul>
+            <li><time>08:00</time><span class="ag-item">Retorno · Paciente A</span></li>
+            <li><time>09:00</time><span class="ag-vazio">livre</span></li>
+            <li class="ag-nova" data-mo="agenda"><time>10:30</time><span class="ag-vazio ag-ph" aria-hidden="true">livre</span><span class="ag-item ag-item--nova">Avaliação de clareamento · lead do WhatsApp<small>marcado pelo bot às 22:04</small></span></li>
+            <li><time>11:30</time><span class="ag-item">Limpeza · Paciente B</span></li>
+          </ul>
+        </div>
+        <p class="selo-atendido" data-mo="selo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Lead atendido às 22h04</p>
+        <p class="bot-legenda">Você abre o celular às 8h e o cliente já está na agenda, com o resumo da conversa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="risco">
+
+<section class="secao">
   <div class="wrap">
     <div class="case rv">
       <div>

@@ -18,6 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/v5.css">
 <script src="assets/js/site.js" defer></script>
+<script>/* entrada suave ao rolar: so esconde o .rv se vai animar; se o site.js nao carregar em 4s, mostra tudo */
+(function(h){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){h.classList.add('rvj');setTimeout(function(){if(!window.LuhPanda)h.classList.remove('rvj')},4000)}})(document.documentElement);</script>
 <link rel="stylesheet" href="assets/css/motion.css">
 <script>/* motion: so esconde o estado inicial se a animacao vai rodar; se o motion.js nao carregar em 4s, mostra tudo */
 (function(d){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.documentElement.classList.add('mo');setTimeout(function(){if(!window.LuhMotion)d.documentElement.classList.remove('mo')},4000)}})(document);</script>

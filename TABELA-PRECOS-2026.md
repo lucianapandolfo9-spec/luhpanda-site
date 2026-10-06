@@ -41,7 +41,7 @@ Sistema maior dá mais trabalho pra manter, consome mais API e tem mais gente us
 | **M2 · Construir e colocar no ar** (6 aulas · 12h) | **R$ 10.000** | até 10 | R$ 1.000 | a definir |
 
 > **Atualizado em 05/10/2026 (pedido dela, site v5):** era M1 R$ 9.600 / M2 R$ 14.400 até 8 pessoas
-> (adicional R$ 900 / R$ 1.200, teto 12). Particular não mudou. Preço por pessoa acima de 10 ainda não decidido.
+> (adicional R$ 900 / R$ 1.200, teto 12). **Acima de 10 pessoas: sob consulta** (conversa no WhatsApp).
 
 Pagamento por proposta e nota fiscal. **Nunca no cartão.**
 
@@ -49,10 +49,14 @@ Pagamento por proposta e nota fiscal. **Nunca no cartão.**
 
 | Módulo | À vista | Parcelado | Pix |
 |---|---|---|---|
-| **M1** (4 aulas · 8h) | R$ 1.600 | 12x de R$ 133 | R$ 1.440 (10% off) |
-| **M2** (6 aulas · 12h) | R$ 3.600 | 12x de R$ 300 | R$ 3.240 (10% off) |
+| **M1** (4 aulas · 8h) | R$ 997 | 12x de R$ 83 | R$ 897 (10% off, arredondado) |
+| **M2** (6 aulas · 12h) | R$ 2.497 | 12x de R$ 208 | R$ 2.247 (10% off, arredondado) |
 
-Manchete de preço no site é **"12x de R$ 133"**, nunca "R$ 1.600".
+Manchete de preço no site é **"12x R$ 83"**, nunca "R$ 997".
+
+> **Atualizado em 05/10/2026 (pedido dela, site v5):** era M1 R$ 1.600 (12x R$ 133 · Pix R$ 1.440) e
+> M2 R$ 3.600 (12x R$ 300 · Pix R$ 3.240). 🔴 O workflow n8n `Criar Pagamento (Formação)` `yEIEMrq9B4Mpsou6`
+> ainda cobra 1600/3600: tem que mudar **antes** do merge da v5.
 
 ## 4. O que NÃO aparece no site
 

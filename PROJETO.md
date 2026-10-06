@@ -372,3 +372,32 @@ Plano fechado no 2º /grill-me (vault: `Luh Panda/Produtos/Skill Assistente de O
   - Vídeos de prévia: `~/Downloads/Luh Panda/Prints site v5 (05-10)/motion/`.
 - **Bug corrigido de carona:** `skill-obra.html` abria com 745 px de largura no celular (a coluna da
   demonstração não encolhia abaixo da tabela). `.demo > *{min-width:0}` em `v5.css`.
+
+### 6-G.2 Rodada de 05/10 (madrugada): motion aprovado, bot animado e preço da particular
+
+- **Decisões dela sobre o protótipo:** sequência com cursor só nas demos de produto (skill, Hub, bot).
+  Resto do site: entrada suave ao rolar, **só opacidade, sem slide** (`.rv` em `v5.css`; grades de
+  cartões aparecem um a um). Os passos da skill também perderam o slide. Skill roda 1 vez + "Ver de
+  novo" (ritmo de ~16 s mantido); Hub em loop enquanto está na tela; bot igual à skill.
+- **Celular:** onde a tela é de toque (`hover: none` e `pointer: coarse`), a seta vira **toque de
+  dedo**: círculo que aparece no ponto, afunda e pulsa duas ondas. Desktop segue com a seta.
+- **`bot.html`, demo nova** ("Veja funcionando", dados de exemplo): cliente chama 22:01, bot responde
+  na hora, 2 perguntas de qualificação, oferece 09:00 e 10:30, o toque escolhe 10:30, o compromisso
+  voa pra mini-agenda e fecha com o selo **"Lead atendido às 22h04"**. Agenda fica fixa ao lado no
+  desktop. O HTML já tem a conversa inteira (SEO e reduced-motion).
+- **Failsafe ampliado:** o `.rv` só esconde com `html.rvj`, que o `<head>` liga sem reduced-motion e
+  desliga sozinho em 4 s se o `site.js` não carregar (antes, sem JS a página ficava invisível).
+- **CLS:** animações 0 em todas as páginas. Sobra ~0,006 no desktop de `bot` e `turmas` vindo da
+  troca da fonte Inter no hero (já existia; o `bot` tinha 0,032 e caiu pra 0,006 com quebra fixa no
+  título). Zerar de vez pede `display=optional` ou Inter servida do próprio site: decisão dela.
+- **Preço da particular (pedido dela):** M1 **R$ 997** (12x R$ 83 · **R$ 897 no Pix**) e M2
+  **R$ 2.497** (12x R$ 208 · **R$ 2.247 no Pix**). Pix arredondado pro real inteiro, no padrão que o
+  site já usava (sem centavos). Turma de empresa **acima de 10 pessoas: sob consulta**, com botão pro
+  WhatsApp em `turmas.html`, no FAQ e na porta 03 da home. `data-valor` dos botões: 997 / 2497.
+- 🔴 **ANTES DO MERGE:** o valor cobrado de verdade mora no workflow n8n `Criar Pagamento (Formação)`
+  `yEIEMrq9B4Mpsou6`, ainda fixo em **1600/3600**. Precisa virar 997/2497 (e, se o Pix for cobrado
+  com desconto no servidor, 897/2247 exatos). Não foi mexido nesta rodada: a sessão principal faz isso
+  com o OK dela. Se mergear antes, o site anuncia R$ 997 e o checkout cobra R$ 1.600.
+- Vídeos: `bot-celular` · `bot-desktop` · `home-celular` · `home-desktop` · `skill-obra-celular`
+  (toque de dedo) em `~/Downloads/Luh Panda/Prints site v5 (05-10)/motion/`. Celular gravado em
+  390×844 (resolução de tela, não retina).
