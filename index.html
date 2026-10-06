@@ -71,6 +71,7 @@ h.classList.add('hm-play');setTimeout(function(){if(!window.LuhHero)h.classList.
 <script src="assets/js/hero.js" defer></script>
 </head>
 <body data-pagina="home">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <nav class="nav">
   <div class="wrap">
@@ -85,6 +86,8 @@ h.classList.add('hm-play');setTimeout(function(){if(!window.LuhHero)h.classList.
     <a class="btn btn--zap btn--sm" data-diag="home" href="https://wa.me/5584994127476">Diagnóstico grátis</a>
   </div>
 </nav>
+
+<main id="conteudo" tabindex="-1">
 
 <header class="hero hero--motion">
   <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
@@ -157,8 +160,14 @@ h.classList.add('hm-play');setTimeout(function(){if(!window.LuhHero)h.classList.
 <section class="secao secao--poco" id="sobre">
   <div class="wrap">
     <div class="sobre-wrap">
-      <div class="video-frame rv">
-        <video src="assets/hero-v5-final.mp4" controls playsinline preload="metadata" aria-label="Vídeo de apresentação da Luh Panda"></video>
+      <div class="sobre-video rv">
+        <div class="video-frame">
+          <video src="assets/hero-v5-final.mp4" controls playsinline preload="metadata" aria-label="Vídeo de apresentação da Luh Panda" aria-describedby="transcricao-sobre"></video>
+        </div>
+        <details class="transcricao">
+          <summary>Ler a transcrição do vídeo</summary>
+          <p id="transcricao-sobre">Oi, eu sou a Luh Panda e estou aqui pra falar que eu não vendo tecnologia: eu resolvo o problema. Entendo o negócio, desenho a solução, construo e coloco pra funcionar. Não é teoria. Eu uso inteligência artificial todo santo dia, automatizo a operação de agência, treino a equipe pra aprender a utilizar inteligência artificial do jeito certo e tenho sistemas meus, que eu já validei, construídos do zero por mim e no ar. Eu tenho pós-graduação em inteligência artificial para negócios. Então eu não sou apenas uma pessoa que constrói prompts e conversa com a inteligência artificial: eu realmente coloco ela pra construir pra mim. Se a sua equipe ainda está perdendo tempo com trabalho manual, coisa que um sistema consegue fazer rápido e prático, vamos conversar? Bora automatizar esse processo? Bora diminuir o seu tempo?</p>
+        </details>
       </div>
       <div class="rv">
         <p class="eyebrow">Quem constrói</p>
@@ -188,6 +197,8 @@ h.classList.add('hm-play');setTimeout(function(){if(!window.LuhHero)h.classList.
     </div>
   </div>
 </section>
+
+</main>
 
 <footer class="rodape">
   <div class="wrap">
