@@ -401,3 +401,20 @@ Plano fechado no 2º /grill-me (vault: `Luh Panda/Produtos/Skill Assistente de O
 - Vídeos: `bot-celular` · `bot-desktop` · `home-celular` · `home-desktop` · `skill-obra-celular`
   (toque de dedo) em `~/Downloads/Luh Panda/Prints site v5 (05-10)/motion/`. Celular gravado em
   390×844 (resolução de tela, não retina).
+
+### 6-G.3 Acabamento pós-publicação (06/10, branch `site-v5-acabamento`)
+
+v5 no ar desde 06/10 (merge do PR #1, commit 7a8818d). Esta rodada só fecha pendência, sem decisão nova:
+- **Um h1 por página:** em `acesso.html` e `obrigado.html` cada estado tem `.titulo-estado`; o do estado
+  ativo vira h1 e os outros ficam h2 (troca feita no `mostrar()`). Visual igual.
+- **"Pular para o conteúdo"** (`.pular`, aparece no foco) em todas as páginas públicas, apontando pra
+  `<main id="conteudo">`.
+- **Contraste:** `--fraco` foi de `#8B7A98` para `#9382A0` (+8 em cada canal, mesmo tom). A única falha
+  medida no render era o texto mono dentro da bolha `.msg--eu` (#2B1A38): 4,08:1, agora 4,54:1. No fundo
+  da página foi de 4,96 para 5,52; na superfície, de 4,71 para 5,25. Token trocado também em termos e
+  privacidade.
+- **canonical + og** em termos, privacidade, acesso e obrigado (as duas últimas seguem noindex).
+- **Termos:** garantia de 7 dias da Formação agora diz "compra feita pela internet ou combinada comigo".
+- **Privacidade:** pixel descrito como valendo pro site todo quando o `PIXEL_ID` for preenchido.
+- **Sobre:** transcrição do vídeo em `<details>` abaixo dele (Whisper conferido com a legenda gravada).
+- Prints: `~/Downloads/Luh Panda/Prints site v5 (06-10)/acabamento/`.

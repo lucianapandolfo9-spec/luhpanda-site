@@ -6,6 +6,14 @@
 <title>Acesso ao kit · Skill Assistente de Obra · Luh Panda</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://luhpanda.com.br/acesso.html">
+<meta property="og:title" content="Acesso ao kit · Skill Assistente de Obra · Luh Panda">
+<meta property="og:description" content="Página de liberação do kit da Skill Assistente de Obra depois da compra.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luhpanda.com.br/acesso.html">
+<meta property="og:image" content="https://luhpanda.com.br/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +22,7 @@
 <script src="assets/js/site.js" defer></script>
 </head>
 <body data-pagina="acesso">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <nav class="nav">
   <div class="wrap">
@@ -21,14 +30,14 @@
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap" id="conteudo" tabindex="-1">
   <!-- O link do kit NUNCA esta neste arquivo. Ele so chega pela resposta do servidor (n8n),
        depois que o n8n consulta o pagamento direto no Mercado Pago. -->
 
   <div class="estado" data-estado="verificando">
     <div class="selo" aria-hidden="true"><span class="girando"></span></div>
     <p class="eyebrow">Conferindo seu pagamento</p>
-    <h1>Só um instante.</h1>
+    <h1 class="titulo-estado">Só um instante.</h1>
     <p class="lead">Estou confirmando a compra direto no Mercado Pago antes de liberar o kit.</p>
   </div>
 
@@ -37,7 +46,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
     </div>
     <p class="eyebrow">Pagamento confirmado</p>
-    <h1>Seu kit está liberado.</h1>
+    <h2 class="titulo-estado">Seu kit está liberado.</h2>
     <p class="lead">O mesmo link também foi pro seu e-mail. Guarde os dois.</p>
     <div class="ctas">
       <a class="btn btn--compra" id="link-kit" href="#" target="_blank" rel="noopener noreferrer">Abrir o kit no Google Drive</a>
@@ -62,7 +71,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
     </div>
     <p class="eyebrow">Pagamento em processamento</p>
-    <h1>Quase lá.</h1>
+    <h2 class="titulo-estado">Quase lá.</h2>
     <p class="lead">O Mercado Pago ainda não confirmou. Pix costuma levar poucos minutos. Esta página confere de novo sozinha, e o link do kit também chega no seu e-mail assim que confirmar.</p>
     <div class="ctas">
       <button class="btn btn--ghost" type="button" id="tentar-de-novo">Conferir de novo agora</button>
@@ -74,7 +83,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
     </div>
     <p class="eyebrow">Ainda conferindo</p>
-    <h1>Ainda não consegui confirmar seu pagamento.</h1>
+    <h2 class="titulo-estado">Ainda não consegui confirmar seu pagamento.</h2>
     <p class="lead" id="texto-negado">Se pagou agora por Pix, pode levar alguns minutos: esta página confere sozinha. Se já passou disso, use o link do e-mail da compra ou me chame.</p>
     <div class="ctas">
       <button class="btn btn--ghost" type="button" id="tentar-negado">Conferir de novo agora</button>
@@ -88,7 +97,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>
     </div>
     <p class="eyebrow">Falha ao conferir</p>
-    <h1>Não consegui falar com o servidor agora.</h1>
+    <h2 class="titulo-estado">Não consegui falar com o servidor agora.</h2>
     <p class="lead">Seu pagamento não se perde. Tente de novo em alguns minutos, confira seu e-mail ou me chame no WhatsApp.</p>
     <div class="ctas">
       <button class="btn btn--ghost" type="button" id="tentar-erro">Tentar de novo</button>
@@ -111,9 +120,20 @@
   var token = (params.get('t') || '').trim();
   var tentativas = 0, MAX_AUTO = 12, timer = null;
 
+  // Um h1 so na pagina: o titulo do estado ativo vira h1, os outros ficam h2 (escondidos).
+  function trocarTag(el, tag) {
+    if (el.tagName === tag) return;
+    var novo = document.createElement(tag);
+    Array.prototype.forEach.call(el.attributes, function (a) { novo.setAttribute(a.name, a.value); });
+    while (el.firstChild) novo.appendChild(el.firstChild);
+    el.parentNode.replaceChild(novo, el);
+  }
   function mostrar(estado) {
     document.querySelectorAll('[data-estado]').forEach(function (el) {
-      el.classList.toggle('ativo', el.getAttribute('data-estado') === estado);
+      var ativo = el.getAttribute('data-estado') === estado;
+      el.classList.toggle('ativo', ativo);
+      var t = el.querySelector('.titulo-estado');
+      if (t) trocarTag(t, ativo ? 'H1' : 'H2');
     });
   }
 
@@ -133,7 +153,7 @@
   function linkIncompleto() {
     var bloco = document.querySelector('[data-estado="negado"]');
     bloco.querySelector('.eyebrow').textContent = 'Link incompleto';
-    bloco.querySelector('h1').textContent = 'Não consegui abrir este link.';
+    bloco.querySelector('.titulo-estado').textContent = 'Não consegui abrir este link.';
     document.getElementById('texto-negado').textContent = 'Este link parece incompleto. Abra a página pelo link do e-mail da compra ou me chame que eu resolvo.';
     document.getElementById('tentar-negado').style.display = 'none';
     mostrar('negado');

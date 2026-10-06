@@ -6,6 +6,13 @@
 <title>Política de Privacidade · Luh Panda</title>
 <meta name="description" content="Como a Luh Panda coleta, usa, compartilha e protege dados pessoais. Política de privacidade em conformidade com a LGPD.">
 <meta name="robots" content="index, follow">
+<meta property="og:title" content="Política de Privacidade · Luh Panda">
+<meta property="og:description" content="Como a Luh Panda coleta, usa, compartilha e protege dados pessoais, em conformidade com a LGPD.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luhpanda.com.br/privacidade.html">
+<meta property="og:image" content="https://luhpanda.com.br/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="canonical" href="https://luhpanda.com.br/privacidade.html">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +21,8 @@
 <!--
   ⚠️ ANTES DE PUBLICAR: conferir com a Luciana:
   1. E-mail de contato de privacidade (usei lucianapandolfo9@gmail.com)
-  2. Se o Meta Pixel está ativo em páginas publicadas (hoje só em setor-de-ia.html, não publicada)
+  2. Meta Pixel: o código está no site todo (assets/js/site.js), mas só liga quando o PIXEL_ID
+     for preenchido. Enquanto o ID estiver vazio, nenhuma página carrega o pixel.
   3. Prazo de retenção de dados de cliente após fim de contrato (usei 5 anos, padrão fiscal)
   Rascunho sólido, mas NÃO substitui revisão jurídica.
 -->
@@ -23,7 +31,7 @@
     --fundo:#12081A; --poco:#0C0512; --superficie:#1A0E24;
     --borda:#2C1A3A; --borda-forte:#3A2249;
     --roxo:#6F2E8F; --roxo-claro:#8B4BA3; --laranja:#FF6B35;
-    --texto:#F2EAF7; --suave:#C4B2D1; --fraco:#8B7A98;
+    --texto:#F2EAF7; --suave:#C4B2D1; --fraco:#9382A0;
     --sans:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
   }
@@ -67,9 +75,14 @@
   .rodape a{margin-right:16px;color:var(--fraco);text-decoration:none}
   .rodape a:hover{color:var(--suave)}
   @media(max-width:560px){ .topo nav a{margin-left:0;margin-right:16px} }
+  .pular{position:absolute;left:12px;top:-120px;z-index:100;background:var(--texto);color:var(--fundo);
+    font-weight:600;font-size:.92rem;padding:10px 16px;border-radius:8px;text-decoration:none}
+  .pular:focus{top:12px;color:var(--fundo)}
+  #conteudo:focus{outline:none}
 </style>
 </head>
 <body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <div class="wrap">
 
   <div class="topo">
@@ -81,6 +94,7 @@
     </nav>
   </div>
 
+  <main id="conteudo" tabindex="-1">
   <p class="eyebrow">Privacidade</p>
   <h1>Política de Privacidade</h1>
   <p class="atualizacao">Última atualização: 23 de setembro de 2026</p>
@@ -152,7 +166,9 @@
   <h3>3.4 Publicidade e medição</h3>
   <p>
     Quando campanhas de tráfego estão ativas, podemos utilizar tecnologias de medição
-    da Meta (Pixel) e do Google para entender o desempenho dos anúncios. Esses
+    da Meta (Pixel) e do Google para entender o desempenho dos anúncios. Quando
+    ativada, a medição vale para as páginas do site como um todo, não só para uma
+    página específica. Esses
     recursos usam cookies e identificadores para atribuir conversões. Você pode
     bloqueá-los nas configurações do navegador ou nas preferências de anúncio de
     cada plataforma.
@@ -272,6 +288,8 @@
     indica a versão vigente. Mudanças relevantes serão comunicadas pelos canais de
     contato.
   </p>
+
+  </main>
 
   <div class="rodape">
     <a href="/">Início</a>

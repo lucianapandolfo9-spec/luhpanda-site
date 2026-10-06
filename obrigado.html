@@ -6,6 +6,14 @@
 <title>Pagamento · Luh Panda</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://luhpanda.com.br/obrigado.html">
+<meta property="og:title" content="Pagamento · Luh Panda">
+<meta property="og:description" content="Confirmação de pagamento na Luh Panda.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luhpanda.com.br/obrigado.html">
+<meta property="og:image" content="https://luhpanda.com.br/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +22,7 @@
 <script src="assets/js/site.js" defer></script>
 </head>
 <body data-pagina="obrigado">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <nav class="nav">
   <div class="wrap">
@@ -21,13 +30,13 @@
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap" id="conteudo" tabindex="-1">
 
   <!-- ===== Formacao (M1/M2): comportamento de sempre ===== -->
   <div class="estado" data-estado="formacao-aprovado">
     <div class="selo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
     <p class="eyebrow">Pagamento aprovado</p>
-    <h1 id="titulo-formacao">Sua vaga está garantida.</h1>
+    <h2 class="titulo-estado" id="titulo-formacao">Sua vaga está garantida.</h2>
     <p class="lead">Recebi a confirmação do pagamento. Falta só combinar as datas das aulas.</p>
     <div class="bloco">
       <h2>Como marcar sua aula</h2>
@@ -40,14 +49,14 @@
   <div class="estado" data-estado="skill-redirecionando">
     <div class="selo" aria-hidden="true"><span class="girando"></span></div>
     <p class="eyebrow">Pagamento recebido</p>
-    <h1>Levando você pro seu kit.</h1>
+    <h2 class="titulo-estado">Levando você pro seu kit.</h2>
     <p class="lead">Se não abrir sozinho, <a id="link-acesso" href="acesso.html">clique aqui</a>.</p>
   </div>
 
   <div class="estado" data-estado="skill-pendente">
     <div class="selo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
     <p class="eyebrow">Pagamento em processamento</p>
-    <h1>Seu kit está a caminho.</h1>
+    <h2 class="titulo-estado">Seu kit está a caminho.</h2>
     <p class="lead">Pix ou boleto podem levar alguns minutos pra confirmar. Assim que cair, o link do kit chega no seu e-mail. Você também pode acompanhar pela página de acesso.</p>
     <div class="ctas">
       <a class="btn btn--compra" id="link-acesso-pendente" href="acesso.html">Acompanhar a liberação</a>
@@ -57,7 +66,7 @@
   <div class="estado" data-estado="skill-falhou">
     <div class="selo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
     <p class="eyebrow">Pagamento não concluído</p>
-    <h1>Não rolou dessa vez.</h1>
+    <h2 class="titulo-estado">Não rolou dessa vez.</h2>
     <p class="lead">Pode ter sido o cartão, um dado errado ou o pagamento cancelado no meio. Nada foi cobrado.</p>
     <div class="ctas">
       <a class="btn btn--compra" href="skill-obra.html#comprar">Tentar de novo</a>
@@ -69,7 +78,7 @@
   <div class="estado" data-estado="pendente">
     <div class="selo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
     <p class="eyebrow">Pagamento em processamento</p>
-    <h1>Recebemos sua solicitação.</h1>
+    <h2 class="titulo-estado">Recebemos sua solicitação.</h2>
     <p class="lead">Se foi Pix ou boleto, a confirmação pode levar alguns minutos. Assim que cair, eu te chamo.</p>
     <div class="ctas"><a class="btn btn--zap" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Fiz%20um%20pagamento%20que%20ainda%20est%C3%A1%20processando%2C%20pode%20conferir%3F" target="_blank" rel="noopener">Falar comigo no WhatsApp</a></div>
   </div>
@@ -77,7 +86,7 @@
   <div class="estado" data-estado="falhou">
     <div class="selo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
     <p class="eyebrow">Pagamento não concluído</p>
-    <h1>Não rolou dessa vez.</h1>
+    <h2 class="titulo-estado">Não rolou dessa vez.</h2>
     <p class="lead">Pode ter sido o cartão, um dado errado ou o pagamento cancelado no meio. Tenta de novo ou me chama que a gente resolve.</p>
     <div class="ctas">
       <a class="btn btn--zap" href="turmas.html#particular">Tentar de novo</a>
@@ -88,7 +97,7 @@
   <div class="estado" data-estado="padrao">
     <div class="selo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
     <p class="eyebrow">Recebido</p>
-    <h1>Chegou aqui certinho.</h1>
+    <h1 class="titulo-estado">Chegou aqui certinho.</h1>
     <p class="lead">Me chama no WhatsApp pra gente confirmar os detalhes.</p>
     <div class="ctas"><a class="btn btn--zap" href="https://wa.me/5584994127476" target="_blank" rel="noopener">Falar comigo no WhatsApp</a></div>
   </div>
@@ -105,9 +114,21 @@
   var ref = (p.get('external_reference') || '').toLowerCase();
   var produto = (p.get('produto') || ref).toLowerCase();
 
+  // Um h1 so na pagina: o titulo do estado ativo vira h1, os outros ficam h2 (escondidos).
+  function trocarTag(el, tag) {
+    if (el.tagName === tag) return;
+    var novo = document.createElement(tag);
+    Array.prototype.forEach.call(el.attributes, function (a) { novo.setAttribute(a.name, a.value); });
+    while (el.firstChild) novo.appendChild(el.firstChild);
+    el.parentNode.replaceChild(novo, el);
+  }
   function mostrar(estado) {
-    var alvo = document.querySelector('[data-estado="' + estado + '"]');
-    if (alvo) alvo.classList.add('ativo');
+    document.querySelectorAll('[data-estado]').forEach(function (el) {
+      var ativo = el.getAttribute('data-estado') === estado;
+      el.classList.toggle('ativo', ativo);
+      var t = el.querySelector('.titulo-estado');
+      if (t) trocarTag(t, ativo ? 'H1' : 'H2');
+    });
   }
 
   // Esta pagina so le a querystring pra escolher a MENSAGEM. Ela nao libera nada:
