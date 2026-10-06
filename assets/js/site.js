@@ -28,6 +28,7 @@
     bot: 'Vim pela página do bot de atendimento.',
     skill: 'Vim pela página da skill de obra.',
     formacao: 'Vim pela página de formação em IA.',
+    social: 'Vim pela página de social media e tráfego para clínicas.',
     automacao: 'Vim pela página de automação sob medida.',
     acesso: 'Comprei a skill de obra e quero ajuda pra instalar.'
   };

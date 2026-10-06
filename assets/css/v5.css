@@ -251,3 +251,70 @@ a.cartao:hover,a.cartao:focus-visible{transform:translateY(-3px);border-color:va
 /* Grade fixa 2x2 (kit da skill) */
 .grade-2x2{display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:720px){.grade-2x2{grid-template-columns:1fr}}
+
+/* Hero com motion (home, 06/10/2026). O video e decorativo; o h1 e o lead continuam HTML. */
+.hero--motion{min-height:clamp(560px,56.25vw,820px);display:flex;align-items:center;overflow:hidden}
+.hero--motion > .wrap{width:100%}
+.hero-video{position:absolute;inset:0;z-index:0;background:var(--fundo)}
+.hero-video video{width:100%;height:100%;object-fit:cover;object-position:center}
+/* contraste do texto: degrade escuro do lado esquerdo e no pe; some enquanto a animacao roda */
+.hero-video::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(18,8,26,.88) 0%,rgba(18,8,26,.55) 38%,rgba(18,8,26,0) 62%),linear-gradient(0deg,var(--fundo) 0%,rgba(18,8,26,0) 22%);
+  transition:opacity .6s var(--ease)}
+.hm-play .hero-video::after{opacity:0}
+.hm-play.hm-texto .hero-video::after{opacity:1}
+.hero-texto{position:relative;z-index:1}
+.hm-play .hero-texto{opacity:0;transition:opacity .6s var(--ease)}
+.hm-play.hm-texto .hero-texto,.hm-play .hero-texto:focus-within{opacity:1}
+.hero-pular{display:none;position:absolute;z-index:2;left:max(22px,calc((100vw - var(--wrap)) / 2 + 22px));bottom:22px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+  color:var(--suave);background:rgba(12,5,18,.6);border:1px solid var(--borda-forte);border-radius:7px;padding:8px 12px;cursor:pointer}
+.hero-pular:hover,.hero-pular:focus-visible{color:var(--texto);border-color:var(--roxo-claro)}
+.hm-play .hero-pular{display:block}
+.hm-play.hm-texto .hero-pular{display:none}
+/* o ultimo quadro deixa livre so a faixa esquerda (~45% da largura): o texto do hero cabe nela */
+.hero--motion .display{max-width:11.5ch}
+.hero--motion .lead{max-width:36ch}
+@media(min-width:720px) and (max-width:1100px){
+  .hero-video::after{background:linear-gradient(90deg,rgba(18,8,26,.92) 0%,rgba(18,8,26,.8) 50%,rgba(18,8,26,.2) 80%),linear-gradient(0deg,var(--fundo) 0%,rgba(18,8,26,0) 22%)}
+}
+/* celular: so o poster, deslocado pros cubos, com veu mais forte por cima do texto */
+@media(max-width:719px){
+  .hero--motion{min-height:0;align-items:flex-end}
+  .hero-video video{object-position:80% center}
+  .hero-video::after{background:linear-gradient(0deg,rgba(18,8,26,.96) 30%,rgba(18,8,26,.7) 62%,rgba(18,8,26,.35) 100%)}
+}
+
+/* 5 portas: 3 + 2, sem cartao orfao */
+.portas--5{grid-template-columns:repeat(6,minmax(0,1fr))}
+.portas--5 > *{grid-column:span 2}
+.portas--5 > :nth-child(n+4){grid-column:span 3}
+@media(max-width:980px){
+  .portas--5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .portas--5 > *,.portas--5 > :nth-child(n+4){grid-column:span 1}
+  .portas--5 > :last-child{grid-column:1/-1}
+}
+@media(max-width:600px){.portas--5{grid-template-columns:1fr}.portas--5 > :last-child{grid-column:auto}}
+
+/* Social media: fluxo de aprovacao em 4 etapas (diagrama, sem print de bastidor) */
+.fluxo{display:grid;gap:14px;grid-template-columns:repeat(4,minmax(0,1fr));counter-reset:etapa}
+.fluxo-etapa{position:relative;border:1px solid var(--borda-forte);border-radius:14px;background:linear-gradient(180deg,var(--superficie),rgba(12,5,18,.5));padding:22px 20px}
+.fluxo-etapa::before{counter-increment:etapa;content:"0" counter(etapa);display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--laranja);margin-bottom:10px}
+.fluxo-etapa h3{margin:0;font-size:1.06rem;font-weight:600;letter-spacing:-.016em}
+.fluxo-etapa p{margin:8px 0 0;font-size:.92rem;color:var(--suave);line-height:1.55}
+.fluxo-etapa small{display:block;margin-top:12px;font-family:var(--mono);font-size:.7rem;color:var(--fraco);letter-spacing:.06em}
+.fluxo-etapa:not(:last-child)::after{content:"\2192";position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;
+  background:var(--fundo);border:1px solid var(--borda-forte);color:var(--laranja);font-size:.72rem;line-height:18px;text-align:center;z-index:1}
+.secao--poco .fluxo-etapa:not(:last-child)::after{background:var(--poco)}
+.fluxo-etapa--ok{border-color:rgba(37,211,102,.5)}
+@media(max-width:860px){
+  .fluxo{grid-template-columns:1fr}
+  .fluxo-etapa:not(:last-child)::after{content:"\2193";right:auto;left:22px;top:auto;bottom:-13px;transform:none}
+}
+
+/* Social media: pecas publicadas (prova) */
+.publicados{display:grid;gap:14px;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
+@media(max-width:860px){.publicados{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.publicados figure{margin:0}
+.publicados img{width:100%;height:auto;border-radius:12px;border:1px solid var(--borda-forte);background:#000}
+.publicados figcaption{font-family:var(--mono);font-size:.7rem;color:var(--fraco);margin-top:9px;line-height:1.5;letter-spacing:.04em}
+.publicados figcaption b{color:var(--suave);font-weight:500}

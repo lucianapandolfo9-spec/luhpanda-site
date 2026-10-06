@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luh Panda · Automação e IA para negócios</title>
-<meta name="description" content="Bot de atendimento no WhatsApp, skill de obra para o Claude, formação em IA e automação sob medida. Comece por um diagnóstico grátis de 20 minutos no WhatsApp.">
+<meta name="description" content="Bot de atendimento no WhatsApp, skill de obra para o Claude, formação em IA, social media com tráfego para clínicas e automação sob medida. Comece por um diagnóstico grátis de 20 minutos no WhatsApp.">
 <meta property="og:title" content="Luh Panda · Automação e IA para negócios">
 <meta property="og:description" content="Eu coloco IA pra trabalhar dentro do seu negócio. Diagnóstico grátis de 20 minutos no WhatsApp.">
 <meta property="og:type" content="website">
@@ -63,6 +63,12 @@
 <script src="assets/js/site.js" defer></script>
 <script>/* entrada suave ao rolar: so esconde o .rv se vai animar; se o site.js nao carregar em 4s, mostra tudo */
 (function(h){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){h.classList.add('rvj');setTimeout(function(){if(!window.LuhPanda)h.classList.remove('rvj')},4000)}})(document.documentElement);</script>
+<script>/* video do hero: so liga em tela larga, sem movimento reduzido, sem economia de dados e se ainda nao foi visto na sessao.
+   Se o hero.js nao carregar em 4s, desliga e mostra o texto. */
+(function(h){try{var c=navigator.connection,eco=c&&(c.saveData||/2g/.test(c.effectiveType||''));
+if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-width: 720px)').matches&&!eco&&sessionStorage.getItem('lp-hero-visto')!=='1'){
+h.classList.add('hm-play');setTimeout(function(){if(!window.LuhHero)h.classList.remove('hm-play')},4000)}}catch(e){}})(document.documentElement);</script>
+<script src="assets/js/hero.js" defer></script>
 </head>
 <body data-pagina="home">
 
@@ -73,15 +79,20 @@
       <a href="bot.html">Bot de atendimento</a>
       <a href="skill-obra.html">Skill de obra</a>
       <a href="turmas.html">Formação</a>
+      <a href="social-media.html">Social media</a>
       <a href="automacao.html">Automação</a>
     </div>
     <a class="btn btn--zap btn--sm" data-diag="home" href="https://wa.me/5584994127476">Diagnóstico grátis</a>
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero hero--motion">
   <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
-  <div class="wrap">
+  <div class="hero-video" aria-hidden="true">
+    <video muted playsinline preload="none" poster="assets/hero/hero-poster.jpg" data-src="assets/hero/hero-motion.mp4" tabindex="-1"></video>
+  </div>
+  <button class="hero-pular" type="button">Pular animação</button>
+  <div class="wrap hero-texto">
     <p class="eyebrow">Luciana Pandolfo · Automação e IA</p>
     <h1 class="display">Eu coloco IA pra trabalhar dentro do seu negócio.</h1>
     <p class="lead">Sou a Luh Panda. Construo bots, automações e sistemas com IA que já rodam em empresa de verdade, e ensino times a usar IA no dia a dia. Escolha por onde começar, ou me conte o seu caso em 20 minutos.</p>
@@ -98,10 +109,10 @@
 <section class="secao" id="portas">
   <div class="wrap">
     <div class="secao-topo rv">
-      <p class="eyebrow eyebrow--calmo">Quatro portas</p>
+      <p class="eyebrow eyebrow--calmo">Cinco portas</p>
       <h2 class="h2">Escolha a que resolve o seu problema de hoje.</h2>
     </div>
-    <div class="portas rv">
+    <div class="portas portas--5 rv">
       <a class="cartao" href="bot.html">
         <p class="porta-n">01</p>
         <h3>Bot de atendimento</h3>
@@ -123,8 +134,15 @@
         <p class="porta-preco">turma até 10 pessoas a partir de <b>R$ 3.000</b> · acima de 10, sob consulta · particular 12x R$ 83</p>
         <span class="porta-ir">Ver as turmas</span>
       </a>
-      <a class="cartao" href="automacao.html">
+      <a class="cartao" href="social-media.html">
         <p class="porta-n">04</p>
+        <h3>Social media + tráfego</h3>
+        <p class="corpo">Pra clínica de estética e bem-estar. Você grava e manda pelo Drive, eu edito tudo e coloco o anúncio pra rodar. Nada vai ao ar sem a sua aprovação.</p>
+        <p class="porta-preco">3 posts e 5 stories por semana · preço fechado na conversa</p>
+        <span class="porta-ir">Ver como funciona</span>
+      </a>
+      <a class="cartao" href="automacao.html">
+        <p class="porta-n">05</p>
         <h3>Automação sob medida</h3>
         <p class="corpo">Processo manual virando sistema que roda sozinho. A vitrine é o Hub Luh Panda, o painel que roda a minha própria operação.</p>
         <p class="porta-preco">preço fechado depois do diagnóstico</p>
