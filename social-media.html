@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/v5.css">
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/reels.js" defer></script>
 <script>/* entrada suave ao rolar: so esconde o .rv se vai animar; se o site.js nao carregar em 4s, mostra tudo */
 (function(h){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){h.classList.add('rvj');setTimeout(function(){if(!window.LuhPanda)h.classList.remove('rvj')},4000)}})(document.documentElement);</script>
 </head>
@@ -139,11 +140,28 @@
       <h2 class="h2">Drenagem linfática em Los Angeles, atendida daqui do Brasil.</h2>
       <p class="corpo">A Gigi grava as sessões e manda pelo Drive. Eu edito, escrevo as legendas em inglês, ela aprova pelo celular e o conteúdo sai no horário da cidade dela. Estas são peças já publicadas no perfil.</p>
     </div>
-    <div class="publicados rv">
-      <figure><img src="assets/cases/social/gio-reel-snatched.jpg" alt="Reel publicado: a terapeuta fazendo drenagem linfática no abdômen da cliente, com o texto Snatched." width="540" height="960" loading="lazy"><figcaption><b>Reel publicado</b> · Before the event</figcaption></figure>
-      <figure><img src="assets/cases/social/gio-reel-i-come-to-you.jpg" alt="Reel publicado: a terapeuta debruçada na maca, com o texto I come to you." width="540" height="960" loading="lazy"><figcaption><b>Reel publicado</b> · I come to you</figcaption></figure>
-      <figure><img src="assets/cases/social/gio-reel-the-session.jpg" alt="Reel publicado: a terapeuta atendendo uma cliente na maca, ao ar livre." width="540" height="960" loading="lazy"><figcaption><b>Reel publicado</b> · The session</figcaption></figure>
-      <figure><img src="assets/cases/social/gio-post-meet-gigi.jpg" alt="Post publicado: retrato da terapeuta sorrindo, com a camiseta da marca." width="540" height="675" loading="lazy"><figcaption><b>Post publicado</b> · Meet Gigi</figcaption></figure>
+    <div class="publicados publicados--3 rv">
+      <figure class="reel">
+        <div class="reel-midia">
+          <video muted playsinline loop preload="none" poster="assets/cases/social/gio-reel-snatched.jpg" data-src="assets/cases/social/gio-reel-before-the-event.mp4" width="720" height="1280" aria-label="Reel publicado: a terapeuta fazendo drenagem linfática no abdômen da cliente."></video>
+          <button class="reel-botao" type="button" aria-label="Tocar o reel Before the event" data-rotulo="Before the event"><span aria-hidden="true"></span></button>
+        </div>
+        <figcaption><b>Reel publicado</b> · Before the event</figcaption>
+      </figure>
+      <figure class="reel">
+        <div class="reel-midia">
+          <video muted playsinline loop preload="none" poster="assets/cases/social/gio-reel-i-come-to-you.jpg" data-src="assets/cases/social/gio-reel-i-come-to-you.mp4" width="720" height="1280" aria-label="Reel publicado: a terapeuta atendendo na maca, com a mensagem de que ela vai até a cliente."></video>
+          <button class="reel-botao" type="button" aria-label="Tocar o reel I come to you" data-rotulo="I come to you"><span aria-hidden="true"></span></button>
+        </div>
+        <figcaption><b>Reel publicado</b> · I come to you</figcaption>
+      </figure>
+      <figure class="reel">
+        <div class="reel-midia">
+          <video muted playsinline loop preload="none" poster="assets/cases/social/gio-reel-the-session.jpg" data-src="assets/cases/social/gio-reel-the-session.mp4" width="720" height="1280" aria-label="Reel publicado: trechos de uma sessão de drenagem, ao ar livre."></video>
+          <button class="reel-botao" type="button" aria-label="Tocar o reel The session" data-rotulo="The session"><span aria-hidden="true"></span></button>
+        </div>
+        <figcaption><b>Reel publicado</b> · The session</figcaption>
+      </figure>
     </div>
     <p class="nota rv" style="margin-top:22px">Publicado em <a href="https://www.instagram.com/lymphaticbygigi" target="_blank" rel="noopener" style="color:var(--suave)">@lymphaticbygigi</a>, com autorização da cliente.</p>
   </div>
