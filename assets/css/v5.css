@@ -124,6 +124,8 @@ a.cartao:hover,a.cartao:focus-visible{transform:translateY(-3px);border-color:va
 /* Demonstracao (dados de exemplo) */
 .demo{display:grid;gap:18px;grid-template-columns:minmax(0,340px) 1fr;align-items:start}
 @media(max-width:860px){.demo{grid-template-columns:1fr}}
+/* item de grid nao encolhe abaixo da tabela (min-width:auto): sem isso a pagina inteira abria com 745px no celular */
+.demo > *{min-width:0}
 .rotulo-exemplo{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#2A0E02;background:var(--laranja);border-radius:5px;padding:4px 9px;margin:0 0 14px}
 .chat{border:1px solid var(--borda-forte);border-radius:16px;background:#0E0A12;padding:18px 14px;display:flex;flex-direction:column;gap:10px}
 .chat-topo{font-family:var(--mono);font-size:.7rem;color:var(--fraco);padding:0 4px 10px;border-bottom:1px solid var(--borda);margin-bottom:4px}

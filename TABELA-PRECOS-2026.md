@@ -37,10 +37,13 @@ Sistema maior dá mais trabalho pra manter, consome mais API e tem mais gente us
 
 | Módulo | Preço | Pessoas | Por pessoa | Adicional |
 |---|---|---|---|---|
-| **M1 — Usar IA do jeito certo** (4 aulas · 8h) | **R$ 9.600** | até 8 | R$ 1.200 | R$ 900 (teto 12) |
-| **M2 — Construir e colocar no ar** (6 aulas · 12h) | **R$ 14.400** | até 8 | R$ 1.800 | R$ 1.200 (teto 12) |
+| **M1 · Usar IA do jeito certo** (4 aulas · 8h) | **R$ 3.000** | até 10 | R$ 300 | a definir |
+| **M2 · Construir e colocar no ar** (6 aulas · 12h) | **R$ 10.000** | até 10 | R$ 1.000 | a definir |
 
-Pagamento por proposta e nota fiscal. **Nunca no cartão** — R$ 9.600 no cartão queima ~R$ 1.600 em taxa.
+> **Atualizado em 05/10/2026 (pedido dela, site v5):** era M1 R$ 9.600 / M2 R$ 14.400 até 8 pessoas
+> (adicional R$ 900 / R$ 1.200, teto 12). Particular não mudou. Preço por pessoa acima de 10 ainda não decidido.
+
+Pagamento por proposta e nota fiscal. **Nunca no cartão.**
 
 ### Particular 1:1
 
@@ -67,7 +70,7 @@ Produtos de pós-venda ou de conversa. Quem nunca viu a Luh não compra nenhum d
 
 | | Recebe | Tempo | Por hora |
 |---|---|---|---|
-| Turma in-company M1 | R$ 9.600 | 8h de aula | **R$ 1.200/h** |
+| Turma in-company M1 (05/10) | R$ 3.000 | 8h de aula | **R$ 375/h** |
 | Sistema a R$ 5.000 | R$ 5.000 | ~60h | **R$ 83/h** |
 | Sistema a R$ 15.000 | R$ 15.000 | ~100h | **R$ 150/h** |
 

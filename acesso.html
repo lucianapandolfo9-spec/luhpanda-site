@@ -71,12 +71,13 @@
 
   <div class="estado" data-estado="negado">
     <div class="selo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#8B4BA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
     </div>
-    <p class="eyebrow">Não consegui confirmar</p>
-    <h1>Não encontrei um pagamento aprovado neste link.</h1>
-    <p class="lead">Se você acabou de pagar, use o link do e-mail da compra. Se o problema continuar, me chama que eu resolvo.</p>
+    <p class="eyebrow">Ainda conferindo</p>
+    <h1>Ainda não consegui confirmar seu pagamento.</h1>
+    <p class="lead" id="texto-negado">Se pagou agora por Pix, pode levar alguns minutos: esta página confere sozinha. Se já passou disso, use o link do e-mail da compra ou me chame.</p>
     <div class="ctas">
+      <button class="btn btn--ghost" type="button" id="tentar-negado">Conferir de novo agora</button>
       <a class="btn btn--zap" id="zap-negado" href="https://wa.me/5584994127476" target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
       <a class="btn btn--ghost" href="skill-obra.html">Voltar pra página da skill</a>
     </div>
@@ -128,10 +129,21 @@
     return typeof u === 'string' && /^https:\/\/(drive|docs)\.google\.com\//.test(u);
   }
 
-  function conferir() {
+  // Link incompleto ou que nao bate com o pagamento: conferir de novo nao adianta, entao o texto nao promete isso.
+  function linkIncompleto() {
+    var bloco = document.querySelector('[data-estado="negado"]');
+    bloco.querySelector('.eyebrow').textContent = 'Link incompleto';
+    bloco.querySelector('h1').textContent = 'Não consegui abrir este link.';
+    document.getElementById('texto-negado').textContent = 'Este link parece incompleto. Abra a página pelo link do e-mail da compra ou me chame que eu resolvo.';
+    document.getElementById('tentar-negado').style.display = 'none';
+    mostrar('negado');
+  }
+
+  // silencioso: rechecagem automatica, sem piscar a tela de "conferindo" a cada volta
+  function conferir(silencioso) {
     clearTimeout(timer);
-    if (!/^\d{5,25}$/.test(paymentId) || !/^[a-f0-9]{32}$/.test(token)) { mostrar('negado'); return; }
-    mostrar('verificando');
+    if (!/^\d{5,25}$/.test(paymentId) || !/^[a-f0-9]{32}$/.test(token)) { linkIncompleto(); return; }
+    if (silencioso !== true) mostrar('verificando');
     var ctrl = ('AbortController' in window) ? new AbortController() : null;
     var corte = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
     fetch(ENDPOINT + '?payment_id=' + encodeURIComponent(paymentId) + '&t=' + encodeURIComponent(token), {
@@ -146,16 +158,25 @@
         }
         if (d && d.status === 'pendente') {
           mostrar('pendente');
-          if (tentativas++ < MAX_AUTO) timer = setTimeout(conferir, 10000);
+          if (tentativas++ < MAX_AUTO) timer = setTimeout(function () { conferir(true); }, 10000);
           return;
         }
         if (d && d.status === 'kit_indisponivel') { mostrar('erro'); return; }
+        if (d && d.status === 'link_invalido') { linkIncompleto(); return; }
+        // Sem aprovacao ainda: pode ser Pix compensando. Mesma checagem no servidor, repetida com folga.
         mostrar('negado');
+        if (tentativas++ < MAX_AUTO) timer = setTimeout(function () { conferir(true); }, 20000);
       })
-      .catch(function () { clearTimeout(corte); mostrar('erro'); });
+      .catch(function () {
+        clearTimeout(corte);
+        // numa rechecagem automatica, uma falha de rede nao derruba a tela: tenta de novo em silencio
+        if (silencioso === true && tentativas++ < MAX_AUTO) { timer = setTimeout(function () { conferir(true); }, 20000); return; }
+        mostrar('erro');
+      });
   }
 
   document.getElementById('tentar-de-novo').addEventListener('click', function () { tentativas = 0; conferir(); });
+  document.getElementById('tentar-negado').addEventListener('click', function () { tentativas = 0; conferir(); });
   document.getElementById('tentar-erro').addEventListener('click', function () { tentativas = 0; conferir(); });
   conferir();
 })();

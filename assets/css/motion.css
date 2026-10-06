@@ -1,0 +1,110 @@
+/*
+ * Luh Panda · site v5 · MOTION (prototipo 05/10/2026: skill-obra.html e automacao.html).
+ * Regras: so transform e opacity animam; o conteudo final ja esta no HTML; nada muda de tamanho
+ * durante a animacao (sem layout shift). O estado inicial escondido so vale com html.mo, que o
+ * <head> so liga se prefers-reduced-motion nao estiver ativo e o motion.js carregar.
+ */
+
+/* ---------- Cursor animado ---------- */
+.mo-cursor{position:absolute;left:-3px;top:-2px;width:22px;height:22px;z-index:6;pointer-events:none;opacity:0;will-change:transform}
+.mo-cursor svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 3px 6px rgba(0,0,0,.45));transform-origin:20% 15%}
+.mo-cursor path{fill:#fff;stroke:#12081A;stroke-width:1.4;stroke-linejoin:round}
+.mo-clique{position:absolute;left:-17px;top:-17px;width:34px;height:34px;border-radius:50%;border:2px solid var(--laranja);z-index:5;pointer-events:none;opacity:0}
+
+/* ---------- Skill de obra: os 4 passos se montando ---------- */
+.mo [data-motion="passos"] .passo{position:relative;border-top-color:transparent}
+.mo [data-motion="passos"] .passo::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,var(--laranja),var(--borda-forte) 70%);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease);transition-delay:calc(var(--i) * .32s)}
+.mo [data-motion="passos"] .passo > *{opacity:0;transform:translate3d(0,14px,0);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.mo [data-motion="passos"] .passo > :nth-child(1){transition-delay:calc(var(--i) * .32s + .18s)}
+.mo [data-motion="passos"] .passo > :nth-child(2){transition-delay:calc(var(--i) * .32s + .26s)}
+.mo [data-motion="passos"] .passo > :nth-child(3){transition-delay:calc(var(--i) * .32s + .34s)}
+[data-motion="passos"] .passo:nth-child(1){--i:0}
+[data-motion="passos"] .passo:nth-child(2){--i:1}
+[data-motion="passos"] .passo:nth-child(3){--i:2}
+[data-motion="passos"] .passo:nth-child(4){--i:3}
+.mo [data-motion="passos"].mo-in .passo::before{transform:none}
+.mo [data-motion="passos"].mo-in .passo > *{opacity:1;transform:none}
+
+/* ---------- Skill de obra: demonstracao ---------- */
+.demo{position:relative}
+.mo-replay{position:absolute;top:0;right:0;z-index:3;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);background:transparent;border:1px solid var(--borda-forte);border-radius:6px;padding:5px 10px;cursor:pointer}
+.mo-replay:hover,.mo-replay:focus-visible{color:var(--texto);border-color:var(--roxo-claro)}
+.mo-replay[hidden]{display:none}
+
+.chat-opcoes{display:flex;gap:8px;margin-top:10px}
+.chip{border:1px solid var(--borda-forte);border-radius:999px;padding:3px 13px;font-size:.8rem;color:var(--texto);line-height:1.5}
+.chip--sim{background:rgba(255,107,53,.14);border-color:rgba(255,107,53,.6)}
+.drive{display:flex;align-items:center;gap:9px;margin-top:10px;padding:8px 11px;border-radius:9px;background:#241A2E;border:1px solid var(--borda-forte);color:var(--texto);font-size:.82rem;font-weight:550}
+.drive svg{width:20px;height:20px;flex-shrink:0;fill:var(--roxo-claro)}
+
+.obra-total{position:relative;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px;border:1px solid var(--borda-forte);border-radius:12px;background:var(--superficie);padding:12px 16px;margin:0 0 12px}
+.obra-total span{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fraco)}
+.obra-total b{font-size:1.35rem;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.obra-mais{position:absolute;right:16px;top:-12px;font-style:normal;font-family:var(--mono);font-size:.74rem;color:#2A0E02;background:var(--laranja);border-radius:5px;padding:2px 7px;opacity:0;pointer-events:none}
+
+.mo [data-motion="obra"] [data-mo]:not(.mo-ok){opacity:0}
+.msg--ia{position:relative}
+.mo-b{color:transparent !important}
+.mo-dots{position:absolute;left:14px;top:13px;display:flex;gap:4px}
+.mo-dots i{width:6px;height:6px;border-radius:50%;background:var(--fraco);display:block;animation:mo-pula 1s infinite ease-in-out}
+.mo-dots i:nth-child(2){animation-delay:.15s}
+.mo-dots i:nth-child(3){animation-delay:.3s}
+@keyframes mo-pula{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.msg-foto i{position:relative;overflow:hidden}
+.mo-scan{position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(180deg,transparent,rgba(255,107,53,.85),transparent);opacity:0}
+.mo-voo{position:absolute;left:0;top:0;z-index:4;pointer-events:none;white-space:nowrap;max-width:calc(100% - 8px);overflow:hidden;text-overflow:ellipsis;background:#fff;color:#1d1d1f;font-size:.78rem;font-variant-numeric:tabular-nums;border-radius:8px;padding:7px 11px;box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 0 2px rgba(255,107,53,.7);will-change:transform}
+.mo-voo b{color:#C2410C}
+
+/* ---------- Automacao: vitrine do Hub em abas ---------- */
+.hubmock{position:relative}
+.hubmock-menu button{appearance:none;-webkit-appearance:none;display:block;width:100%;text-align:left;font:inherit;font-size:.8rem;color:var(--fraco);background:transparent;border:0;padding:6px 9px;border-radius:6px;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
+.hubmock-menu button:hover{color:var(--texto)}
+.hubmock-menu button.on{background:rgba(139,75,163,.18);color:var(--texto)}
+.hubmock-menu button:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+@media(max-width:620px){
+  .hubmock-corpo{grid-template-columns:1fr}
+  .hubmock-menu{display:flex;flex-direction:row;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--borda);padding:10px;scrollbar-width:none}
+  .hubmock-menu::-webkit-scrollbar{display:none}
+  .hubmock-menu button{width:auto;white-space:nowrap;flex-shrink:0}
+}
+/* todos os paineis ocupam a mesma celula: a maquete tem sempre a altura do maior, nada pula */
+.hub-paineis{display:grid}
+.hub-painel{grid-area:1/1;padding:18px;display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;visibility:hidden}
+.hub-painel.ativo,.hub-painel.saindo{visibility:visible}
+.hub-painel .kpi{min-width:0}
+.hub-painel .kpi b{font-size:clamp(1rem,2.3vw,1.3rem);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hub-graf,.hub-lista,.hub-painel .kanban,.hub-semana,.hub-nota{grid-column:1/-1}
+.hub-graf{border:1px solid var(--borda);border-radius:10px;padding:12px 13px 8px}
+.hub-graf small{display:block;font-family:var(--mono);font-size:.66rem;color:var(--fraco);text-transform:uppercase;letter-spacing:.1em}
+.hub-graf svg{display:block;width:100%;height:70px;margin-top:10px;overflow:visible}
+.hub-graf .barra{fill:rgba(139,75,163,.6);transform-box:fill-box;transform-origin:50% 100%}
+.hub-graf .barra--atual{fill:var(--laranja)}
+.hub-graf .linha{fill:none;stroke:var(--laranja);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1}
+.hub-graf .area{fill:rgba(255,107,53,.12)}
+.hub-graf-legenda{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.62rem;color:var(--fraco);margin:4px 0 0;padding:0 4px}
+.hub-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.hub-lista li{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--borda);border-radius:8px;padding:9px 11px;font-size:.78rem;color:var(--suave);line-height:1.35}
+.hub-lista li b{color:var(--texto);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.selo-st{font-style:normal;font-family:var(--mono);font-size:.62rem;white-space:nowrap;padding:3px 8px;border-radius:999px;background:rgba(255,107,53,.14);color:var(--laranja)}
+.selo-st--ok{background:rgba(37,211,102,.12);color:#5FE08F}
+.hub-semana{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.hub-semana > div{border:1px dashed var(--borda-forte);border-radius:8px;padding:8px 6px;min-height:104px}
+.hub-semana small{display:block;font-family:var(--mono);font-size:.62rem;color:var(--fraco);text-transform:uppercase;letter-spacing:.1em}
+.hub-semana p{margin:7px 0 0;padding:6px 7px;border-radius:6px;background:rgba(139,75,163,.24);border-left:2px solid var(--laranja);font-size:.66rem;line-height:1.35;color:var(--texto);overflow-wrap:anywhere}
+.hub-nota{margin:0;font-family:var(--mono);font-size:.7rem;color:var(--fraco)}
+@media(max-width:620px){
+  .hub-painel{padding:14px;gap:8px}
+  .hub-painel .kpi{padding:10px}
+  .hub-painel .kpi small{font-size:.58rem;letter-spacing:.04em}
+  .hub-semana{grid-template-columns:1fr;gap:6px}
+  .hub-semana > div{min-height:0;display:flex;align-items:center;gap:10px;padding:7px 9px}
+  .hub-semana small{width:30px;flex-shrink:0}
+  .hub-semana p{margin:0;flex:1;font-size:.72rem}
+}
+/* antes de entrar na tela, o painel inicial fica vazio pra se montar na frente da pessoa */
+.mo [data-motion="hub"]:not(.mo-vivo) .hub-painel.ativo [data-in]{opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  .mo-cursor,.mo-clique,.mo-voo,.mo-dots{display:none}
+  .hubmock-menu button{transition:none}
+}

@@ -18,6 +18,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/v5.css">
 <script src="assets/js/site.js" defer></script>
+<link rel="stylesheet" href="assets/css/motion.css">
+<script>/* motion: so esconde o estado inicial se a animacao vai rodar; se o motion.js nao carregar em 4s, mostra tudo */
+(function(d){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.documentElement.classList.add('mo');setTimeout(function(){if(!window.LuhMotion)d.documentElement.classList.remove('mo')},4000)}})(document);</script>
+<script src="assets/js/motion.js" defer></script>
 </head>
 <body data-pagina="automacao" data-conteudo="automacao-sob-medida">
 
@@ -67,23 +71,83 @@
       </div>
       <div>
         <span class="rotulo-exemplo">Dados de exemplo</span>
-        <div class="hubmock" role="img" aria-label="Maquete do painel com dados de exemplo">
-          <div class="hubmock-barra" aria-hidden="true"><i></i><i></i><i></i><b>hub · visão geral</b></div>
+        <div class="hubmock" data-motion="hub">
+          <div class="hubmock-barra" aria-hidden="true"><i></i><i></i><i></i><b data-hub-titulo>hub · visão geral</b></div>
           <div class="hubmock-corpo">
-            <div class="hubmock-menu"><span class="on">Visão geral</span><span>Carteira</span><span>Financeiro</span><span>Funil</span><span>Contratos</span><span>Agenda</span></div>
-            <div class="hubmock-area">
-              <div class="kpi"><small>A receber no mês</small><b>R$ 18.400</b></div>
-              <div class="kpi"><small>Já recebido</small><b>R$ 11.250</b></div>
-              <div class="kpi"><small>Clientes ativos</small><b>7</b></div>
-              <div class="kanban">
-                <div>Novo contato<p>Clínica Exemplo</p><p>Loja Modelo</p></div>
-                <div>Diagnóstico<p>Escritório Fictício</p></div>
-                <div>Proposta<p>Oficina Exemplo</p></div>
+            <div class="hubmock-menu" role="tablist" aria-label="Módulos do Hub, com dados de exemplo">
+              <button type="button" role="tab" class="on" id="hub-tab-geral" aria-selected="true" aria-controls="hub-geral" data-mod="geral">Visão geral</button>
+              <button type="button" role="tab" id="hub-tab-fin" aria-selected="false" aria-controls="hub-fin" data-mod="fin" tabindex="-1">Financeiro</button>
+              <button type="button" role="tab" id="hub-tab-com" aria-selected="false" aria-controls="hub-com" data-mod="com" tabindex="-1">Comercial</button>
+              <button type="button" role="tab" id="hub-tab-ctr" aria-selected="false" aria-controls="hub-ctr" data-mod="ctr" tabindex="-1">Contratos</button>
+              <button type="button" role="tab" id="hub-tab-ag" aria-selected="false" aria-controls="hub-ag" data-mod="ag" tabindex="-1">Agenda</button>
+            </div>
+            <div class="hub-paineis">
+
+              <div class="hub-painel ativo" role="tabpanel" id="hub-geral" aria-labelledby="hub-tab-geral" data-titulo="visão geral">
+                <div class="kpi" data-in><small>A receber no mês</small><b data-conta="18400" data-fmt="brl">R$ 18.400</b></div>
+                <div class="kpi" data-in><small>Já recebido</small><b data-conta="11250" data-fmt="brl">R$ 11.250</b></div>
+                <div class="kpi" data-in data-foco><small>Clientes ativos</small><b data-conta="7">7</b></div>
+                <div class="hub-graf" data-in>
+                  <small>Receita dos últimos 6 meses</small>
+                  <svg viewBox="0 0 240 70" preserveAspectRatio="none" aria-hidden="true">
+                    <rect class="barra" x="6" y="38" width="26" height="32" rx="3"/><rect class="barra" x="46" y="30" width="26" height="40" rx="3"/><rect class="barra" x="86" y="34" width="26" height="36" rx="3"/><rect class="barra" x="126" y="22" width="26" height="48" rx="3"/><rect class="barra" x="166" y="16" width="26" height="54" rx="3"/><rect class="barra barra--atual" x="206" y="6" width="26" height="64" rx="3"/>
+                  </svg>
+                  <p class="hub-graf-legenda"><span>mai</span><span>jun</span><span>jul</span><span>ago</span><span>set</span><span>out</span></p>
+                </div>
               </div>
+
+              <div class="hub-painel" role="tabpanel" id="hub-fin" aria-labelledby="hub-tab-fin" data-titulo="financeiro" aria-hidden="true">
+                <div class="kpi" data-in><small>Entradas</small><b data-conta="11250" data-fmt="brl">R$ 11.250</b></div>
+                <div class="kpi" data-in><small>Saídas</small><b data-conta="3180" data-fmt="brl">R$ 3.180</b></div>
+                <div class="kpi" data-in data-foco><small>Saldo</small><b><em data-conta="8070" data-fmt="brl">R$ 8.070</em></b></div>
+                <div class="hub-graf" data-in>
+                  <small>Caixa nos últimos 30 dias</small>
+                  <svg viewBox="0 0 240 70" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="area" d="M0 58 L30 52 L60 55 L90 40 L120 44 L150 30 L180 33 L210 18 L240 10 L240 70 L0 70 Z"/>
+                    <path class="linha" pathLength="1" d="M0 58 L30 52 L60 55 L90 40 L120 44 L150 30 L180 33 L210 18 L240 10"/>
+                  </svg>
+                </div>
+                <ul class="hub-lista">
+                  <li data-in><span>Parcela 3/6 · Clínica Exemplo</span><b>R$ 1.500</b></li>
+                  <li data-in><span>Mensalidade · Loja Modelo</span><b>R$ 800</b></li>
+                </ul>
+              </div>
+
+              <div class="hub-painel" role="tabpanel" id="hub-com" aria-labelledby="hub-tab-com" data-titulo="comercial" aria-hidden="true">
+                <div class="kpi" data-in><small>Em negociação</small><b data-conta="24000" data-fmt="brl">R$ 24.000</b></div>
+                <div class="kpi" data-in><small>Conversão</small><b data-conta="32" data-fmt="pct">32%</b></div>
+                <div class="kanban">
+                  <div data-in>Novo contato<p data-in>Clínica Exemplo</p><p data-in>Loja Modelo</p></div>
+                  <div data-in>Diagnóstico<p data-in data-foco>Escritório Fictício</p></div>
+                  <div data-in>Proposta<p data-in>Oficina Exemplo</p></div>
+                </div>
+              </div>
+
+              <div class="hub-painel" role="tabpanel" id="hub-ctr" aria-labelledby="hub-tab-ctr" data-titulo="contratos" aria-hidden="true">
+                <div class="kpi" data-in><small>Contratos ativos</small><b data-conta="6">6</b></div>
+                <div class="kpi" data-in><small>Renovam em 30 dias</small><b data-conta="2">2</b></div>
+                <ul class="hub-lista hub-lista--ctr">
+                  <li data-in><span>Clínica Exemplo · manutenção mensal</span><i class="selo-st selo-st--ok">ativo</i></li>
+                  <li data-in data-foco><span>Escritório Fictício · projeto</span><i class="selo-st">aguarda assinatura</i></li>
+                  <li data-in><span>Loja Modelo · bot de atendimento</span><i class="selo-st selo-st--ok">ativo</i></li>
+                </ul>
+              </div>
+
+              <div class="hub-painel" role="tabpanel" id="hub-ag" aria-labelledby="hub-tab-ag" data-titulo="agenda" aria-hidden="true">
+                <div class="hub-semana">
+                  <div data-in><small>seg</small><p data-in data-foco>10h · Diagnóstico · Clínica Exemplo</p></div>
+                  <div data-in><small>ter</small></div>
+                  <div data-in><small>qua</small><p data-in>14h · Entrega · Loja Modelo</p></div>
+                  <div data-in><small>qui</small><p data-in>9h · Proposta · Oficina Exemplo</p></div>
+                  <div data-in><small>sex</small></div>
+                </div>
+                <p class="hub-nota" data-in>Reunião marcada direto do funil, na agenda do Google.</p>
+              </div>
+
             </div>
           </div>
         </div>
-        <p class="nota">Maquete ilustrativa. Nomes e valores são fictícios.</p>
+        <p class="nota">Maquete ilustrativa. Nomes e valores são fictícios. Passe o mouse ou toque num módulo pra ver.</p>
       </div>
     </div>
   </div>

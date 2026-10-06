@@ -341,3 +341,34 @@ Plano fechado no 2º /grill-me (vault: `Luh Panda/Produtos/Skill Assistente de O
   navegador; Purchase com valor só pelo servidor (CAPI). Token da CAPI só na credencial do n8n.
 - **Falta (dela):** pixel + token CAPI, `KIT_URL`, credenciais no n8n, OK pra importar/publicar o
   workflow, teste de R$ 1, OK pra merge na `main`.
+
+### 6-G.1 Rodada de 05/10 (noite): preço, acesso e protótipo de motion
+
+- **Preço in-company novo (pedido dela):** Módulo 1 **R$ 3.000** e Módulo 2 **R$ 10.000**, turma de
+  **até 10 pessoas** (era R$ 9.600 / R$ 14.400 até 8). Particular **não mudou** (M1 R$ 1.600 = 12x R$ 133
+  ou R$ 1.440 no Pix · M2 R$ 3.600 = 12x R$ 300 ou R$ 3.240 no Pix). Atualizado em `turmas.html`
+  (cartões + FAQ "Quanto custa?"), na porta 03 da home e em `TABELA-PRECOS-2026.md`. Preço por pessoa
+  acima de 10 ainda não decidido. Checkout do particular e workflow de Formação intocados.
+- **`acesso.html`, estado "negado":** texto suavizado ("Ainda não consegui confirmar seu pagamento…
+  esta página confere sozinha") e agora ele **reconfere de verdade** (mesma chamada ao servidor, a cada
+  20 s, sem piscar a tela; teto de 12 tentativas somando com o "pendente"). Link incompleto ou que não
+  bate com o pagamento (`link_invalido`) mostra outro texto e não promete reconferir. Regra de
+  liberação (n8n + token `t`) não mudou.
+- **Motion, PROTÓTIPO em 2 lugares** (`assets/css/motion.css` + `assets/js/motion.js`, só carregados
+  em `skill-obra.html` e `automacao.html`):
+  - Sem GSAP: Web Animations API nativa + IntersectionObserver, ~0 KB de terceiro. Só `transform` e
+    `opacity`; nenhum listener de scroll. CLS medido 0 nos 4 cenários.
+  - Conteúdo final está no HTML. O `<head>` liga `html.mo` só sem `prefers-reduced-motion`; se o
+    `motion.js` não carregar em 4 s, a página volta ao estado final sozinha.
+  - **skill-obra:** "O que faz" monta os 4 passos em sequência (linha desenha, texto sobe). Demonstração:
+    foto chega → Claude "pensa" e digita a leitura → cursor clica em "sim" → linha voa do chat e
+    encaixa na planilha (espera a planilha estar 85% visível, descontando a barra fixa do celular) →
+    total da obra conta de R$ 312,45 a R$ 799,35 → pasta do Drive aparece e o cursor clica. Botão
+    "Ver de novo".
+  - **automacao:** maquete do Hub virou abas acessíveis (Visão geral · Financeiro · Comercial ·
+    Contratos · Agenda), todas com dados de exemplo no HTML. Tour com cursor, números contando,
+    gráfico desenhando; no desktop o mouse num módulo assume (volta 3,5 s depois de sair); clique,
+    toque e setas do teclado também. No celular o menu vira faixa horizontal.
+  - Vídeos de prévia: `~/Downloads/Luh Panda/Prints site v5 (05-10)/motion/`.
+- **Bug corrigido de carona:** `skill-obra.html` abria com 745 px de largura no celular (a coluna da
+  demonstração não encolhia abaixo da tabela). `.demo > *{min-width:0}` em `v5.css`.
