@@ -114,16 +114,16 @@
         <p class="corpo">Mesmo conteúdo da turma, 1:1 e adaptado ao que você faz.</p>
         <p class="preco-grande" style="margin-top:20px">12x R$ 83</p>
         <p class="preco-linha">ou R$ 897 no Pix · R$ 997 à vista no cartão · 4 aulas de 2h</p>
-        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m1" data-valor="997" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%201%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
-        <p class="nota" style="text-align:center">Pagamento seguro pelo Mercado Pago</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pedido="m1" href="https://wa.me/5584994127476">Garantir minha vaga no WhatsApp</a>
+        <p class="nota" style="text-align:center">Pagamento combinado comigo no WhatsApp: Pix ou cartão</p>
       </div>
       <div class="cartao">
         <h3>Módulo 2 · particular</h3>
         <p class="corpo">Você sai com um sistema seu no ar: banco, login, automação e pagamento.</p>
         <p class="preco-grande" style="margin-top:20px">12x R$ 208</p>
         <p class="preco-linha">ou R$ 2.247 no Pix · R$ 2.497 à vista no cartão · 6 aulas de 2h + 2h de suporte</p>
-        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pagar="m2" data-valor="2497" href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20garantir%20minha%20vaga%20no%20M%C3%B3dulo%202%20particular." target="_blank" rel="noopener">Garantir minha vaga</a>
-        <p class="nota" style="text-align:center">Pagamento seguro pelo Mercado Pago</p>
+        <a class="btn btn--zap btn--full" style="margin-top:22px" data-pedido="m2" href="https://wa.me/5584994127476">Garantir minha vaga no WhatsApp</a>
+        <p class="nota" style="text-align:center">Pagamento combinado comigo no WhatsApp: Pix ou cartão</p>
       </div>
     </div>
   </div>
@@ -142,7 +142,7 @@
       <details><summary>As aulas ficam gravadas?</summary><p>Todas. O time revê quando quiser, e quem faltar não fica pra trás.</p></details>
       <details><summary>Quando são as aulas?</summary><p>Não trabalho com data fixa. A gente combina o calendário conforme a rotina de vocês.</p></details>
       <details><summary>Quanto custa?</summary><p>Turma da empresa, até 10 pessoas: Módulo 1 por R$ 3.000 e Módulo 2 por R$ 10.000. Acima de 10 pessoas, sob consulta: me chama no <a href="https://wa.me/5584994127476?text=Oi%20Luh!%20Quero%20uma%20turma%20in-company%20pra%20mais%20de%2010%20pessoas." target="_blank" rel="noopener">WhatsApp</a>. Particular: Módulo 1 por R$ 997 (12x de R$ 83 ou R$ 897 no Pix) e Módulo 2 por R$ 2.497 (12x de R$ 208 ou R$ 2.247 no Pix).</p></details>
-      <details><summary>Como funciona o pagamento?</summary><p>Particular: Pix ou cartão pelo Mercado Pago. In-company: proposta e nota fiscal para a empresa.</p></details>
+      <details><summary>Como funciona o pagamento?</summary><p>Particular: Pix ou cartão, combinado comigo no WhatsApp. In-company: proposta e nota fiscal para a empresa.</p></details>
     </div>
   </div>
 </section>
@@ -178,32 +178,5 @@
 
 </a>
 
-<script>
-// Pagamento particular (M1/M2): checkout automatico via Mercado Pago (workflow de Formacao, inalterado).
-// Se o webhook falhar ou demorar, cai no WhatsApp normalmente.
-(function(){
-  var WEBHOOK_URL = 'https://mcp.luhpanda.com.br/webhook/formacao-criar-pagamento';
-  document.querySelectorAll('[data-pagar]').forEach(function(link){
-    var textoOriginal = link.textContent;
-    var whatsappFallback = link.getAttribute('href');
-    link.addEventListener('click', function(ev){
-      ev.preventDefault();
-      if (window.LuhPanda) window.LuhPanda.rastrear('InitiateCheckout', { content_ids: [link.dataset.pagar], content_type: 'product', value: Number(link.dataset.valor || 0), currency: 'BRL', num_items: 1 });
-      link.style.opacity = '.7'; link.style.pointerEvents = 'none'; link.textContent = 'Abrindo pagamento...';
-      var controller = ('AbortController' in window) ? new AbortController() : null;
-      var timeoutId = setTimeout(function(){ if (controller) controller.abort(); }, 8000);
-      fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ modulo: link.dataset.pagar }), signal: controller ? controller.signal : undefined })
-        .then(function(r){ clearTimeout(timeoutId); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
-        .then(function(data){ if (!data || !data.checkout_url) throw new Error('sem checkout_url'); window.location.href = data.checkout_url; })
-        .catch(function(){
-          clearTimeout(timeoutId);
-          link.style.opacity = ''; link.style.pointerEvents = ''; link.textContent = textoOriginal;
-          window.open(whatsappFallback, '_blank', 'noopener');
-        });
-    });
-  });
-})();
-</script>
 </body>
 </html>
