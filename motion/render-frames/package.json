@@ -1,0 +1,16 @@
+{
+  "name": "render-frames",
+  "version": "1.0.0",
+  "description": "Renderizador deterministico de motion: 6s 1920x1080 60fps",
+  "scripts": {
+    "lint": "node lint.mjs",
+    "render": "node render.mjs",
+    "test:frames": "node render.mjs --start 0 --end 5 --no-video --out out/smoke",
+    "determinism": "node determinism.mjs"
+  },
+  "type": "module",
+  "dependencies": {
+    "playwright-core": "^1.63.0"
+  },
+  "private": true
+}

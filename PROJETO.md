@@ -27,7 +27,7 @@ Essa ordem vale pra tudo: seções do site, cards de serviço, sequência de cas
 | **Domínio próprio** | `luhpanda.com.br` (HostGator) | ✅ ativo, apontado pro GitHub Pages via CNAME. HTTPS pendente (certificado automático do GitHub, demorando mais que o normal — checar `gh api repos/lucianapandolfo9-spec/luhpanda-site/pages -F https_enforced=true`) |
 | **Deck PDF do portfólio** | `portfolio/deck.html` → `portfolio/Luh-Panda-Portfolio.pdf` (14 slides, ~1,7MB) | ✅ v2 pronto; regenerar quando site mudar |
 | **Currículo** | `Curriculo Luh Panda/LUCIANA PANDOLFO.docx` (+ `.pdf`) | ✅ atualizado em 02/ago com Aprovi.ai, ROAS 6,03x e números da auditoria de folha (Capitalize); corrigido dado da Pandoka (era Recife/575%, certo é Beach Club em Pipa-RN/60%); falta reexportar o PDF final (abrir no Word/Docs — conversão local perde a foto do cabeçalho) |
-| **LinkedIn** | `linkedin.com/in/luciana-pandolfo-661308403` | ✅ headline, cargo (Lead Performance), setor, banner e capa novos já no ar; ✅ seção "Em destaque" com posts + link do site já ativa; ✅ 02/ago: removidas as 2 entradas de Lume Social Produções da Experiência (empresa nova/pequena, não valia manter como vínculo aparente); ⚠️ gargalo real de geração de leads é rede pequena (58 conexões/60 seguidores) — só 2 visualizações de perfil e 1 aparição em busca na última semana; ⏳ calendário de conteúdo (Notion) ainda não montado |
+| **LinkedIn** | `linkedin.com/in/luhpanda` | ✅ headline, cargo (Lead Performance), setor, banner e capa novos já no ar; ✅ seção "Em destaque" com posts + link do site já ativa; ✅ 02/ago: removidas as 2 entradas de Lume Social Produções da Experiência (empresa nova/pequena, não valia manter como vínculo aparente); ⚠️ gargalo real de geração de leads é rede pequena (58 conexões/60 seguidores) — só 2 visualizações de perfil e 1 aparição em busca na última semana; ⏳ calendário de conteúdo (Notion) ainda não montado |
 | **Fonte da verdade dos cases** | Notion "🧠 Luh Panda — Portfólio & Projetos" | ⚠️ campos "Resultado Mensurável" incompletos |
 | **Site v4 — pivô de vendas** | `BLUEPRINT-V4-VENDAS.md` neste repo | ✅ desenhado em 06/ago, **construído em 07/ago** (ver seção 6-C). Ler antes de mexer no site. |
 | **Tabela de preços vigente** | `TABELA-PRECOS-2026.md` neste repo | ✅ aprovada em 07/ago — 3 faixas de sistemas (R$5k/15k/25k+), in-company M1/M2, particular M1/M2. Fonte da verdade de preço. |
@@ -282,6 +282,13 @@ Ordem acordada: **site v3 no ar → criativos prontos → começar tráfego pago
 Produto de aprovação de conteúdo (antes chamado "Posta Aí"), nascido no projeto da Gigi (ver skill `lymphatic-by-gigi`, repo local `posta-ai`). Em 30/jul descobrimos que "Posta Aí" colide com o nome do próprio repo além de soar genérico, e a primeira tentativa de troca, **"Aprova.ai", já existe como concorrente direto** (mesmo nicho: aprovação de posts pra agências, aprova.ai). Pesquisamos e validamos (busca + whois em vários candidatos — Libera/Combina/Confere/Valida/Segue.ai todos ocupados; Rubrica.ai colide com nicho de "rubricas de avaliação com IA") até fechar em **Aprovi.ai**: domínio `.ai` livre, único conflito achado foi "Aprovi Software" (ERP mexicano, Tijuana — segmento e país diferentes, risco aceito). `aprovi.com` está ocupado por outra empresa (fora do alcance). **Pendência da Luh:** checar o INPI antes de investir na marca de verdade — esse produto vai ser validado pela Lume.
 
 O nome do produto no `posta-ai` repo local (`/Users/luhpanda/Downloads/Luh Panda/posta-ai`) ainda não foi trocado — só o case do site vai chamar Aprovi.ai por enquanto. Trocar no repo do produto é tarefa separada, não estava no escopo de hoje.
+
+**✅ 10/set/2026 — Aprovi.ai virou o canal de postagem real da marca pessoal, não só
+produto de case.** Marca "Luh Panda" cadastrada, publicação automática ponta a ponta
+(upload → aprovação → agendamento → publicação no @luhpanda via `pg_cron`, sem clicar
+em nada depois de agendado). Processo operacional completo mora na skill
+`producao-criativos` (não duplicar aqui) e no `PROJETO.md` do próprio aprovi.ai
+(`Downloads/Luh Panda/aprovi-ai/PROJETO.md`), seção "Marca Luh Panda".
 
 ## 10. Histórico resumido
 
